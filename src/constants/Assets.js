@@ -1,3 +1,5 @@
-export const Images = {
-  testImg: require('~assets/images/testImg.jpg'),
+export const Assets = {
+  Images: {
+    testImg: require('~assets/images/testImg.jpg'),
+  },
 };
