@@ -9,7 +9,7 @@ class InitScreen extends Component {
 
   componentDidMount = () => {
     this.cacheResourcesAsync().then(() => {
-      SplashScreen.hide();
+      this.props.navigation.navigate('AppNavigator');
     });
   };
 
@@ -18,7 +18,7 @@ class InitScreen extends Component {
   };
 
   cacheResourcesAsync = async () => {
-    const images = [require('~assets/splash.png')];
+    const images = [require('~assets/images/splash.png')];
     const cacheImages = images.map(image => Asset.fromModule(image).downloadAsync());
     return Promise.all(cacheImages);
   };
