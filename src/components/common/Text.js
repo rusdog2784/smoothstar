@@ -5,7 +5,7 @@ import { GlobalStyles, Colors } from '~styles';
 import { StyleTypes } from '~constants';
 
 export const Text = props => {
-  const { children, type, customStyle } = props;
+  const { children, type, style } = props;
 
   const {
     textStyle,
@@ -42,9 +42,9 @@ export const Text = props => {
       break;
   }
 
-  return (
-    <RNText {...props} style={[textStyle, typeStyle, customStyle]}>
-      {children}
-    </RNText>
-  );
+  let newProps = { ...props };
+  newProps.style = [textStyle, typeStyle];
+  style && newProps.style.push(style);
+
+  return <RNText {...newProps}>{children}</RNText>;
 };
