@@ -1,45 +1,47 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Card } from 'native-base';
+import { Card, CardItem } from 'native-base';
 import ProgressBar from 'react-native-progress/CircleSnail';
 import Image from 'react-native-image-progress';
 
 import { Text } from '~components/common';
 import { StyleTypes } from '~constants';
 
-export const CardLI = ({ imageSource, heading, date: dateText, description }) => {
+export const CardLI = ({ onPress, imageSource, heading, date: dateText, description }) => {
   const { h2, p, date } = StyleTypes;
 
   return (
     <Card style={styles.containerStyle}>
-      <View style={styles.parentViewStyle}>
-        <Image
-          style={styles.imageStyle}
-          resizeMode="cover"
-          source={imageSource}
-          indicator={ProgressBar}
-          indicatorProps={{
-            size: 40,
-            borderWidth: 0,
-            color: 'blue',
-            unfilledColor: 'white',
-          }}
-        />
+      <CardItem button onPress={onPress} style={{ borderRadius: 7 }}>
+        <View style={styles.parentViewStyle}>
+          <Image
+            style={styles.imageStyle}
+            resizeMode="cover"
+            source={imageSource}
+            indicator={ProgressBar}
+            indicatorProps={{
+              size: 40,
+              borderWidth: 0,
+              color: 'blue',
+              unfilledColor: 'white',
+            }}
+          />
 
-        <View style={styles.textViewStyle}>
-          <Text numberOfLines={2} type={h2}>
-            {heading}
-          </Text>
-
-          <Text type={date}>{dateText}</Text>
-
-          <View style={styles.descriptionViewStyle}>
-            <Text numberOfLines={2} type={p}>
+          <View style={styles.textViewStyle}>
+            <Text numberOfLines={2} type={h2}>
               {heading}
             </Text>
+
+            <Text type={date}>{dateText}</Text>
+
+            <View style={styles.descriptionViewStyle}>
+              <Text numberOfLines={2} type={p}>
+                {description}
+              </Text>
+            </View>
           </View>
         </View>
-      </View>
+      </CardItem>
     </Card>
   );
 };
@@ -52,7 +54,7 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   parentViewStyle: {
-    margin: 15,
+    // margin: 15,
     flexDirection: 'row',
   },
   textViewStyle: {

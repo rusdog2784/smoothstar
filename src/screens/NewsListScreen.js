@@ -11,7 +11,14 @@ const { height, width } = Dimensions.get('window');
 
 const data = [
   {
-    imgSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
+    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
+    heading: 'Where are the best places to ride your SmoothStar?',
+    description:
+      'The after school program is an 8 week course, the kids will surf with the same instructor and same students each week. We have a low student/instructor ratio and will group the kids accordingly to ability. All lessons have been designed by a PE/PD/Health teacher and cover the basics from warm-up to paddling, catching waves and standing while also catering to intermediate and advanced students (technique refinement and style improvement). Your kids will also learn important surf and safety rules including info on rips, tides, sandbars and waves.',
+    date: '20/02/2019',
+  },
+  {
+    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
     heading:
       'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
     description:
@@ -19,7 +26,7 @@ const data = [
     date: '20/02/2019',
   },
   {
-    imgSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
+    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
     heading:
       'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
     description:
@@ -27,7 +34,7 @@ const data = [
     date: '20/02/2019',
   },
   {
-    imgSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
+    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
     heading:
       'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
     description:
@@ -35,7 +42,7 @@ const data = [
     date: '20/02/2019',
   },
   {
-    imgSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
+    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
     heading:
       'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
     description:
@@ -43,7 +50,7 @@ const data = [
     date: '20/02/2019',
   },
   {
-    imgSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
+    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
     heading:
       'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
     description:
@@ -51,15 +58,7 @@ const data = [
     date: '20/02/2019',
   },
   {
-    imgSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
-    heading:
-      'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
-    description:
-      'The after school program is an 8 week course, the kids will surf with the same instructor and same students each week. We have a low student/instructor ratio and will group the kids accordingly to ability. All lessons have been designed by a PE/PD/Health teacher and cover the basics from warm-up to paddling, catching waves and standing while also catering to intermediate and advanced students (technique refinement and style improvement). Your kids will also learn important surf and safety rules including info on rips, tides, sandbars and waves.',
-    date: '20/02/2019',
-  },
-  {
-    imgSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
+    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
     heading:
       'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
     description:
@@ -74,12 +73,19 @@ class NewsListScreen extends Component {
     headerLeft: <View>{null}</View>,
   };
 
-  _renderRow = ({ heading, date, description, imgSource }) => {
+  _renderRow = ({ heading, date, description, imageSource }) => {
     return (
       <CardLI
+        onPress={() =>
+          this.props.navigation.navigate('NewsDetailScreen', {
+            imageSource: { uri: imageSource },
+            heading,
+            description,
+          })
+        }
         heading={heading}
         date={date}
-        imageSource={{ uri: imgSource }}
+        imageSource={{ uri: imageSource }}
         description={description}
       />
     );
@@ -96,13 +102,25 @@ class NewsListScreen extends Component {
               paginationStyle={styles.carouselPaginationStyle}
               style={styles.carouselStyle}>
               <View style={styles.slideStyle}>
-                <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.testImg} />
+                <Image
+                  style={styles.imageStyle}
+                  resizeMode="cover"
+                  source={Assets.Images.testImg}
+                />
               </View>
               <View style={styles.slideStyle}>
-                <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.testImg} />
+                <Image
+                  style={styles.imageStyle}
+                  resizeMode="cover"
+                  source={Assets.Images.testImg}
+                />
               </View>
               <View style={styles.slideStyle}>
-                <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.testImg} />
+                <Image
+                  style={styles.imageStyle}
+                  resizeMode="cover"
+                  source={Assets.Images.testImg}
+                />
               </View>
             </Swiper>
           </View>
