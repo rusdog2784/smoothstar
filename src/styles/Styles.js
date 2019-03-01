@@ -18,6 +18,11 @@ export const GlobalStyles = StyleSheet.create({
     textShadowRadius: 2,
     textShadowColor: Colors.textShadowColor,
   },
+  h1Style: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: Colors.primaryTextColor,
+  },
   h2Style: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -29,6 +34,10 @@ export const GlobalStyles = StyleSheet.create({
   },
   smallTextStyle: {
     fontSize: 12,
+    color: Colors.primaryTextColor,
+  },
+  normalTextStyle: {
+    fontSize: 18,
     color: Colors.primaryTextColor,
   },
 });

@@ -1,17 +1,23 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
+import { Colors } from '~styles';
 import NewsListScreen from '~screens/NewsListScreen';
+import NewsDetailScreen from '~screens/NewsDetailScreen';
 
 const NewsStack = createStackNavigator(
   {
     NewsListScreen: {
       screen: NewsListScreen,
     },
+    NewsDetailScreen: {
+      screen: NewsDetailScreen,
+    },
   },
   {
     initialRouteName: 'NewsListScreen',
     defaultNavigationOptions: {
       headerTransparent: true,
+      headerTintColor: Colors.headerTitleColor,
     },
   }
 );

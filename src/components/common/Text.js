@@ -11,12 +11,14 @@ export const Text = props => {
     textStyle,
     headerTitleStyle,
     titleTextStyle,
+    h1Style,
     h2Style,
     smallTextStyle,
+    normalTextStyle,
     pStyle,
   } = GlobalStyles;
 
-  const { headerTitle, h2, p, date, title } = StyleTypes;
+  const { headerTitle, h1, h2, p, date, title } = StyleTypes;
 
   let typeStyle = null;
 
@@ -26,6 +28,9 @@ export const Text = props => {
       break;
     case title:
       typeStyle = { ...titleTextStyle };
+      break;
+    case h1:
+      typeStyle = { ...h1Style };
       break;
     case h2:
       typeStyle = { ...h2Style };
@@ -39,6 +44,7 @@ export const Text = props => {
       break;
     }
     default:
+      typeStyle = { ...normalTextStyle };
       break;
   }
 
