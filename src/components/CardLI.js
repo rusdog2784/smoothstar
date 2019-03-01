@@ -1,28 +1,41 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Card } from 'native-base';
+import ProgressBar from 'react-native-progress/CircleSnail';
+import Image from 'react-native-image-progress';
 
 import { Text } from '~components/common';
-import { Assets, StyleTypes } from '~constants';
+import { StyleTypes } from '~constants';
 
-export const CardLI = () => {
+export const CardLI = ({ imageSource, heading, date: dateText, description }) => {
   const { h2, p, date } = StyleTypes;
 
   return (
     <Card style={styles.containerStyle}>
       <View style={styles.parentViewStyle}>
-        <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.testImg} />
+        <Image
+          style={styles.imageStyle}
+          resizeMode="cover"
+          source={imageSource}
+          indicator={ProgressBar}
+          indicatorProps={{
+            size: 40,
+            borderWidth: 0,
+            color: 'blue',
+            unfilledColor: 'white',
+          }}
+        />
 
         <View style={styles.textViewStyle}>
           <Text numberOfLines={2} type={h2}>
-            Testing the header of the card to check the font view?
+            {heading}
           </Text>
 
-          <Text type={date}>19/1/2019</Text>
+          <Text type={date}>{dateText}</Text>
 
           <View style={styles.descriptionViewStyle}>
             <Text numberOfLines={2} type={p}>
-              Description will be enterd here. This is a text description for the card to check it.
+              {heading}
             </Text>
           </View>
         </View>
