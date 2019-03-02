@@ -1,0 +1,4 @@
+{
+    "AppSyncApiName": "smoothstarAPIServer",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST"
+}
