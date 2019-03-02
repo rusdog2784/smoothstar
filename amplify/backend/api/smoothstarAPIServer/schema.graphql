@@ -1,0 +1,46 @@
+type News
+  @model
+  @versioned {
+
+  id: ID!
+  
+  publishedOn: String!
+  active: Boolean!
+  
+  title: String!
+  rawContent: String!
+
+  imgTitle: S3Object
+  imgThumbnail: S3Object
+
+  paragraphs: [Paragraph!] @connection(name: "NewsParagraphs")
+  images: [Media!] @connection(name: "NewsMedia")
+
+  tags: [String!]
+}
+
+type Paragraph 
+  @model
+  @versioned {
+
+  id: ID!
+  content: String!
+
+  news: News! @connection(name: "NewsParagraphs")
+}
+
+type Media 
+  @model
+  @versioned {
+
+  id: ID!
+  file: S3Object!
+
+  news: News! @connection(name: "NewsMedia")
+}
+
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+}
