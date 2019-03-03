@@ -5,8 +5,8 @@
     "javascript": {
         "framework": "react-native",
         "config": {
-            "SourceDir": "amp_src",
-            "DistributionDir": "amp_dist",
+            "SourceDir": "src/config",
+            "DistributionDir": "src/config",
             "BuildCommand": "npm.cmd run-script build",
             "StartCommand": "npm.cmd run-script start"
         }

@@ -1,7 +1,7 @@
 import Amplify, { API, graphqlOperation } from 'aws-amplify';
 
 import * as queries from '~graphql/queries';
-import config from '~amp_src/aws-exports';
+import config from '~config/aws-exports';
 
 Amplify.configure(config);
 
