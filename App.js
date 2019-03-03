@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import { SplashScreen } from 'expo';
 
-import reducers from '~reducers';
+import reducers from '~redux/reducers';
 import RootNavigator from '~routes/RootNavigator';
 
 const STORE = createStore(reducers, {}, applyMiddleware(ReduxThunk));

@@ -3,7 +3,7 @@ import { View, Image, Dimensions, StyleSheet } from 'react-native';
 import { Container, Content } from 'native-base';
 
 import { Text } from '~components/common';
-import { Assets, StyleTypes } from '~constants';
+import { StyleTypes } from '~constants';
 
 const { height } = Dimensions.get('window');
 
