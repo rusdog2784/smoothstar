@@ -3,11 +3,13 @@ import { View, Image, Dimensions, StyleSheet } from 'react-native';
 import { Container, Content, List } from 'native-base';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
+import Moment from 'moment';
 
 import { Text } from '~components/common';
 import { CardLI } from '~components';
-import { Assets, StyleTypes } from '~constants';
+import { Assets, StyleTypes, StaticData } from '~constants';
 import { getListNews } from '~redux/actions';
+import { Colors } from '~styles';
 
 const { height, width } = Dimensions.get('window');
 
@@ -17,9 +19,17 @@ class NewsListScreen extends Component {
     headerLeft: <View>{null}</View>,
   };
 
+  state = {
+    titleText: StaticData.NewsListTitles[0] || '',
+  };
+
   componentDidMount() {
     this.props.getListNews();
   }
+
+  _onSwiperIndexChanged = index => {
+    this.setState({ titleText: StaticData.NewsListTitles[index] });
+  };
 
   _renderRow = ({ title, publishedOn, rawContent }) => {
     return (
@@ -32,7 +42,7 @@ class NewsListScreen extends Component {
           })
         }
         heading={title}
-        date={publishedOn}
+        date={Moment(publishedOn).format('DD/MM/YYYY')}
         imageSource={{ uri: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg' }}
         description={rawContent}
       />
@@ -45,9 +55,11 @@ class NewsListScreen extends Component {
         <Content>
           <View style={styles.carouselViewStyle}>
             <Swiper
+              loop={false}
               dotColor="#bbb"
               activeDotColor="#fff"
               paginationStyle={styles.carouselPaginationStyle}
+              onIndexChanged={this._onSwiperIndexChanged}
               style={styles.carouselStyle}>
               <View style={styles.slideStyle}>
                 <Image
@@ -72,8 +84,10 @@ class NewsListScreen extends Component {
               </View>
             </Swiper>
           </View>
-          <View style={styles.carouselTextStyle}>
-            <Text type={StyleTypes.title}>Test Heading</Text>
+          <View style={styles.carouselTextViewStyle}>
+            <Text shadow type={StyleTypes.title} style={styles.carouselTextStyle}>
+              {this.state.titleText}
+            </Text>
           </View>
           <List
             style={styles.listViewStyle}
@@ -88,23 +102,27 @@ class NewsListScreen extends Component {
 
 const styles = StyleSheet.create({
   carouselViewStyle: {
-    height: height / 2.5,
+    height: height / 2,
     position: 'absolute',
     width: '100%',
   },
-  carouselTextStyle: {
-    height: height / 2.5,
+  carouselTextViewStyle: {
+    height: height / 2,
     width,
     position: 'absolute',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 30,
+  },
+  carouselTextStyle: {
+    textAlign: 'center',
   },
   imageStyle: {
     height: null,
     flex: 1,
   },
   listViewStyle: {
-    marginTop: height / 3,
+    marginTop: height / 2.5,
   },
   carouselStyle: {
     flex: 1,
@@ -116,7 +134,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ddd',
   },
   carouselPaginationStyle: {
-    top: height / 4.5,
+    top: height / 4,
   },
 });
 
