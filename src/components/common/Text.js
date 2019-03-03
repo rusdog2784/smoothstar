@@ -5,7 +5,7 @@ import { GlobalStyles, Colors } from '~styles';
 import { StyleTypes } from '~constants';
 
 export const Text = props => {
-  const { children, type, style } = props;
+  const { children, type, style, shadow } = props;
 
   const {
     textStyle,
@@ -16,6 +16,7 @@ export const Text = props => {
     smallTextStyle,
     normalTextStyle,
     pStyle,
+    textShadowStyle,
   } = GlobalStyles;
 
   const { headerTitle, h1, h2, p, date, title } = StyleTypes;
@@ -51,6 +52,8 @@ export const Text = props => {
   let newProps = { ...props };
   newProps.style = [textStyle, typeStyle];
   style && newProps.style.push(style);
+
+  shadow && newProps.style.push(textShadowStyle);
 
   return <RNText {...newProps}>{children}</RNText>;
 };
