@@ -19,7 +19,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, loading: false };
     }
     case GET_LIST_NEWS:
-      return { ...state, newsList: action.payload.data.listNewss.items };
+      return { ...state, newsList: action.payload };
     default:
       return state;
   }
