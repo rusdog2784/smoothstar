@@ -2,70 +2,14 @@ import React, { Component } from 'react';
 import { View, Image, Dimensions, StyleSheet } from 'react-native';
 import { Container, Content, List } from 'native-base';
 import Swiper from 'react-native-swiper';
+import { connect } from 'react-redux';
 
 import { Text } from '~components/common';
 import { CardLI } from '~components';
 import { Assets, StyleTypes } from '~constants';
+import { getListNews } from '~redux/actions';
 
 const { height, width } = Dimensions.get('window');
-
-const data = [
-  {
-    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
-    heading: 'Where are the best places to ride your SmoothStar?',
-    description:
-      'The after school program is an 8 week course, the kids will surf with the same instructor and same students each week. We have a low student/instructor ratio and will group the kids accordingly to ability. All lessons have been designed by a PE/PD/Health teacher and cover the basics from warm-up to paddling, catching waves and standing while also catering to intermediate and advanced students (technique refinement and style improvement). Your kids will also learn important surf and safety rules including info on rips, tides, sandbars and waves.',
-    date: '20/02/2019',
-  },
-  {
-    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
-    heading:
-      'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
-    description:
-      'The after school program is an 8 week course, the kids will surf with the same instructor and same students each week. We have a low student/instructor ratio and will group the kids accordingly to ability. All lessons have been designed by a PE/PD/Health teacher and cover the basics from warm-up to paddling, catching waves and standing while also catering to intermediate and advanced students (technique refinement and style improvement). Your kids will also learn important surf and safety rules including info on rips, tides, sandbars and waves.',
-    date: '20/02/2019',
-  },
-  {
-    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
-    heading:
-      'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
-    description:
-      'The after school program is an 8 week course, the kids will surf with the same instructor and same students each week. We have a low student/instructor ratio and will group the kids accordingly to ability. All lessons have been designed by a PE/PD/Health teacher and cover the basics from warm-up to paddling, catching waves and standing while also catering to intermediate and advanced students (technique refinement and style improvement). Your kids will also learn important surf and safety rules including info on rips, tides, sandbars and waves.',
-    date: '20/02/2019',
-  },
-  {
-    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
-    heading:
-      'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
-    description:
-      'The after school program is an 8 week course, the kids will surf with the same instructor and same students each week. We have a low student/instructor ratio and will group the kids accordingly to ability. All lessons have been designed by a PE/PD/Health teacher and cover the basics from warm-up to paddling, catching waves and standing while also catering to intermediate and advanced students (technique refinement and style improvement). Your kids will also learn important surf and safety rules including info on rips, tides, sandbars and waves.',
-    date: '20/02/2019',
-  },
-  {
-    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
-    heading:
-      'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
-    description:
-      'The after school program is an 8 week course, the kids will surf with the same instructor and same students each week. We have a low student/instructor ratio and will group the kids accordingly to ability. All lessons have been designed by a PE/PD/Health teacher and cover the basics from warm-up to paddling, catching waves and standing while also catering to intermediate and advanced students (technique refinement and style improvement). Your kids will also learn important surf and safety rules including info on rips, tides, sandbars and waves.',
-    date: '20/02/2019',
-  },
-  {
-    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
-    heading:
-      'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
-    description:
-      'The after school program is an 8 week course, the kids will surf with the same instructor and same students each week. We have a low student/instructor ratio and will group the kids accordingly to ability. All lessons have been designed by a PE/PD/Health teacher and cover the basics from warm-up to paddling, catching waves and standing while also catering to intermediate and advanced students (technique refinement and style improvement). Your kids will also learn important surf and safety rules including info on rips, tides, sandbars and waves.',
-    date: '20/02/2019',
-  },
-  {
-    imageSource: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg',
-    heading:
-      'After a hard day at school, give the kids a chance to let loose with us safely in the waves – and improve their surfing and ocean skills.',
-    description:
-      'The after school program is an 8 week course, the kids will surf with the same instructor and same students each week. We have a low student/instructor ratio and will group the kids accordingly to ability. All lessons have been designed by a PE/PD/Health teacher and cover the basics from warm-up to paddling, catching waves and standing while also catering to intermediate and advanced students (technique refinement and style improvement). Your kids will also learn important surf and safety rules including info on rips, tides, sandbars and waves.',
-    date: '20/02/2019',
-  },
-];
 
 class NewsListScreen extends Component {
   static navigationOptions = {
@@ -73,20 +17,24 @@ class NewsListScreen extends Component {
     headerLeft: <View>{null}</View>,
   };
 
-  _renderRow = ({ heading, date, description, imageSource }) => {
+  componentDidMount() {
+    this.props.getListNews();
+  }
+
+  _renderRow = ({ title, publishedOn, rawContent }) => {
     return (
       <CardLI
         onPress={() =>
           this.props.navigation.navigate('NewsDetailScreen', {
-            imageSource: { uri: imageSource },
-            heading,
-            description,
+            imageSource: { uri: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg' },
+            heading: title,
+            description: rawContent,
           })
         }
-        heading={heading}
-        date={date}
-        imageSource={{ uri: imageSource }}
-        description={description}
+        heading={title}
+        date={publishedOn}
+        imageSource={{ uri: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg' }}
+        description={rawContent}
       />
     );
   };
@@ -127,7 +75,11 @@ class NewsListScreen extends Component {
           <View style={styles.carouselTextStyle}>
             <Text type={StyleTypes.title}>Test Heading</Text>
           </View>
-          <List style={styles.listViewStyle} dataArray={data} renderRow={this._renderRow} />
+          <List
+            style={styles.listViewStyle}
+            dataArray={this.props.newsList}
+            renderRow={this._renderRow}
+          />
         </Content>
       </Container>
     );
@@ -168,4 +120,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewsListScreen;
+const mapStateToProps = state => {
+  const { newsList } = state.app;
+
+  return {
+    newsList,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { getListNews }
+)(NewsListScreen);

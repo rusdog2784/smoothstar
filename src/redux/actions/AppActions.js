@@ -11,11 +11,11 @@ export const getListNews = () => {
 
     executeApi(FETCH_LIST_NEWS)
       .then(response => {
-        dispatch({ type: GET_LIST_NEWS, pyload: response });
+        dispatch({ type: GET_LIST_NEWS, payload: response.data.listNewss.items });
         dispatch({ type: API_COMPLETED });
       })
       .catch(error => {
-        dispatch({ type: API_COMPLETED, pyload: error });
+        dispatch({ type: API_COMPLETED, payload: error });
       });
   };
 };
