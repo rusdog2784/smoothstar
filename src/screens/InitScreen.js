@@ -11,7 +11,7 @@ class InitScreen extends Component {
 
   componentDidMount = () => {
     this.cacheResourcesAsync().then(() => {
-      this.props.navigation.navigate('AppNavigator');
+      this.props.navigation.navigate('AuthNavigator');
     });
   };
 

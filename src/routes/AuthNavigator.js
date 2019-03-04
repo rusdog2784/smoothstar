@@ -1,9 +1,8 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-import { Colors } from '~styles';
 import SignupScreen from '~screens/SignupScreen';
 
-const AuthStack = createStackNavigator(
+const AuthNavigator = createStackNavigator(
   {
     SignupScreen: {
       screen: SignupScreen,
@@ -11,11 +10,8 @@ const AuthStack = createStackNavigator(
   },
   {
     initialRouteName: 'SignupScreen',
-    defaultNavigationOptions: {
-      headerTransparent: true,
-      headerTintColor: Colors.headerTitleColor,
-    },
+    headerMode: 'none',
   }
 );
 
-export default createAppContainer(AuthStack);
+export default createAppContainer(AuthNavigator);
