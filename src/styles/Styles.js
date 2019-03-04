@@ -7,26 +7,26 @@ export const GlobalStyles = StyleSheet.create({
     fontFamily: 'Roboto',
   },
   headerTitleStyle: {
-    fontSize: 20,
+    fontSize: 15,
     color: Colors.headerTitleColor,
   },
   titleTextStyle: {
-    fontSize: 40,
+    fontSize: 30,
     fontWeight: '900',
     color: Colors.secondaryTextColor,
   },
   h1Style: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
     color: Colors.primaryTextColor,
   },
   h2Style: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     color: Colors.primaryTextColor,
   },
   pStyle: {
-    fontSize: 18,
+    fontSize: 15,
     color: Colors.primaryTextColor,
   },
   smallTextStyle: {
@@ -34,7 +34,7 @@ export const GlobalStyles = StyleSheet.create({
     color: Colors.primaryTextColor,
   },
   normalTextStyle: {
-    fontSize: 18,
+    fontSize: 15,
     color: Colors.primaryTextColor,
   },
   textShadowStyle: {

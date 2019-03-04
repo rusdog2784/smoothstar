@@ -11,8 +11,8 @@ export const CardLI = ({ onPress, imageSource, heading, date: dateText, descript
   const { h2, p, date } = StyleTypes;
 
   return (
-    <Card style={styles.containerStyle}>
-      <CardItem button onPress={onPress} style={{ borderRadius: 7 }}>
+    <Card style={styles.cardStyle}>
+      <CardItem button onPress={onPress} style={styles.cardItemStyle}>
         <View style={styles.parentViewStyle}>
           <Image
             style={styles.imageStyle}
@@ -47,14 +47,16 @@ export const CardLI = ({ onPress, imageSource, heading, date: dateText, descript
 };
 
 const styles = StyleSheet.create({
-  containerStyle: {
+  cardStyle: {
     marginLeft: 10,
     marginRight: 10,
     marginBottom: 10,
     borderRadius: 7,
   },
+  cardItemStyle: {
+    borderRadius: 7,
+  },
   parentViewStyle: {
-    // margin: 15,
     flexDirection: 'row',
   },
   textViewStyle: {
@@ -67,8 +69,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   imageStyle: {
-    height: 120,
-    width: 120,
-    borderRadius: 5,
+    height: 100,
+    width: 100,
   },
 });
