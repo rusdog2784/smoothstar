@@ -9,7 +9,6 @@ import { Text } from '~components/common';
 import { CardLI } from '~components';
 import { Assets, StyleTypes, StaticData } from '~constants';
 import { getListNews } from '~redux/actions';
-import { Colors } from '~styles';
 
 const { height, width } = Dimensions.get('window');
 
