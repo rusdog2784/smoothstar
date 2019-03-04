@@ -34,7 +34,7 @@ class NewsDetailScreen extends Component {
 
 const styles = StyleSheet.create({
   imageStyle: {
-    height: height / 2.5,
+    height: height / 2,
     width: '100%',
   },
   textViewStyle: {

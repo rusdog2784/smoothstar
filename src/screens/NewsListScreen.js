@@ -18,17 +18,9 @@ class NewsListScreen extends Component {
     headerLeft: <View>{null}</View>,
   };
 
-  state = {
-    titleText: StaticData.NewsListTitles[0] || '',
-  };
-
   componentDidMount() {
     this.props.getListNews();
   }
-
-  _onSwiperIndexChanged = index => {
-    this.setState({ titleText: StaticData.NewsListTitles[index] });
-  };
 
   _renderRow = ({ title, publishedOn, rawContent }) => {
     return (
@@ -58,7 +50,6 @@ class NewsListScreen extends Component {
               dotColor="#bbb"
               activeDotColor="#fff"
               paginationStyle={styles.carouselPaginationStyle}
-              onIndexChanged={this._onSwiperIndexChanged}
               style={styles.carouselStyle}>
               <View style={styles.slideStyle}>
                 <Image
@@ -84,15 +75,17 @@ class NewsListScreen extends Component {
             </Swiper>
           </View>
           <View style={styles.carouselTextViewStyle}>
-            <Text shadow type={StyleTypes.title} style={styles.carouselTextStyle}>
-              {this.state.titleText}
+            <Text numberOfLines={2} shadow type={StyleTypes.title} style={styles.carouselTextStyle}>
+              {StaticData.NewsListTitle}
             </Text>
           </View>
-          <List
-            style={styles.listViewStyle}
-            dataArray={this.props.newsList}
-            renderRow={this._renderRow}
-          />
+          {this.props.newsList.length ? (
+            <List
+              style={styles.listViewStyle}
+              dataArray={this.props.newsList}
+              renderRow={this._renderRow}
+            />
+          ) : null}
         </Content>
       </Container>
     );
@@ -109,7 +102,6 @@ const styles = StyleSheet.create({
     height: height / 2,
     width,
     position: 'absolute',
-    alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 30,
   },
@@ -121,7 +113,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   listViewStyle: {
-    marginTop: height / 2.5,
+    marginTop: height / 2 - 40,
   },
   carouselStyle: {
     flex: 1,
@@ -133,7 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#ddd',
   },
   carouselPaginationStyle: {
-    top: height / 4,
+    top: height / 2 - 100,
   },
 });
 
