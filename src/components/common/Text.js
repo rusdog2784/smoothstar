@@ -19,7 +19,7 @@ export const Text = props => {
     textShadowStyle,
   } = GlobalStyles;
 
-  const { headerTitle, h1, h2, p, date, title } = StyleTypes;
+  const { headerTitle, h1, h2, p, small, date, title } = StyleTypes;
 
   let typeStyle = null;
 
@@ -38,6 +38,9 @@ export const Text = props => {
       break;
     case p:
       typeStyle = { ...pStyle };
+      break;
+    case small:
+      typeStyle = { ...smallTextStyle };
       break;
     case date: {
       typeStyle = { ...smallTextStyle };
