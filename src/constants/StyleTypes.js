@@ -4,5 +4,6 @@ export const StyleTypes = {
   h1: 'h1',
   h2: 'h2',
   p: 'p',
+  small: 'small',
   date: 'date',
 };

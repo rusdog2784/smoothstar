@@ -24,7 +24,7 @@ class NewsDetailScreen extends Component {
               {heading}
             </Text>
 
-            <Text>{description}</Text>
+            <Text type={StyleTypes.p}>{description}</Text>
           </View>
         </Content>
       </Container>
