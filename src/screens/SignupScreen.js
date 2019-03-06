@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 
 import { Text, Button, InputBox, CheckBox } from '~components/common';
@@ -70,37 +70,47 @@ class SignupScreen extends Component {
           <InputBox style={lgGapStyle} placeholder="City" />
 
           <View style={[checkBoxViewStyle, mdGapStyle]}>
-            <View>
-              <CheckBox checked />
-            </View>
-            <View style={{ flex: 1 }}>
-              <Text numberOfLines={2} type={StyleTypes.small} style={{ marginLeft: 20 }}>
-                Signup for emails to surf training events and latest products
-              </Text>
-            </View>
+            <CheckBox checked />
+            <Text numberOfLines={2} type={StyleTypes.small} style={{ marginLeft: 20, flex: 1 }}>
+              Signup for emails to surf training events and latest products
+            </Text>
           </View>
 
-          <Text type={StyleTypes.small} style={[mdGapStyle, introTextStyle]}>
-            By creating an account, you agree to SmoothStar's{' '}
-            <Text onPress={() => {}} style={underlineTextStyle}>
-              Privacy Policy
-            </Text>{' '}
-            and{' '}
-            <Text onPress={() => {}} style={underlineTextStyle}>
-              Terms of Use
-            </Text>
-          </Text>
+          <View
+            style={[
+              mdGapStyle,
+              { justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row' },
+            ]}>
+            <Text type={StyleTypes.small}>By creating an account, you agree to SmoothStar's </Text>
+            <TouchableOpacity>
+              <Text type={StyleTypes.small} style={underlineTextStyle}>
+                Privacy Policy
+              </Text>
+            </TouchableOpacity>
+            <Text type={StyleTypes.small}> and </Text>
+            <TouchableOpacity>
+              <Text type={StyleTypes.small} style={underlineTextStyle}>
+                Terms of Use
+              </Text>
+            </TouchableOpacity>
+          </View>
 
           <Button onPress={() => {}} style={mdGapStyle}>
             CREATE ACCOUNT
           </Button>
 
-          <Text type={StyleTypes.small} style={[mdGapStyle, introTextStyle]}>
-            Already a member?{' '}
-            <Text onPress={() => {}} style={underlineTextStyle}>
-              Sign In
-            </Text>
-          </Text>
+          <View
+            style={[
+              mdGapStyle,
+              { justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row' },
+            ]}>
+            <Text type={StyleTypes.small}>Already a member? </Text>
+            <TouchableOpacity>
+              <Text type={StyleTypes.small} style={underlineTextStyle}>
+                Sign In
+              </Text>
+            </TouchableOpacity>
+          </View>
         </Content>
       </Container>
     );
