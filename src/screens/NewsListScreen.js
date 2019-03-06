@@ -9,6 +9,7 @@ import { Text } from '~components/common';
 import { CardLI } from '~components';
 import { Assets, StyleTypes, StaticData } from '~constants';
 import { getListNews } from '~redux/actions';
+import { GlobalStyles } from '~styles';
 
 const { height, width } = Dimensions.get('window');
 
@@ -25,6 +26,7 @@ class NewsListScreen extends Component {
   _renderRow = ({ title, publishedOn, rawContent }) => {
     return (
       <CardLI
+        style={styles.listItemStyle}
         onPress={() =>
           this.props.navigation.navigate('NewsDetailScreen', {
             imageSource: { uri: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg' },
@@ -114,6 +116,10 @@ const styles = StyleSheet.create({
   },
   listViewStyle: {
     marginTop: height / 2 - 40,
+    ...GlobalStyles.screenType2ContentStyle,
+  },
+  listItemStyle: {
+    marginBottom: 10,
   },
   carouselStyle: {
     flex: 1,
