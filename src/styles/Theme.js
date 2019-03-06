@@ -10,5 +10,5 @@ export const Colors = {
   buttonGoogleColor: '#f52d56',
   buttonFBColor: '#3b5998',
   buttonTextColor: '#fff',
-  checkBoxColor: '#000',
+  checkBoxColor: '#aaa',
 };
