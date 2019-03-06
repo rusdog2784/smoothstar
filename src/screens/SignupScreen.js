@@ -71,7 +71,7 @@ class SignupScreen extends Component {
 
           <View style={[checkBoxViewStyle, mdGapStyle]}>
             <CheckBox checked />
-            <Text numberOfLines={2} type={StyleTypes.small} style={{ marginLeft: 20, flex: 1 }}>
+            <Text numberOfLines={2} type={StyleTypes.small} style={{ marginLeft: 10, flex: 1 }}>
               Signup for emails to surf training events and latest products
             </Text>
           </View>
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
   contentStyle: {
     alignItems: 'center',
     paddingVertical: 35,
-    marginHorizontal: 50,
+    ...GlobalStyles.screenType1ContentStyle,
   },
   logoStyle: {
     width: 50,

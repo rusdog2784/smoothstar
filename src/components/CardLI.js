@@ -7,11 +7,11 @@ import Image from 'react-native-image-progress';
 import { Text } from '~components/common';
 import { StyleTypes } from '~constants';
 
-export const CardLI = ({ onPress, imageSource, heading, date: dateText, description }) => {
+export const CardLI = ({ onPress, imageSource, heading, date: dateText, description, style }) => {
   const { h2, p, date } = StyleTypes;
 
   return (
-    <Card style={styles.cardStyle}>
+    <Card style={[styles.cardStyle, style]}>
       <CardItem button onPress={onPress} style={styles.cardItemStyle}>
         <View style={styles.parentViewStyle}>
           <Image
@@ -48,9 +48,6 @@ export const CardLI = ({ onPress, imageSource, heading, date: dateText, descript
 
 const styles = StyleSheet.create({
   cardStyle: {
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 10,
     borderRadius: 7,
   },
   cardItemStyle: {

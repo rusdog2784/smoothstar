@@ -4,6 +4,7 @@ import { Container, Content } from 'native-base';
 
 import { Text } from '~components/common';
 import { StyleTypes } from '~constants';
+import { GlobalStyles } from '~styles';
 
 const { height } = Dimensions.get('window');
 
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
   textViewStyle: {
     marginHorizontal: 25,
     marginVertical: 20,
+    ...GlobalStyles.screenType2ContentStyle,
   },
   headingStyle: {
     marginBottom: 10,

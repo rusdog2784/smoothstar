@@ -51,4 +51,10 @@ export const GlobalStyles = StyleSheet.create({
   screenContainerStyle: {
     backgroundColor: Colors.backgroundColor,
   },
+  screenType1ContentStyle: {
+    marginHorizontal: 30,
+  },
+  screenType2ContentStyle: {
+    marginHorizontal: 20,
+  },
 });
