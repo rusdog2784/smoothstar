@@ -105,7 +105,7 @@ class SignupScreen extends Component {
               { justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row' },
             ]}>
             <Text type={StyleTypes.small}>Already a member? </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('LoginScreen')}>
               <Text type={StyleTypes.small} style={underlineTextStyle}>
                 Sign In
               </Text>
