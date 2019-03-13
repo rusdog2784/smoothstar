@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 
 import { Text, Button, InputBox } from '~components/common';
-import { Assets, StaticData, StyleTypes } from '~constants';
+import { Assets, StyleTypes } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
 
 class LoginScreen extends Component {

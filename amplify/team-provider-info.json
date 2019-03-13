@@ -9,6 +9,13 @@
             "UnauthRoleName": "smoothstar-20190302135351-unauthRole",
             "StackName": "smoothstar-20190302135351",
             "StackId": "arn:aws:cloudformation:eu-central-1:818583220383:stack/smoothstar-20190302135351/b3939470-3cc8-11e9-9837-02998deedf64"
+        },
+        "categories": {
+            "auth": {
+                "smoothstarcognito": {
+                    "facebookAppId": "522158348253985"
+                }
+            }
         }
     }
 }

@@ -5,9 +5,13 @@ import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import { SplashScreen } from 'expo';
 import { SafeAreaView } from 'react-navigation';
+import Amplify from 'aws-amplify';
 
 import reducers from '~redux/reducers';
 import RootNavigator from '~routes/RootNavigator';
+import config from '~config/aws-exports';
+
+Amplify.configure(config);
 
 if (Platform.OS === 'android') {
   SafeAreaView.setStatusBarHeight(0);
