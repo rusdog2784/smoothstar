@@ -30,12 +30,11 @@ class InitScreen extends Component {
     }
   };
 
-  // componentWillUnmount = () => {
-  //   setTimeout(() => {
-  //     console.log('test1')
-  //     // SplashScreen.hide();
-  //   }, 2000);
-  // };
+  componentWillUnmount = () => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 300);
+  };
 
   cacheResourcesAsync = async () => {
     const { testImg } = Assets.Images;

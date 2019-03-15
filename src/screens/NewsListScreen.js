@@ -4,7 +4,6 @@ import { Container, Content } from 'native-base';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import Moment from 'moment';
-import { SplashScreen } from 'expo';
 
 import { getListNews, authSignOut } from '~redux/actions';
 import { Text } from '~components/common';
@@ -29,7 +28,6 @@ class NewsListScreen extends Component {
   }
 
   _renderItem = ({ item }) => {
-    SplashScreen.hide();
     const { title, publishedOn, rawContent } = item;
     return (
       <CardLI
