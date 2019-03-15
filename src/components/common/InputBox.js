@@ -39,6 +39,5 @@ const styles = StyleSheet.create({
     borderColor: Colors.inputBoxColor,
     padding: 10,
     borderRadius: GlobalStyles.borderRadius,
-    color: Colors.inputBoxColor,
   },
 });

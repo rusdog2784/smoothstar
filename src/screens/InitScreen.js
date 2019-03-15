@@ -1,23 +1,41 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { SplashScreen, Asset } from 'expo';
+import { connect } from 'react-redux';
 
 import { Assets } from '~constants';
+import { setAuth } from '~redux/actions';
 
 class InitScreen extends Component {
   state = {
-    ready: false,
+    readyResources: false,
   };
 
   componentDidMount = () => {
+    this.props.setAuth();
     this.cacheResourcesAsync().then(() => {
-      this.props.navigation.navigate('AuthNavigator');
+      this.setState({ readyResources: true });
     });
   };
 
-  componentWillUnmount = () => {
-    SplashScreen.hide();
+  componentDidUpdate = (prevProps, prevState) => {
+    const { user, loading } = this.props;
+
+    if (!loading && this.state.readyResources) {
+      if (user) {
+        this.props.navigation.navigate('AppNavigator');
+      } else {
+        this.props.navigation.navigate('AuthNavigator');
+      }
+    }
   };
+
+  // componentWillUnmount = () => {
+  //   setTimeout(() => {
+  //     console.log('test1')
+  //     // SplashScreen.hide();
+  //   }, 2000);
+  // };
 
   cacheResourcesAsync = async () => {
     const { testImg } = Assets.Images;
@@ -28,11 +46,23 @@ class InitScreen extends Component {
 
   render() {
     return (
-      <View>
-        <Text>InitScreen</Text>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: 40 }}>InitScreen</Text>
       </View>
     );
   }
 }
 
-export default InitScreen;
+const mapStateToProps = state => {
+  const { loading, user } = state.auth;
+
+  return {
+    loading,
+    user,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { setAuth }
+)(InitScreen);

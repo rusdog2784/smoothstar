@@ -10,6 +10,7 @@ import Amplify from 'aws-amplify';
 import reducers from '~redux/reducers';
 import RootNavigator from '~routes/RootNavigator';
 import config from '~config/aws-exports';
+import NavigationService from '~utils/NavigationService';
 
 Amplify.configure(config);
 
@@ -28,7 +29,11 @@ class App extends Component {
   render() {
     return (
       <Provider store={STORE}>
-        <RootNavigator />
+        <RootNavigator
+          ref={navigatorRef => {
+            NavigationService.setTopLevelNavigator(navigatorRef);
+          }}
+        />
       </Provider>
     );
   }

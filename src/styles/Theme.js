@@ -6,9 +6,11 @@ export const Colors = {
   greyTextColor: '#aaa',
   textShadowColor: '#4d4c4c',
   inputBoxColor: '#aaa',
+  inputBoxTextColor: '#000',
   buttonNormalColor: '#000',
   buttonGoogleColor: '#f52d56',
   buttonFBColor: '#3b5998',
   buttonTextColor: '#fff',
   checkBoxColor: '#aaa',
+  imageBackgroundColor: '#ddd',
 };

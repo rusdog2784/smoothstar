@@ -16,7 +16,6 @@ export const Text = props => {
     smallTextStyle,
     normalTextStyle,
     pStyle,
-    textShadowStyle,
   } = GlobalStyles;
 
   const { headerTitle, h1, h2, p, small, date, title } = StyleTypes;
@@ -56,7 +55,20 @@ export const Text = props => {
   newProps.style = [textStyle, typeStyle];
   style && newProps.style.push(style);
 
-  shadow && newProps.style.push(textShadowStyle);
+  if (shadow && typeStyle.fontSize) {
+    let shadowStyle = {};
+    const fontSize = typeStyle.fontSize;
+
+    const shadowWidth = fontSize / -14;
+    const shadowHeight = fontSize / 11.2;
+
+    shadowStyle.textShadowRadius = fontSize / 2.8;
+    shadowStyle.textShadowOffset = { width: shadowWidth, height: shadowHeight };
+    shadowStyle.textShadowColor = Colors.textShadowColor;
+
+    newProps.style.push(shadowStyle);
+  }
+  // shadow && newProps.style.push(textShadowStyle);
 
   return <RNText {...newProps}>{children}</RNText>;
 };

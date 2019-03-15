@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
-import { View, Image, Dimensions, StyleSheet } from 'react-native';
-import { Container, Content, List } from 'native-base';
+import { View, Image, Dimensions, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { Container, Content } from 'native-base';
 import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import Moment from 'moment';
+import { SplashScreen } from 'expo';
 
+import { getListNews, authSignOut } from '~redux/actions';
 import { Text } from '~components/common';
 import { CardLI } from '~components';
 import { Assets, StyleTypes, StaticData } from '~constants';
-import { getListNews } from '~redux/actions';
-import { GlobalStyles } from '~styles';
+import { GlobalStyles, Colors } from '~styles';
 
 const { height, width } = Dimensions.get('window');
 
 class NewsListScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Text type={StyleTypes.headerTitle}>NEWS</Text>,
+    headerTitle: (
+      <Text shadow type={StyleTypes.headerTitle}>
+        NEWS
+      </Text>
+    ),
     headerLeft: <View>{null}</View>,
   };
 
@@ -23,20 +28,27 @@ class NewsListScreen extends Component {
     this.props.getListNews();
   }
 
-  _renderRow = ({ title, publishedOn, rawContent }) => {
+  _renderItem = ({ item }) => {
+    SplashScreen.hide();
+    const { title, publishedOn, rawContent } = item;
     return (
       <CardLI
         style={styles.listItemStyle}
         onPress={() =>
           this.props.navigation.navigate('NewsDetailScreen', {
-            imageSource: { uri: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg' },
+            imageSource: {
+              uri:
+                'https://chile.travel/wp-content/uploads/bfi_thumb/Surf-pichilemu-ACT158-mpo3ti23d6dwe815ue248fxju4t66nm4vbb5pzf06o.jpg',
+            },
             heading: title,
             description: rawContent,
           })
         }
         heading={title}
         date={Moment(publishedOn).format('DD/MM/YYYY')}
-        imageSource={{ uri: 'https://cdn.hipwallpaper.com/i/46/21/RQbvzG.jpg' }}
+        imageSource={{
+          uri: 'https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-26808.jpg',
+        }}
         description={rawContent}
       />
     );
@@ -45,7 +57,7 @@ class NewsListScreen extends Component {
   render() {
     return (
       <Container>
-        <Content>
+        <Content contentContainerStyle={{ flex: 1 }} showsVerticalScrollIndicator={false}>
           <View style={styles.carouselViewStyle}>
             <Swiper
               loop={false}
@@ -82,13 +94,20 @@ class NewsListScreen extends Component {
             </Text>
           </View>
           {this.props.newsList.length ? (
-            <List
+            <FlatList
               style={styles.listViewStyle}
-              dataArray={this.props.newsList}
-              renderRow={this._renderRow}
+              data={this.props.newsList}
+              keyExtractor={item => item.id}
+              renderItem={this._renderItem}
             />
           ) : null}
         </Content>
+
+        <TouchableOpacity
+          style={{ alignItems: 'center', marginVertical: 20 }}
+          onPress={this.props.authSignOut}>
+          <Text>SignOut</Text>
+        </TouchableOpacity>
       </Container>
     );
   }
@@ -97,7 +116,6 @@ class NewsListScreen extends Component {
 const styles = StyleSheet.create({
   carouselViewStyle: {
     height: height / 2,
-    position: 'absolute',
     width: '100%',
   },
   carouselTextViewStyle: {
@@ -112,9 +130,12 @@ const styles = StyleSheet.create({
   },
   imageStyle: {
     height: null,
+    width: '100%',
     flex: 1,
+    backgroundColor: Colors.imageBackgroundColor,
   },
   listViewStyle: {
+    position: 'absolute',
     marginTop: height / 2 - 40,
     ...GlobalStyles.screenType2ContentStyle,
   },
@@ -145,5 +166,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getListNews }
+  { getListNews, authSignOut }
 )(NewsListScreen);

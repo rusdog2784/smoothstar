@@ -8,7 +8,7 @@ export const GlobalStyles = StyleSheet.create({
   },
   inputTextStyle: {
     fontSize: 12,
-    color: Colors.inputBoxColor,
+    color: Colors.inputBoxTextColor,
   },
   headerTitleStyle: {
     fontSize: 15,

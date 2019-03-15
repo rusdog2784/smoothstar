@@ -1,12 +1,32 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
+import { connect } from 'react-redux';
 
+import { authSignIn, authLoginFacebook } from '~redux/actions';
 import { Text, Button, InputBox } from '~components/common';
 import { Assets, StyleTypes } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
 
 class LoginScreen extends Component {
+  state = {
+    username: this.props.username,
+    password: '',
+  };
+
+  onUsernameChange = text => {
+    this.setState({ username: text });
+  };
+
+  onPasswordChange = text => {
+    this.setState({ password: text });
+  };
+
+  handleSignIn = () => {
+    const { username, password } = this.state;
+    this.props.authSignIn({ username, password });
+  };
+
   render() {
     const { screenContainerStyle, underlineTextStyle } = GlobalStyles;
     const {
@@ -29,8 +49,20 @@ class LoginScreen extends Component {
             YOUR ACCOUNT{'\n'}FOR SMOOTHSTAR
           </Text>
 
-          <InputBox style={smGapStyle} placeholder="Email" keyboardType="email-address" />
-          <InputBox style={mdGapStyle} placeholder="Password" secureTextEntry />
+          <InputBox
+            onChangeText={this.onUsernameChange}
+            style={smGapStyle}
+            placeholder="Email"
+            value={this.state.username}
+            keyboardType="email-address"
+          />
+          <InputBox
+            onChangeText={this.onPasswordChange}
+            style={mdGapStyle}
+            value={this.state.password}
+            placeholder="Password"
+            secureTextEntry
+          />
 
           <TouchableOpacity style={[forgotViewStyle, lgGapStyle]}>
             <Text type={StyleTypes.small}>Forgotten Your Password?</Text>
@@ -55,7 +87,7 @@ class LoginScreen extends Component {
             </TouchableOpacity>
           </View>
 
-          <Button onPress={() => {}} style={xlgGapStyle}>
+          <Button onPress={this.handleSignIn} style={xlgGapStyle}>
             LOGIN
           </Button>
 
@@ -69,7 +101,7 @@ class LoginScreen extends Component {
           </Button>
 
           <Button
-            onPress={() => {}}
+            onPress={this.props.authLoginFacebook}
             style={lgGapStyle}
             color={Colors.buttonFBColor}
             icon="facebook"
@@ -126,4 +158,15 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+const mapStateToProps = state => {
+  const { username } = state.auth;
+
+  return {
+    username,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { authSignIn, authLoginFacebook }
+)(LoginScreen);

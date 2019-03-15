@@ -1,12 +1,60 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
+import { connect } from 'react-redux';
 
+import { authSignUp } from '~redux/actions';
 import { Text, Button, InputBox, CheckBox } from '~components/common';
 import { Assets, StaticData, StyleTypes } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
 
 class SignupScreen extends Component {
+  state = {
+    email: 'daniyal.intellicel@gmail.com',
+    password: 'Test@123',
+    phone_number: '+923074036388',
+    first_name: 'Daniyal',
+    last_name: 'Awan',
+    birthdate: '1994-05-20',
+    gender: 'M',
+    country: 'Pakistan',
+    city: 'Lahore',
+  };
+
+  formTextChange = (text, type) => {
+    this.setState({ [type]: text });
+  };
+
+  isFormOK = () => {
+    let formOK = true;
+    Object.keys(this.state).some(key => {
+      if (this.state[key].trim() === '') {
+        alert(`${key} can not be empty`);
+        formOK = false;
+        return true;
+      }
+    });
+    return formOK;
+  };
+
+  handleSignUp = () => {
+    if (!this.isFormOK()) return;
+
+    const user = { ...this.state };
+    user.address = `${user.city}-${user.country}`;
+    user.locale = 'en_US';
+    user.given_name = user.first_name;
+    user.family_name = user.last_name;
+    user['custom:gender'] = user.gender;
+    delete user.country;
+    delete user.city;
+    delete user.gender;
+    delete user.first_name;
+    delete user.last_name;
+
+    this.props.authSignUp(user);
+  };
+
   render() {
     const { screenContainerStyle, underlineTextStyle } = GlobalStyles;
     const {
@@ -60,14 +108,62 @@ class SignupScreen extends Component {
             </Text>
           </View>
 
-          <InputBox style={smGapStyle} placeholder="Email" keyboardType="email-address" />
-          <InputBox style={smGapStyle} placeholder="Password" secureTextEntry />
-          <InputBox style={smGapStyle} placeholder="First Name" />
-          <InputBox style={smGapStyle} placeholder="Second Name" />
-          <InputBox style={smGapStyle} placeholder="dd/mm/yyyy" />
-          <InputBox style={smGapStyle} placeholder="Sex" />
-          <InputBox style={smGapStyle} placeholder="Country" />
-          <InputBox style={lgGapStyle} placeholder="City" />
+          <InputBox
+            onChangeText={text => this.formTextChange(text, 'email')}
+            value={this.state.email}
+            style={smGapStyle}
+            placeholder="Email"
+            keyboardType="email-address"
+          />
+          <InputBox
+            onChangeText={text => this.formTextChange(text, 'password')}
+            value={this.state.password}
+            style={smGapStyle}
+            placeholder="Password"
+            secureTextEntry
+          />
+          <InputBox
+            onChangeText={text => this.formTextChange(text, 'phone_number')}
+            value={this.state.phone_number}
+            style={smGapStyle}
+            placeholder="+923332222222"
+          />
+          <InputBox
+            onChangeText={text => this.formTextChange(text, 'first_name')}
+            value={this.state.first_name}
+            style={smGapStyle}
+            placeholder="First Name"
+          />
+          <InputBox
+            onChangeText={text => this.formTextChange(text, 'last_name')}
+            value={this.state.last_name}
+            style={smGapStyle}
+            placeholder="Last Name"
+          />
+          <InputBox
+            onChangeText={text => this.formTextChange(text, 'birthdate')}
+            value={this.state.birthdate}
+            style={smGapStyle}
+            placeholder="dd/mm/yyyy"
+          />
+          <InputBox
+            onChangeText={text => this.formTextChange(text, 'gender')}
+            value={this.state.gender}
+            style={smGapStyle}
+            placeholder="gender"
+          />
+          <InputBox
+            onChangeText={text => this.formTextChange(text, 'country')}
+            value={this.state.country}
+            style={smGapStyle}
+            placeholder="Country"
+          />
+          <InputBox
+            onChangeText={text => this.formTextChange(text, 'city')}
+            value={this.state.city}
+            style={lgGapStyle}
+            placeholder="City"
+          />
 
           <View style={[checkBoxViewStyle, mdGapStyle]}>
             <CheckBox checked />
@@ -95,7 +191,7 @@ class SignupScreen extends Component {
             </TouchableOpacity>
           </View>
 
-          <Button onPress={() => {}} style={mdGapStyle}>
+          <Button onPress={this.handleSignUp} style={mdGapStyle}>
             CREATE ACCOUNT
           </Button>
 
@@ -156,4 +252,16 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignupScreen;
+const mapStateToProps = state => {
+  const { loading, user } = state.auth;
+
+  return {
+    loading,
+    user,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { authSignUp }
+)(SignupScreen);
