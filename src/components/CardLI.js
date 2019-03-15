@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Image } from 'react-native';
 import { Card, CardItem } from 'native-base';
-import ProgressBar from 'react-native-progress/CircleSnail';
-import Image from 'react-native-image-progress';
+// import ProgressBar from 'react-native-progress/CircleSnail';
+// import Image from 'react-native-image-progress';
 
 import { Text } from '~components/common';
 import { StyleTypes } from '~constants';
+import { Colors } from '~styles';
 
 export const CardLI = ({ onPress, imageSource, heading, date: dateText, description, style }) => {
   const { h2, p, date } = StyleTypes;
@@ -14,7 +15,8 @@ export const CardLI = ({ onPress, imageSource, heading, date: dateText, descript
     <Card style={[styles.cardStyle, style]}>
       <CardItem button onPress={onPress} style={styles.cardItemStyle}>
         <View style={styles.parentViewStyle}>
-          <Image
+          <Image style={styles.imageStyle} resizeMode="cover" source={imageSource} />
+          {/* <Image
             style={styles.imageStyle}
             resizeMode="cover"
             source={imageSource}
@@ -25,7 +27,7 @@ export const CardLI = ({ onPress, imageSource, heading, date: dateText, descript
               color: 'blue',
               unfilledColor: 'white',
             }}
-          />
+          /> */}
 
           <View style={styles.textViewStyle}>
             <Text numberOfLines={2} type={h2}>
@@ -66,6 +68,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   imageStyle: {
+    backgroundColor: Colors.imageBackgroundColor,
     height: 100,
     width: 100,
   },
