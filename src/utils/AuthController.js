@@ -1,5 +1,5 @@
 import { Auth } from 'aws-amplify';
-import { Facebook } from 'expo';
+import { Facebook, Google } from 'expo';
 
 import { FacebookAppId } from '~config/AuthConfig';
 
@@ -89,16 +89,44 @@ export const loginFacebook = async () => {
         given_name: res.first_name,
         family_name: res.last_name,
         email: res.email,
-        provider: 'Facebook',
+        provider: 'facebook',
       };
-
-      console.log('FBuser:', user);
 
       const date = new Date();
 
       const expires_at = expires * 1000 + date.getTime();
 
       return Auth.federatedSignIn('facebook', { token, expires_at }, user).then(() => {
+        return checkAuth();
+      });
+    } else {
+      return false;
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const loginGoogle = async () => {
+  try {
+    const result = await Google.logInAsync({
+      androidClientId: '671149193257-q40l6m57qn2el5d88qqgtgbaaujlbgf4.apps.googleusercontent.com',
+      scopes: ['profile', 'email'],
+    });
+
+    console.log('result:', result);
+
+    if (result.type === 'success') {
+      const { id_token: token, accessTokenExpirationDate: expires_at } = result;
+      const { email, familyName, givenName } = result.user;
+      const user = {
+        given_name: givenName,
+        family_name: familyName,
+        email,
+        provider: 'google',
+      };
+
+      return Auth.federatedSignIn('google', { token, expires_at }, user).then(() => {
         return checkAuth();
       });
     } else {

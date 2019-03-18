@@ -9,6 +9,7 @@ import {
   confirmSignIn,
   loginFacebook,
   signOut,
+  loginGoogle,
 } from '~utils';
 
 const {
@@ -121,8 +122,25 @@ export const authLoginFacebook = () => {
         if (response) {
           dispatch({ type: CONFIRM_SIGNIN, payload: response });
           NavigationService.navigate('AppNavigator');
-        } else {
-          console.log('Facebook login:', response);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      })
+      .finally(() => dispatch({ type: AUTH_COMPLETED }));
+  };
+};
+
+export const authLoginGoogle = () => {
+  return dispatch => {
+    dispatch({ type: AUTH_INITIATE });
+
+    loginGoogle()
+      .then(response => {
+        console.log('responseLoginGoogle:', response);
+        if (response) {
+          dispatch({ type: CONFIRM_SIGNIN, payload: response });
+          NavigationService.navigate('AppNavigator');
         }
       })
       .catch(error => {
