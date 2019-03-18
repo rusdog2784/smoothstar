@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
 
-import { authSignIn, authLoginFacebook } from '~redux/actions';
+import { authSignIn, authLoginFacebook, authLoginGoogle } from '~redux/actions';
 import { Text, Button, InputBox } from '~components/common';
 import { Assets, StyleTypes } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
@@ -92,7 +92,7 @@ class LoginScreen extends Component {
           </Button>
 
           <Button
-            onPress={() => {}}
+            onPress={this.props.authLoginGoogle}
             style={smGapStyle}
             color={Colors.buttonGoogleColor}
             icon="google-"
@@ -168,5 +168,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { authSignIn, authLoginFacebook }
+  { authSignIn, authLoginFacebook, authLoginGoogle }
 )(LoginScreen);
