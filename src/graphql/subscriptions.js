@@ -322,3 +322,1104 @@ export const onDeleteMedia = `subscription OnDeleteMedia {
   }
 }
 `;
+export const onCreateUserInfo = `subscription OnCreateUserInfo {
+  onCreateUserInfo {
+    id
+    lastModifiedOn
+    lastSigninOn
+    active
+    email
+    phone
+    emailVerified
+    phoneVerified
+    promoEmailPreference
+    type
+    givenName
+    familyName
+    locale
+    dateOfBirth
+    city
+    country
+    version
+  }
+}
+`;
+export const onUpdateUserInfo = `subscription OnUpdateUserInfo {
+  onUpdateUserInfo {
+    id
+    lastModifiedOn
+    lastSigninOn
+    active
+    email
+    phone
+    emailVerified
+    phoneVerified
+    promoEmailPreference
+    type
+    givenName
+    familyName
+    locale
+    dateOfBirth
+    city
+    country
+    version
+  }
+}
+`;
+export const onDeleteUserInfo = `subscription OnDeleteUserInfo {
+  onDeleteUserInfo {
+    id
+    lastModifiedOn
+    lastSigninOn
+    active
+    email
+    phone
+    emailVerified
+    phoneVerified
+    promoEmailPreference
+    type
+    givenName
+    familyName
+    locale
+    dateOfBirth
+    city
+    country
+    version
+  }
+}
+`;
+export const onCreateSmoothstarRegistration = `subscription OnCreateSmoothstarRegistration {
+  onCreateSmoothstarRegistration {
+    id
+    active
+    type
+    registrationSubmitDate
+    registrationApprovedDate
+    userId
+    videoInfoReviewed
+    registrationAttempts
+    registrationStatus
+    orderNum
+    orderInfo {
+      id
+      active
+      type
+      orderNum
+      customerId
+      customerEmail
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
+      registration {
+        id
+        active
+        type
+        registrationSubmitDate
+        registrationApprovedDate
+        userId
+        videoInfoReviewed
+        registrationAttempts
+        registrationStatus
+        orderNum
+        address
+        postCode
+        region
+        dateOfBirth
+        smoothstarModel
+        purchaseDate
+        shopName
+        privacyPolicyReviewed
+        extendedPolicyReviewed
+        termsOfUseReviewed
+        version
+      }
+      version
+    }
+    address
+    postCode
+    region
+    dateOfBirth
+    smoothstarModel
+    purchaseDate
+    shopName
+    ocrInfo {
+      id
+      active
+      type
+      file {
+        bucket
+        region
+        key
+      }
+      ocrStatus
+      customerId
+      customerEmail
+      customerPhone
+      orderNum
+      address
+      postCode
+      region
+      smoothstarModel
+      purchaseDate
+      shopName
+      cityDelivered
+      countryDelivered
+      registration {
+        id
+        active
+        type
+        registrationSubmitDate
+        registrationApprovedDate
+        userId
+        videoInfoReviewed
+        registrationAttempts
+        registrationStatus
+        orderNum
+        address
+        postCode
+        region
+        dateOfBirth
+        smoothstarModel
+        purchaseDate
+        shopName
+        privacyPolicyReviewed
+        extendedPolicyReviewed
+        termsOfUseReviewed
+        version
+      }
+      version
+    }
+    privacyPolicyReviewed
+    extendedPolicyReviewed
+    termsOfUseReviewed
+    files {
+      items {
+        id
+        version
+      }
+      nextToken
+    }
+    version
+  }
+}
+`;
+export const onUpdateSmoothstarRegistration = `subscription OnUpdateSmoothstarRegistration {
+  onUpdateSmoothstarRegistration {
+    id
+    active
+    type
+    registrationSubmitDate
+    registrationApprovedDate
+    userId
+    videoInfoReviewed
+    registrationAttempts
+    registrationStatus
+    orderNum
+    orderInfo {
+      id
+      active
+      type
+      orderNum
+      customerId
+      customerEmail
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
+      registration {
+        id
+        active
+        type
+        registrationSubmitDate
+        registrationApprovedDate
+        userId
+        videoInfoReviewed
+        registrationAttempts
+        registrationStatus
+        orderNum
+        address
+        postCode
+        region
+        dateOfBirth
+        smoothstarModel
+        purchaseDate
+        shopName
+        privacyPolicyReviewed
+        extendedPolicyReviewed
+        termsOfUseReviewed
+        version
+      }
+      version
+    }
+    address
+    postCode
+    region
+    dateOfBirth
+    smoothstarModel
+    purchaseDate
+    shopName
+    ocrInfo {
+      id
+      active
+      type
+      file {
+        bucket
+        region
+        key
+      }
+      ocrStatus
+      customerId
+      customerEmail
+      customerPhone
+      orderNum
+      address
+      postCode
+      region
+      smoothstarModel
+      purchaseDate
+      shopName
+      cityDelivered
+      countryDelivered
+      registration {
+        id
+        active
+        type
+        registrationSubmitDate
+        registrationApprovedDate
+        userId
+        videoInfoReviewed
+        registrationAttempts
+        registrationStatus
+        orderNum
+        address
+        postCode
+        region
+        dateOfBirth
+        smoothstarModel
+        purchaseDate
+        shopName
+        privacyPolicyReviewed
+        extendedPolicyReviewed
+        termsOfUseReviewed
+        version
+      }
+      version
+    }
+    privacyPolicyReviewed
+    extendedPolicyReviewed
+    termsOfUseReviewed
+    files {
+      items {
+        id
+        version
+      }
+      nextToken
+    }
+    version
+  }
+}
+`;
+export const onDeleteSmoothstarRegistration = `subscription OnDeleteSmoothstarRegistration {
+  onDeleteSmoothstarRegistration {
+    id
+    active
+    type
+    registrationSubmitDate
+    registrationApprovedDate
+    userId
+    videoInfoReviewed
+    registrationAttempts
+    registrationStatus
+    orderNum
+    orderInfo {
+      id
+      active
+      type
+      orderNum
+      customerId
+      customerEmail
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
+      registration {
+        id
+        active
+        type
+        registrationSubmitDate
+        registrationApprovedDate
+        userId
+        videoInfoReviewed
+        registrationAttempts
+        registrationStatus
+        orderNum
+        address
+        postCode
+        region
+        dateOfBirth
+        smoothstarModel
+        purchaseDate
+        shopName
+        privacyPolicyReviewed
+        extendedPolicyReviewed
+        termsOfUseReviewed
+        version
+      }
+      version
+    }
+    address
+    postCode
+    region
+    dateOfBirth
+    smoothstarModel
+    purchaseDate
+    shopName
+    ocrInfo {
+      id
+      active
+      type
+      file {
+        bucket
+        region
+        key
+      }
+      ocrStatus
+      customerId
+      customerEmail
+      customerPhone
+      orderNum
+      address
+      postCode
+      region
+      smoothstarModel
+      purchaseDate
+      shopName
+      cityDelivered
+      countryDelivered
+      registration {
+        id
+        active
+        type
+        registrationSubmitDate
+        registrationApprovedDate
+        userId
+        videoInfoReviewed
+        registrationAttempts
+        registrationStatus
+        orderNum
+        address
+        postCode
+        region
+        dateOfBirth
+        smoothstarModel
+        purchaseDate
+        shopName
+        privacyPolicyReviewed
+        extendedPolicyReviewed
+        termsOfUseReviewed
+        version
+      }
+      version
+    }
+    privacyPolicyReviewed
+    extendedPolicyReviewed
+    termsOfUseReviewed
+    files {
+      items {
+        id
+        version
+      }
+      nextToken
+    }
+    version
+  }
+}
+`;
+export const onCreateRegistrationMedia = `subscription OnCreateRegistrationMedia {
+  onCreateRegistrationMedia {
+    id
+    file {
+      bucket
+      region
+      key
+    }
+    registration {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const onUpdateRegistrationMedia = `subscription OnUpdateRegistrationMedia {
+  onUpdateRegistrationMedia {
+    id
+    file {
+      bucket
+      region
+      key
+    }
+    registration {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const onDeleteRegistrationMedia = `subscription OnDeleteRegistrationMedia {
+  onDeleteRegistrationMedia {
+    id
+    file {
+      bucket
+      region
+      key
+    }
+    registration {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const onCreateOrderInfo = `subscription OnCreateOrderInfo {
+  onCreateOrderInfo {
+    id
+    active
+    type
+    orderNum
+    customerId
+    customerEmail
+    customerPhone
+    dateOfPurchase
+    cityDelivered
+    countryDelivered
+    registration {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const onUpdateOrderInfo = `subscription OnUpdateOrderInfo {
+  onUpdateOrderInfo {
+    id
+    active
+    type
+    orderNum
+    customerId
+    customerEmail
+    customerPhone
+    dateOfPurchase
+    cityDelivered
+    countryDelivered
+    registration {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const onDeleteOrderInfo = `subscription OnDeleteOrderInfo {
+  onDeleteOrderInfo {
+    id
+    active
+    type
+    orderNum
+    customerId
+    customerEmail
+    customerPhone
+    dateOfPurchase
+    cityDelivered
+    countryDelivered
+    registration {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const onCreateOcrInfo = `subscription OnCreateOcrInfo {
+  onCreateOCRInfo {
+    id
+    active
+    type
+    file {
+      bucket
+      region
+      key
+    }
+    ocrStatus
+    customerId
+    customerEmail
+    customerPhone
+    orderNum
+    address
+    postCode
+    region
+    smoothstarModel
+    purchaseDate
+    shopName
+    cityDelivered
+    countryDelivered
+    registration {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const onUpdateOcrInfo = `subscription OnUpdateOcrInfo {
+  onUpdateOCRInfo {
+    id
+    active
+    type
+    file {
+      bucket
+      region
+      key
+    }
+    ocrStatus
+    customerId
+    customerEmail
+    customerPhone
+    orderNum
+    address
+    postCode
+    region
+    smoothstarModel
+    purchaseDate
+    shopName
+    cityDelivered
+    countryDelivered
+    registration {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const onDeleteOcrInfo = `subscription OnDeleteOcrInfo {
+  onDeleteOCRInfo {
+    id
+    active
+    type
+    file {
+      bucket
+      region
+      key
+    }
+    ocrStatus
+    customerId
+    customerEmail
+    customerPhone
+    orderNum
+    address
+    postCode
+    region
+    smoothstarModel
+    purchaseDate
+    shopName
+    cityDelivered
+    countryDelivered
+    registration {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;

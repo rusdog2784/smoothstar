@@ -1,12 +1,9 @@
-type News
-  @model
-  @versioned {
-
+type News @model @versioned {
   id: ID!
-  
+
   publishedOn: String!
   active: Boolean!
-  
+
   title: String!
   rawContent: String!
 
@@ -19,20 +16,14 @@ type News
   tags: [String!]
 }
 
-type Paragraph 
-  @model
-  @versioned {
-
+type Paragraph @model @versioned {
   id: ID!
   content: String!
 
   news: News! @connection(name: "NewsParagraphs")
 }
 
-type Media 
-  @model
-  @versioned {
-
+type Media @model @versioned {
   id: ID!
   file: S3Object!
 
@@ -43,4 +34,112 @@ type S3Object {
   bucket: String!
   region: String!
   key: String!
+}
+
+type UserInfo @model @versioned {
+  id: ID!
+
+  lastModifiedOn: String!
+  lastSigninOn: String!
+  active: Boolean!
+
+  email: String!
+  phone: String!
+  emailVerified: Boolean!
+  phoneVerified: Boolean!
+  promoEmailPreference: Boolean!
+  type: String!
+  givenName: String!
+  familyName: String!
+  locale: String!
+  dateOfBirth: String
+  city: String
+  country: String
+}
+
+type SmoothstarRegistration @model @versioned {
+  id: ID!
+
+  active: Boolean!
+
+  type: String!
+  registrationSubmitDate: String
+  registrationApprovedDate: String
+  userId: String!
+  videoInfoReviewed: Boolean!
+
+  registrationAttempts: Int!
+  registrationStatus: String
+
+  orderNum: String
+  orderInfo: OrderInfo @connection(name: "SmoothstarRegistrationOrder")
+
+  address: String
+  postCode: String
+  region: String
+  dateOfBirth: String
+  smoothstarModel: String
+  purchaseDate: String
+  shopName: String
+  ocrInfo: OCRInfo @connection(name: "SmoothstarRegistrationOCR")
+
+  privacyPolicyReviewed: Boolean!
+  extendedPolicyReviewed: Boolean!
+  termsOfUseReviewed: Boolean!
+
+  files: [RegistrationMedia!] @connection(name: "SmoothstarRegistrationMedia")
+}
+
+type RegistrationMedia @model @versioned {
+  id: ID!
+  file: S3Object!
+
+  registration: SmoothstarRegistration!
+    @connection(name: "SmoothstarRegistrationMedia")
+}
+
+type OrderInfo @model @versioned {
+  id: ID!
+
+  active: Boolean!
+
+  type: String!
+  orderNum: String!
+  customerId: String!
+  customerEmail: String
+  customerPhone: String
+  dateOfPurchase: String!
+  cityDelivered: String
+  countryDelivered: String!
+
+  registration: SmoothstarRegistration
+    @connection(name: "SmoothstarRegistrationOrder")
+}
+
+type OCRInfo @model @versioned {
+  id: ID!
+
+  active: Boolean!
+
+  type: String!
+  file: S3Object!
+
+  ocrStatus: String
+
+  customerId: String
+  customerEmail: String
+  customerPhone: String
+  orderNum: String
+  address: String
+  postCode: String
+  region: String
+  smoothstarModel: String
+  purchaseDate: String
+  shopName: String
+
+  cityDelivered: String
+  countryDelivered: String
+
+  registration: SmoothstarRegistration
+    @connection(name: "SmoothstarRegistrationOCR")
 }
