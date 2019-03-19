@@ -195,3 +195,620 @@ export const listMedias = `query ListMedias(
   }
 }
 `;
+export const getUserInfo = `query GetUserInfo($id: ID!) {
+  getUserInfo(id: $id) {
+    id
+    lastModifiedOn
+    lastSigninOn
+    active
+    email
+    phone
+    emailVerified
+    phoneVerified
+    promoEmailPreference
+    type
+    givenName
+    familyName
+    locale
+    dateOfBirth
+    city
+    country
+    version
+  }
+}
+`;
+export const listUserInfos = `query ListUserInfos(
+  $filter: ModelUserInfoFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUserInfos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      lastModifiedOn
+      lastSigninOn
+      active
+      email
+      phone
+      emailVerified
+      phoneVerified
+      promoEmailPreference
+      type
+      givenName
+      familyName
+      locale
+      dateOfBirth
+      city
+      country
+      version
+    }
+    nextToken
+  }
+}
+`;
+export const getSmoothstarRegistration = `query GetSmoothstarRegistration($id: ID!) {
+  getSmoothstarRegistration(id: $id) {
+    id
+    active
+    type
+    registrationSubmitDate
+    registrationApprovedDate
+    userId
+    videoInfoReviewed
+    registrationAttempts
+    registrationStatus
+    orderNum
+    orderInfo {
+      id
+      active
+      type
+      orderNum
+      customerId
+      customerEmail
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
+      registration {
+        id
+        active
+        type
+        registrationSubmitDate
+        registrationApprovedDate
+        userId
+        videoInfoReviewed
+        registrationAttempts
+        registrationStatus
+        orderNum
+        address
+        postCode
+        region
+        dateOfBirth
+        smoothstarModel
+        purchaseDate
+        shopName
+        privacyPolicyReviewed
+        extendedPolicyReviewed
+        termsOfUseReviewed
+        version
+      }
+      version
+    }
+    address
+    postCode
+    region
+    dateOfBirth
+    smoothstarModel
+    purchaseDate
+    shopName
+    ocrInfo {
+      id
+      active
+      type
+      file {
+        bucket
+        region
+        key
+      }
+      ocrStatus
+      customerId
+      customerEmail
+      customerPhone
+      orderNum
+      address
+      postCode
+      region
+      smoothstarModel
+      purchaseDate
+      shopName
+      cityDelivered
+      countryDelivered
+      registration {
+        id
+        active
+        type
+        registrationSubmitDate
+        registrationApprovedDate
+        userId
+        videoInfoReviewed
+        registrationAttempts
+        registrationStatus
+        orderNum
+        address
+        postCode
+        region
+        dateOfBirth
+        smoothstarModel
+        purchaseDate
+        shopName
+        privacyPolicyReviewed
+        extendedPolicyReviewed
+        termsOfUseReviewed
+        version
+      }
+      version
+    }
+    privacyPolicyReviewed
+    extendedPolicyReviewed
+    termsOfUseReviewed
+    files {
+      items {
+        id
+        version
+      }
+      nextToken
+    }
+    version
+  }
+}
+`;
+export const listSmoothstarRegistrations = `query ListSmoothstarRegistrations(
+  $filter: ModelSmoothstarRegistrationFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listSmoothstarRegistrations(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    nextToken
+  }
+}
+`;
+export const getRegistrationMedia = `query GetRegistrationMedia($id: ID!) {
+  getRegistrationMedia(id: $id) {
+    id
+    file {
+      bucket
+      region
+      key
+    }
+    registration {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const listRegistrationMedias = `query ListRegistrationMedias(
+  $filter: ModelRegistrationMediaFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listRegistrationMedias(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      file {
+        bucket
+        region
+        key
+      }
+      registration {
+        id
+        active
+        type
+        registrationSubmitDate
+        registrationApprovedDate
+        userId
+        videoInfoReviewed
+        registrationAttempts
+        registrationStatus
+        orderNum
+        address
+        postCode
+        region
+        dateOfBirth
+        smoothstarModel
+        purchaseDate
+        shopName
+        privacyPolicyReviewed
+        extendedPolicyReviewed
+        termsOfUseReviewed
+        version
+      }
+      version
+    }
+    nextToken
+  }
+}
+`;
+export const getOrderInfo = `query GetOrderInfo($id: ID!) {
+  getOrderInfo(id: $id) {
+    id
+    active
+    type
+    orderNum
+    customerId
+    customerEmail
+    customerPhone
+    dateOfPurchase
+    cityDelivered
+    countryDelivered
+    registration {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const listOrderInfos = `query ListOrderInfos(
+  $filter: ModelOrderInfoFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listOrderInfos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      active
+      type
+      orderNum
+      customerId
+      customerEmail
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
+      registration {
+        id
+        active
+        type
+        registrationSubmitDate
+        registrationApprovedDate
+        userId
+        videoInfoReviewed
+        registrationAttempts
+        registrationStatus
+        orderNum
+        address
+        postCode
+        region
+        dateOfBirth
+        smoothstarModel
+        purchaseDate
+        shopName
+        privacyPolicyReviewed
+        extendedPolicyReviewed
+        termsOfUseReviewed
+        version
+      }
+      version
+    }
+    nextToken
+  }
+}
+`;
+export const getOcrInfo = `query GetOcrInfo($id: ID!) {
+  getOCRInfo(id: $id) {
+    id
+    active
+    type
+    file {
+      bucket
+      region
+      key
+    }
+    ocrStatus
+    customerId
+    customerEmail
+    customerPhone
+    orderNum
+    address
+    postCode
+    region
+    smoothstarModel
+    purchaseDate
+    shopName
+    cityDelivered
+    countryDelivered
+    registration {
+      id
+      active
+      type
+      registrationSubmitDate
+      registrationApprovedDate
+      userId
+      videoInfoReviewed
+      registrationAttempts
+      registrationStatus
+      orderNum
+      orderInfo {
+        id
+        active
+        type
+        orderNum
+        customerId
+        customerEmail
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
+        version
+      }
+      address
+      postCode
+      region
+      dateOfBirth
+      smoothstarModel
+      purchaseDate
+      shopName
+      ocrInfo {
+        id
+        active
+        type
+        ocrStatus
+        customerId
+        customerEmail
+        customerPhone
+        orderNum
+        address
+        postCode
+        region
+        smoothstarModel
+        purchaseDate
+        shopName
+        cityDelivered
+        countryDelivered
+        version
+      }
+      privacyPolicyReviewed
+      extendedPolicyReviewed
+      termsOfUseReviewed
+      files {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const listOcrInfos = `query ListOcrInfos(
+  $filter: ModelOCRInfoFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listOCRInfos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      active
+      type
+      file {
+        bucket
+        region
+        key
+      }
+      ocrStatus
+      customerId
+      customerEmail
+      customerPhone
+      orderNum
+      address
+      postCode
+      region
+      smoothstarModel
+      purchaseDate
+      shopName
+      cityDelivered
+      countryDelivered
+      registration {
+        id
+        active
+        type
+        registrationSubmitDate
+        registrationApprovedDate
+        userId
+        videoInfoReviewed
+        registrationAttempts
+        registrationStatus
+        orderNum
+        address
+        postCode
+        region
+        dateOfBirth
+        smoothstarModel
+        purchaseDate
+        shopName
+        privacyPolicyReviewed
+        extendedPolicyReviewed
+        termsOfUseReviewed
+        version
+      }
+      version
+    }
+    nextToken
+  }
+}
+`;
