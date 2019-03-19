@@ -4,11 +4,11 @@ import { Icon } from 'native-base';
 
 import { Colors } from '~styles';
 
-export const CheckBox = ({ checked, style, color = Colors.checkBoxColor }) => {
+export const CheckBox = ({ checked, style, color = Colors.checkBoxColor, onPress }) => {
   const name = checked ? 'checkbox-marked-outline' : 'checkbox-blank-outline';
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <Icon style={{ color }} name={name} type="MaterialCommunityIcons" />
     </TouchableOpacity>
   );

@@ -1,4 +1,4 @@
 export * from './Assets';
-export * from './StyleTypes';
+export * from './General';
 export * from './ActionTypes';
 export * from './StaticData';

@@ -1,4 +1,4 @@
-import { ActionTypes } from '~constants';
+import { ActionTypes, AuthActionTypes } from '~constants';
 
 import NavigationService from '~utils/NavigationService';
 import {
@@ -10,7 +10,18 @@ import {
   loginFacebook,
   signOut,
   loginGoogle,
+  verifyAttribute,
+  verifyAttributeSubmit,
 } from '~utils';
+
+const {
+  SIGNED_UP,
+  SIGNED_IN,
+  CONFIRMED_SIGN_UP,
+  CONFIRMED_SIGN_IN,
+  VERIFY_ATTR_CALLED,
+  VERIFIED_ATTR,
+} = AuthActionTypes;
 
 const {
   AUTH_INITIATE,
@@ -19,6 +30,7 @@ const {
   CLEAR_AUTH,
   CONFIRM_SIGNUP,
   CONFIRM_SIGNIN,
+  SET_AUTH_ACTION_COMPLETED,
 } = ActionTypes;
 
 export const setAuth = () => {
@@ -39,20 +51,21 @@ export const setAuth = () => {
   };
 };
 
-export const authSignUp = user => {
+export const authSignUp = ({ user }) => {
   return dispatch => {
     dispatch({ type: AUTH_INITIATE });
 
     signUp(user)
       .then(response => {
         console.log('responseSignUp:', response);
-        NavigationService.navigate('AuthVerificationScreen', {
-          user: user.email,
-          type: 'SignUp',
+        dispatch({
+          type: SET_AUTH_ACTION_COMPLETED,
+          payload: { type: SIGNED_UP, data: user.email },
         });
       })
       .catch(error => {
         console.log(error);
+        dispatch({ type: CLEAR_AUTH });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -67,11 +80,15 @@ export const authConfirmSignUp = ({ username, code }) => {
         console.log('responseConfirmSignUp:', response);
         if (response === 'SUCCESS') {
           dispatch({ type: CONFIRM_SIGNUP, payload: username });
-          NavigationService.navigate('LoginScreen');
+          dispatch({
+            type: SET_AUTH_ACTION_COMPLETED,
+            payload: { type: CONFIRMED_SIGN_UP, data: null },
+          });
         }
       })
       .catch(error => {
         console.log(error);
+        dispatch({ type: CLEAR_AUTH });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -84,10 +101,11 @@ export const authSignIn = user => {
     signIn(user)
       .then(response => {
         console.log('responseSignIn:', response);
-        NavigationService.navigate('AuthVerificationScreen', { type: 'SignIn', user: response });
+        dispatch({ type: SET_AUTH_ACTION_COMPLETED, payload: { type: SIGNED_IN, data: response } });
       })
       .catch(error => {
         console.log(error);
+        dispatch({ type: CLEAR_AUTH });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -102,11 +120,15 @@ export const authConfirmSignIn = data => {
         console.log('responseConfirmSignIn:', response);
         if (response === 'SUCCESS') {
           dispatch({ type: CONFIRM_SIGNIN, payload: response });
-          NavigationService.navigate('AppNavigator');
+          dispatch({
+            type: SET_AUTH_ACTION_COMPLETED,
+            payload: { type: CONFIRMED_SIGN_IN, data: null },
+          });
         }
       })
       .catch(error => {
         console.log(error);
+        dispatch({ type: CLEAR_AUTH });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -126,6 +148,7 @@ export const authLoginFacebook = () => {
       })
       .catch(error => {
         console.log(error);
+        dispatch({ type: CLEAR_AUTH });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -145,6 +168,7 @@ export const authLoginGoogle = () => {
       })
       .catch(error => {
         console.log(error);
+        dispatch({ type: CLEAR_AUTH });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -162,6 +186,50 @@ export const authSignOut = () => {
       })
       .catch(error => {
         console.log(error);
+      })
+      .finally(() => dispatch({ type: AUTH_COMPLETED }));
+  };
+};
+
+export const authVerifyAttribute = attr => {
+  return dispatch => {
+    dispatch({ type: AUTH_INITIATE });
+
+    verifyAttribute(attr)
+      .then(response => {
+        console.log('responseverifyAttribute:', response);
+        if (response === 'SUCCESS') {
+          dispatch({
+            type: SET_AUTH_ACTION_COMPLETED,
+            payload: { type: VERIFY_ATTR_CALLED, data: response },
+          });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch({ type: CLEAR_AUTH });
+      })
+      .finally(() => dispatch({ type: AUTH_COMPLETED }));
+  };
+};
+
+export const authVerifyAttributeSubmit = (attr, code) => {
+  return dispatch => {
+    dispatch({ type: AUTH_INITIATE });
+
+    verifyAttributeSubmit(attr, code)
+      .then(response => {
+        console.log('responseverifyAttributeSubmit:', response);
+        if (response === 'SUCCESS') {
+          dispatch({
+            type: SET_AUTH_ACTION_COMPLETED,
+            payload: { type: VERIFIED_ATTR, data: response },
+          });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        dispatch({ type: CLEAR_AUTH });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };

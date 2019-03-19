@@ -19,7 +19,6 @@ export const checkAuth = async () => {
 };
 
 export const signUp = async user => {
-  console.log('user:', user);
   const username = user.email;
   const password = user.password;
 
@@ -63,6 +62,22 @@ export const confirmSignIn = async ({ user, code, mfaType }) => {
 export const signOut = async () => {
   return Auth.signOut()
     .then(() => true)
+    .catch(error => {
+      throw error;
+    });
+};
+
+export const verifyAttribute = async attr => {
+  return Auth.verifyCurrentUserAttribute(attr)
+    .then(response => response)
+    .catch(error => {
+      throw error;
+    });
+};
+
+export const verifyAttributeSubmit = async (attr, code) => {
+  return Auth.verifyCurrentUserAttribute(attr, code)
+    .then(response => response)
     .catch(error => {
       throw error;
     });

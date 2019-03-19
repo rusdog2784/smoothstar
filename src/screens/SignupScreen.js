@@ -5,8 +5,10 @@ import { connect } from 'react-redux';
 
 import { authSignUp } from '~redux/actions';
 import { Text, Button, InputBox, CheckBox } from '~components/common';
-import { Assets, StaticData, StyleTypes } from '~constants';
+import { Assets, StaticData, StyleTypes, AuthActionTypes } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
+
+const { SIGNED_UP } = AuthActionTypes;
 
 class SignupScreen extends Component {
   state = {
@@ -19,6 +21,19 @@ class SignupScreen extends Component {
     gender: 'M',
     country: 'Pakistan',
     city: 'Lahore',
+    emailSub: false,
+  };
+
+  componentDidUpdate = () => {
+    const { navigation, authAction, loading, authActionData } = this.props;
+
+    if (authAction === SIGNED_UP && !loading) {
+      navigation.navigate('AuthVerificationScreen', {
+        username: authActionData,
+        type: 'ConfirmSignUp',
+        verifyEmail: true,
+      });
+    }
   };
 
   formTextChange = (text, type) => {
@@ -28,7 +43,7 @@ class SignupScreen extends Component {
   isFormOK = () => {
     let formOK = true;
     Object.keys(this.state).some(key => {
-      if (this.state[key].trim() === '') {
+      if (key !== 'emailSub' && this.state[key].trim() === '') {
         alert(`${key} can not be empty`);
         formOK = false;
         return true;
@@ -51,8 +66,9 @@ class SignupScreen extends Component {
     delete user.gender;
     delete user.first_name;
     delete user.last_name;
+    delete user.emailSub;
 
-    this.props.authSignUp(user);
+    this.props.authSignUp({ user, verifyEmail: this.state.emailSub });
   };
 
   render() {
@@ -166,7 +182,10 @@ class SignupScreen extends Component {
           />
 
           <View style={[checkBoxViewStyle, mdGapStyle]}>
-            <CheckBox checked />
+            <CheckBox
+              checked={this.state.emailSub}
+              onPress={() => this.setState({ emailSub: !this.state.emailSub })}
+            />
             <Text numberOfLines={2} type={StyleTypes.small} style={{ marginLeft: 10, flex: 1 }}>
               Signup for emails to surf training events and latest products
             </Text>
@@ -253,11 +272,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { loading, user } = state.auth;
+  const { loading, user, authAction, authActionData } = state.auth;
 
   return {
     loading,
     user,
+    authAction,
+    authActionData,
   };
 };
 
