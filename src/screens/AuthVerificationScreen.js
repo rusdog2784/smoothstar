@@ -5,12 +5,48 @@ import { connect } from 'react-redux';
 
 import { authConfirmSignUp, authConfirmSignIn } from '~redux/actions';
 import { Text, Button, InputBox } from '~components/common';
-import { Assets, StyleTypes } from '~constants';
+import { Assets, StyleTypes, AuthActionTypes } from '~constants';
 import { GlobalStyles } from '~styles';
+
+const { CONFIRMED_SIGN_UP, CONFIRMED_SIGN_IN, VERIFIED_ATTR } = AuthActionTypes;
 
 class AuthVerificationScreen extends Component {
   state = {
     code: '',
+  };
+
+  componentDidUpdate = () => {
+    const { navigation, authAction, loading } = this.props;
+    // const { verifyEmail } = this.props.navigation.state.params;
+
+    // if (authAction === CONFIRMED_SIGN_UP && !loading && verifyEmail) {
+    //   Alert.alert(
+    //     'Verify Email',
+    //     'You have subscribed for emails, kindly verify your email address as well to avail subscription service.',
+    //     [
+    //       {
+    //         text: 'Cancel',
+    //         onPress: () => navigation.navigate('LoginScreen'),
+    //         style: 'cancel',
+    //       },
+    //       {
+    //         text: 'OK',
+    //         onPress: () => {
+    //           authVerifyAttribute('email');
+    //           this.setState({ code: '' });
+    //           navigation.setParams({ type: 'ConfirmEmail' });
+    //         },
+    //       },
+    //     ]
+    //   );
+    // }
+    if (authAction === CONFIRMED_SIGN_UP && !loading) {
+      navigation.navigate('LoginScreen');
+    } else if (authAction === CONFIRMED_SIGN_IN && !loading) {
+      navigation.navigate('AppNavigator');
+    } else if (authAction === VERIFIED_ATTR && !loading) {
+      navigation.navigate('LoginScreen');
+    }
   };
 
   handleVerificationCode = () => {
@@ -19,13 +55,16 @@ class AuthVerificationScreen extends Component {
       return;
     }
 
-    const { type, user } = this.props.navigation.state.params;
+    const { type, user, username } = this.props.navigation.state.params;
 
-    if (type === 'SignUp') {
-      this.props.authConfirmSignUp({ username: user, code: this.state.code });
-    } else if (type === 'SignIn') {
+    if (type === 'ConfirmSignUp') {
+      this.props.authConfirmSignUp({ username, code: this.state.code });
+    } else if (type === 'ConfirmSignIn') {
       this.props.authConfirmSignIn({ user, code: this.state.code, mfaType: 'SMS' });
     }
+    // else if (type === 'ConfirmEmail') {
+    //   this.props.authVerifyAttributeSubmit('email', this.state.code);
+    // }
   };
 
   render() {
@@ -110,7 +149,16 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = state => {
+  const { loading, authAction } = state.auth;
+
+  return {
+    loading,
+    authAction,
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { authConfirmSignUp, authConfirmSignIn }
 )(AuthVerificationScreen);

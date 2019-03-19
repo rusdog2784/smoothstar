@@ -5,13 +5,26 @@ import { connect } from 'react-redux';
 
 import { authSignIn, authLoginFacebook, authLoginGoogle } from '~redux/actions';
 import { Text, Button, InputBox } from '~components/common';
-import { Assets, StyleTypes } from '~constants';
+import { Assets, StyleTypes, AuthActionTypes } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
+
+const { SIGNED_IN } = AuthActionTypes;
 
 class LoginScreen extends Component {
   state = {
     username: this.props.username,
     password: '',
+  };
+
+  componentDidUpdate = () => {
+    const { navigation, authAction, loading, authActionData } = this.props;
+
+    if (authAction === SIGNED_IN && !loading) {
+      navigation.navigate('AuthVerificationScreen', {
+        type: 'ConfirmSignIn',
+        user: authActionData,
+      });
+    }
   };
 
   onUsernameChange = text => {
@@ -159,10 +172,13 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { username } = state.auth;
+  const { username, loading, authAction, authActionData } = state.auth;
 
   return {
     username,
+    loading,
+    authAction,
+    authActionData,
   };
 };
 
