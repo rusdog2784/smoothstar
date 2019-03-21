@@ -41,24 +41,22 @@ class LoginScreen extends Component {
   };
 
   render() {
-    const { screenContainerStyle, underlineTextStyle } = GlobalStyles;
     const {
-      contentStyle,
-      logoStyle,
-      introTextStyle,
-      forgotViewStyle,
+      screenContainerStyle,
+      underlineTextStyle,
+      xlgGapStyle,
       lgGapStyle,
       mdGapStyle,
       smGapStyle,
-      xlgGapStyle,
-    } = styles;
+    } = GlobalStyles;
+    const { contentStyle, logoStyle, introTextStyle, forgotViewStyle } = styles;
 
     return (
       <Container style={screenContainerStyle}>
         <Content contentContainerStyle={contentStyle}>
           <Image source={Assets.Images.logoDark} style={[mdGapStyle, logoStyle]} />
 
-          <Text type={StyleTypes.h1} style={[mdGapStyle, introTextStyle]}>
+          <Text dark type={StyleTypes.h1} style={[mdGapStyle, introTextStyle]}>
             YOUR ACCOUNT{'\n'}FOR SMOOTHSTAR
           </Text>
 
@@ -156,18 +154,6 @@ const styles = StyleSheet.create({
   },
   introTextStyle: {
     textAlign: 'center',
-  },
-  xlgGapStyle: {
-    marginBottom: 55,
-  },
-  lgGapStyle: {
-    marginBottom: 35,
-  },
-  mdGapStyle: {
-    marginBottom: 25,
-  },
-  smGapStyle: {
-    marginBottom: 10,
   },
 });
 

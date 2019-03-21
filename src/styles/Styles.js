@@ -57,4 +57,20 @@ export const GlobalStyles = StyleSheet.create({
   screenType2ContentStyle: {
     marginHorizontal: 20,
   },
+  xlgGapStyle: {
+    marginBottom: 55,
+  },
+  lgGapStyle: {
+    marginBottom: 35,
+  },
+  mdGapStyle: {
+    marginBottom: 25,
+  },
+  smGapStyle: {
+    marginBottom: 10,
+  },
+  inputIconStyle: {
+    fontSize: 16,
+    color: Colors.inputBoxIconColor,
+  },
 });
