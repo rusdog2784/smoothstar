@@ -1,7 +1,10 @@
 import React from 'react';
-import { TextInput, StyleSheet } from 'react-native';
+import { TextInput, StyleSheet, View, Text } from 'react-native';
+import Tooltip from 'rn-tooltip';
+import { Icon } from 'native-base';
 
 import { Colors, GlobalStyles } from '~styles';
+// import Text from './Text';
 
 export const InputBox = props => {
   const { inputTextStyle, textStyle } = GlobalStyles;
@@ -14,7 +17,41 @@ export const InputBox = props => {
     style,
     keyboardType,
     multiline = false,
+    iconRight,
+    iconType,
+    tooltipIconText,
+    disable,
   } = props;
+
+  if (iconRight && tooltipIconText) {
+    return (
+      <View
+        style={[
+          styles.viewStyle,
+          style,
+          disable && { backgroundColor: Colors.inputBoxDisabledColor },
+        ]}>
+        <TextInput
+          value={value}
+          onChangeText={onChangeText}
+          placeholder={placeholder}
+          placeholderTextColor={Colors.inputBoxColor}
+          secureTextEntry={secureTextEntry}
+          style={[inputTextStyle, textStyle, styles.inputIconStyle]}
+          keyboardType={keyboardType}
+          autoCapitalize="none"
+          multiline={multiline}
+          editable={!disable}
+        />
+        <ToolTipIcon
+          disable={disable}
+          name={iconRight}
+          type={iconType}
+          tooltipText={tooltipIconText}
+        />
+      </View>
+    );
+  }
 
   return (
     <TextInput
@@ -23,21 +60,58 @@ export const InputBox = props => {
       placeholder={placeholder}
       placeholderTextColor={Colors.inputBoxColor}
       secureTextEntry={secureTextEntry}
-      style={[styles.inputStyle, style, inputTextStyle, textStyle]}
+      style={[
+        styles.normalInputStyle,
+        style,
+        inputTextStyle,
+        textStyle,
+        disable && { backgroundColor: Colors.inputBoxDisabledColor },
+      ]}
       keyboardType={keyboardType}
       autoCapitalize="none"
       multiline={multiline}
+      editable={!disable}
     />
   );
 };
 
+const ToolTipIcon = ({ type, name, tooltipText, disable }) => (
+  <Tooltip
+    popover={<Text style={{ color: Colors.tooltipTextColor }}>{tooltipText}</Text>}
+    tooltipWidth={200}
+    withOverlay={false}
+    toggleOnPress={!disable}
+    highlightColor={Colors.tooltipTextColor}
+    backgroundColor={Colors.tooltipColor}>
+    <Icon
+      style={[GlobalStyles.inputIconStyle, disable ? { color: Colors.inputBoxColor } : null]}
+      name={name}
+      type={type}
+    />
+  </Tooltip>
+);
+
 const styles = StyleSheet.create({
-  inputStyle: {
-    height: 50,
+  normalInputStyle: {
+    minHeight: 50,
     width: '100%',
     borderWidth: 1,
     borderColor: Colors.inputBoxColor,
     padding: 10,
     borderRadius: GlobalStyles.borderRadius,
+  },
+  inputIconStyle: {
+    flex: 1,
+    marginRight: 10,
+  },
+  viewStyle: {
+    minHeight: 50,
+    width: '100%',
+    borderWidth: 1,
+    borderColor: Colors.inputBoxColor,
+    padding: 10,
+    borderRadius: GlobalStyles.borderRadius,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });

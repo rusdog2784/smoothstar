@@ -72,14 +72,17 @@ class SignupScreen extends Component {
   };
 
   render() {
-    const { screenContainerStyle, underlineTextStyle } = GlobalStyles;
+    const {
+      screenContainerStyle,
+      underlineTextStyle,
+      lgGapStyle,
+      mdGapStyle,
+      smGapStyle,
+    } = GlobalStyles;
     const {
       contentStyle,
       logoStyle,
       introTextStyle,
-      lgGapStyle,
-      mdGapStyle,
-      smGapStyle,
       lineViewStyle,
       lineStyle,
       checkBoxViewStyle,
@@ -90,7 +93,7 @@ class SignupScreen extends Component {
         <Content contentContainerStyle={contentStyle}>
           <Image source={Assets.Images.logoDark} style={[mdGapStyle, logoStyle]} />
 
-          <Text type={StyleTypes.h1} style={[lgGapStyle, introTextStyle]}>
+          <Text dark type={StyleTypes.h1} style={[lgGapStyle, introTextStyle]}>
             YOUR ACCOUNT{'\n'}FOR SMOOTHSTAR
           </Text>
 
@@ -259,15 +262,6 @@ const styles = StyleSheet.create({
     width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  lgGapStyle: {
-    marginBottom: 35,
-  },
-  mdGapStyle: {
-    marginBottom: 25,
-  },
-  smGapStyle: {
-    marginBottom: 10,
   },
 });
 

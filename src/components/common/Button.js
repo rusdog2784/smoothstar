@@ -7,21 +7,28 @@ import { Colors } from '~styles';
 import { StyleTypes } from '~constants';
 
 export const Button = props => {
-  const { children, icon, iconType = 'IonIcons', color, style, onPress } = props;
+  const { children, icon, iconType = 'IonIcons', color, style, onPress, disable } = props;
 
-  const bgColor = color || Colors.buttonNormalColor;
+  const bgColor = disable ? Colors.buttonDisableColor : color || Colors.buttonNormalColor;
 
   return (
     <TouchableOpacity
+      activeOpacity={disable ? 1 : 0.4}
       onPress={onPress}
       style={[{ backgroundColor: bgColor }, styles.buttonNormalStyle, style]}>
       {icon ? (
         <View style={styles.iconViewStyle}>
-          <Icon style={styles.iconStyle} name={icon} type={iconType} />
+          <Icon
+            style={[styles.iconStyle, disable && { color: Colors.buttonDisableTextColor }]}
+            name={icon}
+            type={iconType}
+          />
         </View>
       ) : null}
 
-      <Text type={StyleTypes.p} style={styles.textStyle}>
+      <Text
+        type={StyleTypes.p}
+        style={[styles.textStyle, disable && { color: Colors.buttonDisableTextColor }]}>
         {children}
       </Text>
 
