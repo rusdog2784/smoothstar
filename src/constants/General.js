@@ -16,3 +16,12 @@ export const AuthActionTypes = {
   VERIFY_ATTR_CALLED: 'VERIFY_ATTR_CALLED',
   VERIFIED_ATTR: 'VERIFIED_ATTR',
 };
+
+export const AppStates = {
+  REGISTER_SS: 'REGISTER_SS',
+};
+
+export const ApiTypes = {
+  MUTATION: 'mutations',
+  QUERY: 'queries',
+};

@@ -17,29 +17,7 @@ class AuthVerificationScreen extends Component {
 
   componentDidUpdate = () => {
     const { navigation, authAction, loading } = this.props;
-    // const { verifyEmail } = this.props.navigation.state.params;
 
-    // if (authAction === CONFIRMED_SIGN_UP && !loading && verifyEmail) {
-    //   Alert.alert(
-    //     'Verify Email',
-    //     'You have subscribed for emails, kindly verify your email address as well to avail subscription service.',
-    //     [
-    //       {
-    //         text: 'Cancel',
-    //         onPress: () => navigation.navigate('LoginScreen'),
-    //         style: 'cancel',
-    //       },
-    //       {
-    //         text: 'OK',
-    //         onPress: () => {
-    //           authVerifyAttribute('email');
-    //           this.setState({ code: '' });
-    //           navigation.setParams({ type: 'ConfirmEmail' });
-    //         },
-    //       },
-    //     ]
-    //   );
-    // }
     if (authAction === CONFIRMED_SIGN_UP && !loading) {
       navigation.navigate('LoginScreen');
     } else if (authAction === CONFIRMED_SIGN_IN && !loading) {
@@ -62,9 +40,6 @@ class AuthVerificationScreen extends Component {
     } else if (type === 'ConfirmSignIn') {
       this.props.authConfirmSignIn({ user, code: this.state.code, mfaType: 'SMS' });
     }
-    // else if (type === 'ConfirmEmail') {
-    //   this.props.authVerifyAttributeSubmit('email', this.state.code);
-    // }
   };
 
   render() {
@@ -81,7 +56,7 @@ class AuthVerificationScreen extends Component {
 
     return (
       <Container style={screenContainerStyle}>
-        <Content contentContainerStyle={contentStyle}>
+        <Content contentContainerStyle={contentStyle} showsVerticalScrollIndicator={false}>
           <Image source={Assets.Images.logoDark} style={[mdGapStyle, logoStyle]} />
 
           <Text type={StyleTypes.h1} style={[mdGapStyle, introTextStyle]}>

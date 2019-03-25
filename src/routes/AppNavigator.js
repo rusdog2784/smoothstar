@@ -14,6 +14,8 @@ const AppNavigator = createDrawerNavigator(
   },
   {
     initialRouteName: 'RegisterationStack',
+    backBehavior: 'none',
+    unmountInactiveRoutes: true,
   }
 );
 
