@@ -2,23 +2,38 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
+import { NavigationEvents, NavigationActions } from 'react-navigation';
+import _ from 'lodash';
 
-import { authSignUp } from '~redux/actions';
+import { creatSSRegisteration, unsubState } from '~redux/actions';
 import { Text, Button, InputBox, NumberBullet, Switch } from '~components/common';
-import { Assets, StaticData, StyleTypes } from '~constants';
+import { Assets, StaticData, StyleTypes, AppStates } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
+import { _c } from '~utils';
 
 class RegisterSmoothStarScreen extends Component {
   state = {
-    websiteOrder: '',
-    address: '',
-    postCode: '',
-    region: '',
-    birthdate: '',
-    productModel: '',
-    purchaseDate: '',
-    shopName: '',
+    websiteOrderNum: '',
+    address: 'Test Address',
+    postCode: '54000',
+    region: 'Punjab',
+    birthdate: '2019-03-25',
+    productModel: 'TEST MODEL',
+    purchaseDate: '2019-03-21',
+    shopName: 'WICKS SURF',
     stockist: true,
+  };
+
+  componentDidUpdate = () => {
+    const { isRegistered, loading, navigation } = this.props;
+
+    if (isRegistered && !loading) {
+      navigation.navigate('NewsListScreen');
+    }
+  };
+
+  onScreenBlur = () => {
+    this.props.unsubState(AppStates.REGISTER_SS);
   };
 
   formTextChange = (text, type) => {
@@ -27,11 +42,81 @@ class RegisterSmoothStarScreen extends Component {
 
   switchToggle = params => this.setState({ stockist: !this.state.stockist });
 
+  checkWebsiteOrderNum = () => {
+    if (_.isEmpty(this.state.websiteOrderNum.trim())) {
+      console.log('Website Order# model can not be empty');
+      return false;
+    }
+    return true;
+  };
+
+  checkStockist = () => {
+    const { productModel, purchaseDate, shopName } = this.state;
+
+    if (_.isEmpty(productModel.trim())) {
+      console.log('Product model can not be empty');
+      return false;
+    } else if (_.isEmpty(purchaseDate.trim())) {
+      console.log('Purchase date can not be empty');
+      return false;
+    } else if (_.isEmpty(shopName.trim())) {
+      console.log('Shop name can not be empty');
+      return false;
+    }
+
+    return true;
+  };
+
+  handleSubmitWarranty = () => {
+    const {
+      websiteOrderNum,
+      address,
+      postCode,
+      region,
+      birthdate,
+      productModel,
+      purchaseDate,
+      shopName,
+      stockist,
+    } = this.state;
+    const { user } = this.props;
+
+    const registeration = {
+      active: true,
+      registrationSubmitDate: _c.formatDateServer(Date.now()),
+      userId: user.username,
+      videoInfoReviewed: true,
+      registrationAttempts: +1,
+      privacyPolicyReviewed: true,
+      extendedPolicyReviewed: true,
+      termsOfUseReviewed: true,
+    };
+
+    if (stockist) {
+      if (!this.checkStockist) return;
+
+      registeration.type = 'S';
+      registeration.address = address;
+      registeration.postCode = postCode;
+      registeration.region = region;
+      registeration.dateOfBirth = _c.formatDateServer(birthdate);
+      registeration.smoothstarModel = productModel;
+      registeration.purchaseDate = _c.formatDateServer(purchaseDate);
+      registeration.shopName = shopName;
+    } else {
+      if (!this.checkWebsiteOrderNum) return;
+
+      registeration.type = 'W';
+      registeration.orderNum = websiteOrderNum;
+    }
+
+    this.props.creatSSRegisteration({ stockist, registeration });
+  };
+
   render() {
     const {
       screenContainerStyle,
       underlineTextStyle,
-      // xlgGapStyle,
       lgGapStyle,
       mdGapStyle,
       smGapStyle,
@@ -48,7 +133,8 @@ class RegisterSmoothStarScreen extends Component {
 
     return (
       <Container style={screenContainerStyle}>
-        <Content contentContainerStyle={contentStyle}>
+        <NavigationEvents onWillBlur={this.onScreenBlur} />
+        <Content contentContainerStyle={contentStyle} showsVerticalScrollIndicator={false}>
           <Image source={Assets.Images.logoDark} style={[mdGapStyle, logoStyle]} />
 
           <Text dark type={StyleTypes.h1} style={[lgGapStyle, introTextStyle]}>
@@ -119,8 +205,8 @@ class RegisterSmoothStarScreen extends Component {
           </View>
 
           <InputBox
-            onChangeText={text => this.formTextChange(text, 'email')}
-            value={this.state.websiteOrder}
+            onChangeText={text => this.formTextChange(text, 'websiteOrderNum')}
+            value={this.state.websiteOrderNum}
             style={lgGapStyle}
             placeholder="Website Order#"
             iconType="MaterialIcons"
@@ -129,7 +215,16 @@ class RegisterSmoothStarScreen extends Component {
             disable={this.state.stockist}
           />
 
-          <View style={[lineStyle, lgGapStyle]} />
+          <View
+            style={[
+              lineStyle,
+              lgGapStyle,
+              {
+                borderStyle: 'dashed',
+                borderRadius: 5,
+              },
+            ]}
+          />
 
           <Button
             disable={!this.state.stockist}
@@ -141,21 +236,21 @@ class RegisterSmoothStarScreen extends Component {
           </Button>
 
           <InputBox
-            onChangeText={text => this.formTextChange(text, 'phone_number')}
+            onChangeText={text => this.formTextChange(text, 'address')}
             value={this.state.address}
             style={smGapStyle}
             placeholder="Your Address"
             disable={!this.state.stockist}
           />
           <InputBox
-            onChangeText={text => this.formTextChange(text, 'first_name')}
+            onChangeText={text => this.formTextChange(text, 'postCode')}
             value={this.state.postCode}
             style={smGapStyle}
             placeholder="Post Code"
             disable={!this.state.stockist}
           />
           <InputBox
-            onChangeText={text => this.formTextChange(text, 'last_name')}
+            onChangeText={text => this.formTextChange(text, 'region')}
             value={this.state.region}
             style={smGapStyle}
             placeholder="Region"
@@ -169,21 +264,21 @@ class RegisterSmoothStarScreen extends Component {
             disable={!this.state.stockist}
           />
           <InputBox
-            onChangeText={text => this.formTextChange(text, 'gender')}
+            onChangeText={text => this.formTextChange(text, 'productModel')}
             value={this.state.productModel}
             style={smGapStyle}
             placeholder="Product/Model"
             disable={!this.state.stockist}
           />
           <InputBox
-            onChangeText={text => this.formTextChange(text, 'country')}
+            onChangeText={text => this.formTextChange(text, 'purchaseDate')}
             value={this.state.purchaseDate}
             style={smGapStyle}
             placeholder="Purchase Date"
             disable={!this.state.stockist}
           />
           <InputBox
-            onChangeText={text => this.formTextChange(text, 'city')}
+            onChangeText={text => this.formTextChange(text, 'shopName')}
             value={this.state.shopName}
             style={lgGapStyle}
             placeholder="Shop Name"
@@ -217,7 +312,9 @@ class RegisterSmoothStarScreen extends Component {
             </TouchableOpacity>
           </View>
 
-          <Button style={mdGapStyle}>SUBMIT WARRANTY</Button>
+          <Button onPress={this.handleSubmitWarranty} style={mdGapStyle}>
+            SUBMIT WARRANTY
+          </Button>
         </Content>
       </Container>
     );
@@ -245,7 +342,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#707070',
   },
   lineStyle: {
-    borderBottomWidth: 1,
+    borderWidth: 0.5,
     borderColor: Colors.primaryTextColor,
     width: '40%',
   },
@@ -263,17 +360,17 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { loading, user, authAction, authActionData } = state.auth;
+  const { user } = state.auth;
+  const { loading } = state.app;
 
   return {
     loading,
     user,
-    authAction,
-    authActionData,
+    isRegistered: state.app[AppStates.REGISTER_SS],
   };
 };
 
 export default connect(
   mapStateToProps,
-  { authSignUp }
+  { creatSSRegisteration, unsubState }
 )(RegisterSmoothStarScreen);

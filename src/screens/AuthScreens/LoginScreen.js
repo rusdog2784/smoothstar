@@ -53,7 +53,7 @@ class LoginScreen extends Component {
 
     return (
       <Container style={screenContainerStyle}>
-        <Content contentContainerStyle={contentStyle}>
+        <Content contentContainerStyle={contentStyle} showsVerticalScrollIndicator={false}>
           <Image source={Assets.Images.logoDark} style={[mdGapStyle, logoStyle]} />
 
           <Text dark type={StyleTypes.h1} style={[mdGapStyle, introTextStyle]}>

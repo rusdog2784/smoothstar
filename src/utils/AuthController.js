@@ -8,7 +8,7 @@ export const checkAuth = async () => {
     bypassCache: true,
   })
     .then(user => {
-      if (user.provider && user.provider === 'Facebook') {
+      if (user.provider && (user.provider === 'facebook' || user.provider === 'google')) {
         return { username: user.email, attributes: { ...user } };
       }
       return user;

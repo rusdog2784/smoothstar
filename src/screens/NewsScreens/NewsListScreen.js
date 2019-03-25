@@ -5,7 +5,7 @@ import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
 import Moment from 'moment';
 
-import { getListNews, authSignOut } from '~redux/actions';
+import { fetchListNews, authSignOut } from '~redux/actions';
 import { Text } from '~components/common';
 import { CardLI } from '~components';
 import { Assets, StyleTypes, StaticData } from '~constants';
@@ -24,7 +24,7 @@ class NewsListScreen extends Component {
   };
 
   componentDidMount() {
-    this.props.getListNews();
+    this.props.fetchListNews();
   }
 
   _renderItem = ({ item }) => {
@@ -164,5 +164,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getListNews, authSignOut }
+  { fetchListNews, authSignOut }
 )(NewsListScreen);

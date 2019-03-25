@@ -1,6 +1,6 @@
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 
-import RegisterSmoothStarScreen from '~screens/RegisterSmoothStarScreen';
+import { RegisterSmoothStarScreen } from '~screens/RegisterScreens';
 
 const RegisterationStack = createSwitchNavigator(
   {
