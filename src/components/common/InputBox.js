@@ -4,7 +4,6 @@ import Tooltip from 'rn-tooltip';
 import { Icon } from 'native-base';
 
 import { Colors, GlobalStyles } from '~styles';
-// import Text from './Text';
 
 export const InputBox = props => {
   const { inputTextStyle, textStyle } = GlobalStyles;
