@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
-import { NavigationEvents, NavigationActions } from 'react-navigation';
+import { NavigationEvents } from 'react-navigation';
 import _ from 'lodash';
 
 import { creatSSRegisteration, unsubState } from '~redux/actions';
-import { Text, Button, InputBox, NumberBullet, Switch } from '~components/common';
+import { Text, Button, InputBox, NumberBullet, Switch, DatePicker } from '~components/common';
 import { Assets, StaticData, StyleTypes, AppStates } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
 import { _c } from '~utils';
@@ -256,11 +256,11 @@ class RegisterSmoothStarScreen extends Component {
             placeholder="Region"
             disable={!this.state.stockist}
           />
-          <InputBox
-            onChangeText={text => this.formTextChange(text, 'birthdate')}
-            value={this.state.birthdate}
+          <DatePicker
+            onDateChange={text => this.formTextChange(text, 'birthdate')}
+            date={this.state.birthdate}
             style={smGapStyle}
-            placeholder="DOB Date"
+            placeholder="DOB"
             disable={!this.state.stockist}
           />
           <InputBox
@@ -270,9 +270,9 @@ class RegisterSmoothStarScreen extends Component {
             placeholder="Product/Model"
             disable={!this.state.stockist}
           />
-          <InputBox
-            onChangeText={text => this.formTextChange(text, 'purchaseDate')}
-            value={this.state.purchaseDate}
+          <DatePicker
+            onDateChange={text => this.formTextChange(text, 'purchaseDate')}
+            date={this.state.purchaseDate}
             style={smGapStyle}
             placeholder="Purchase Date"
             disable={!this.state.stockist}
