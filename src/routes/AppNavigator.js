@@ -13,7 +13,7 @@ const AppNavigator = createDrawerNavigator(
     },
   },
   {
-    initialRouteName: 'RegisterationStack',
+    initialRouteName: 'NewsStack',
     backBehavior: 'none',
     unmountInactiveRoutes: true,
   }

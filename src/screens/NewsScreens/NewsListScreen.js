@@ -21,6 +21,7 @@ class NewsListScreen extends Component {
       </Text>
     ),
     headerLeft: <View>{null}</View>,
+    headerRight: <View>{null}</View>,
   };
 
   componentDidMount() {

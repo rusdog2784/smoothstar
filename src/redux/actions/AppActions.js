@@ -47,7 +47,7 @@ export const creatSSRegisteration = ({ stockist, registeration }) => {
       _searchOcrInfo({ smoothstarModel, purchaseDate, shopName })
         .then(response => {
           if (response.data.listOCRInfos.items.length !== 0) {
-            // registeration.ocrInfo = response.data.listOCRInfos.items[0].id;
+            registeration.smoothstarRegistrationOcrInfoId = response.data.listOCRInfos.items[0].id;
             executeApi({
               type: MUTATION,
               name: APINames[CREATE_SS_REGISTERATION],
@@ -58,20 +58,22 @@ export const creatSSRegisteration = ({ stockist, registeration }) => {
                 _apiCompleted(dispatch);
               })
               .catch(error => {
-                _apiCompleted(dispatch, { error: error.errors[0].message });
+                _apiCompleted(dispatch, { error });
               });
           } else {
             _apiCompleted(dispatch, { error: 'No order exist aginst this order number' });
           }
         })
         .catch(error => {
-          _apiCompleted(dispatch, { error: error.errors[0].message });
+          console.log('error:', error);
+          _apiCompleted(dispatch, { error });
         });
     } else {
       _searchOrderInfo(registeration.orderNum)
         .then(response => {
           if (response.data.listOrderInfos.items.length !== 0) {
-            // registeration.orderInfo = response.data.listOrderInfos.items[0].id;
+            registeration.smoothstarRegistrationOrderInfoId =
+              response.data.listOrderInfos.items[0].id;
             executeApi({
               type: MUTATION,
               name: APINames[CREATE_SS_REGISTERATION],
@@ -82,14 +84,14 @@ export const creatSSRegisteration = ({ stockist, registeration }) => {
                 _apiCompleted(dispatch);
               })
               .catch(error => {
-                _apiCompleted(dispatch, { error: error.errors[0].message });
+                _apiCompleted(dispatch, { error });
               });
           } else {
             _apiCompleted(dispatch, { error: 'No order exist aginst this order number' });
           }
         })
         .catch(error => {
-          _apiCompleted(dispatch, { error: error.errors[0].message });
+          _apiCompleted(dispatch, { error });
         });
     }
   };

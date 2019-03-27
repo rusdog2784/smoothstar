@@ -1,8 +1,9 @@
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
+import { Colors } from '~styles';
 import { RegisterSmoothStarScreen, RegisterationSuccessScreen } from '~screens/RegisterScreens';
 
-const RegisterationStack = createSwitchNavigator(
+const RegisterationStack = createStackNavigator(
   {
     RegisterSmoothStarScreen: {
       screen: RegisterSmoothStarScreen,
@@ -13,7 +14,10 @@ const RegisterationStack = createSwitchNavigator(
   },
   {
     initialRouteName: 'RegisterSmoothStarScreen',
-    headerMode: 'none',
+    defaultNavigationOptions: {
+      headerTransparent: true,
+      headerTintColor: Colors.headerTitleColorDark,
+    },
   }
 );
 

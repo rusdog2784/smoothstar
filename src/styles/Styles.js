@@ -14,6 +14,10 @@ export const GlobalStyles = StyleSheet.create({
     fontSize: 15,
     color: Colors.headerTitleColor,
   },
+  headerTitleStyleDark: {
+    fontSize: 15,
+    color: Colors.headerTitleColorDark,
+  },
   titleTextStyle: {
     fontSize: 28,
     fontWeight: '900',

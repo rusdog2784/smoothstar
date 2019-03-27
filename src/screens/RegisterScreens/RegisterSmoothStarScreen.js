@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
-import { NavigationEvents } from 'react-navigation';
+import { NavigationEvents, StackActions, NavigationActions } from 'react-navigation';
 import _ from 'lodash';
 
 import { creatSSRegisteration, unsubState } from '~redux/actions';
@@ -13,7 +13,7 @@ import { _c } from '~utils';
 
 class RegisterSmoothStarScreen extends Component {
   state = {
-    websiteOrderNum: '',
+    websiteOrderNum: 'ABCD1234xyz',
     address: 'Test Address',
     postCode: '54000',
     region: 'Punjab',
@@ -28,7 +28,11 @@ class RegisterSmoothStarScreen extends Component {
     const { isRegistered, loading, navigation } = this.props;
 
     if (isRegistered && !loading) {
-      navigation.navigate('NewsListScreen');
+      const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'RegisterationSuccessScreen' })],
+      });
+      navigation.dispatch(resetAction);
     }
   };
 

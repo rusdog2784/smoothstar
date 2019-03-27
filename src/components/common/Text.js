@@ -10,6 +10,7 @@ export const Text = props => {
   const {
     textStyle,
     headerTitleStyle,
+    headerTitleStyleDark,
     titleTextStyle,
     h1Style,
     h2Style,
@@ -18,13 +19,16 @@ export const Text = props => {
     pStyle,
   } = GlobalStyles;
 
-  const { headerTitle, h1, h2, p, small, date, title } = StyleTypes;
+  const { headerTitle, headerTitleDark, h1, h2, p, small, date, title } = StyleTypes;
 
   let typeStyle = null;
 
   switch (type) {
     case headerTitle:
-      typeStyle = { ...headerTitleStyle };
+      typeStyle = { ...headerTitleStyle, flex: 1, textAlign: 'center' };
+      break;
+    case headerTitleDark:
+      typeStyle = { ...headerTitleStyleDark, flex: 1, textAlign: 'center' };
       break;
     case title:
       typeStyle = { ...titleTextStyle };

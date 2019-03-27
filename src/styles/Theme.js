@@ -1,6 +1,7 @@
 export const Colors = {
   backgroundColor: '#fff',
   headerTitleColor: '#fff',
+  headerTitleColorDark: '#000',
   primaryTextColor: '#5d5d5d',
   secondaryTextColor: '#fff',
   tertiaryTextColor: '#000',
@@ -11,6 +12,7 @@ export const Colors = {
   inputBoxIconColor: '#000',
   inputBoxDisabledColor: '#ddd',
   buttonNormalColor: '#000',
+  button1Color: '#00bff3',
   buttonDisableColor: '#ddd',
   buttonDisableTextColor: '#aaa',
   buttonGoogleColor: '#f52d56',
