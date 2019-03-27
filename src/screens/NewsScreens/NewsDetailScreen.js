@@ -15,6 +15,7 @@ class NewsDetailScreen extends Component {
         NEWS DETAIL
       </Text>
     ),
+    headerRight: <View>{null}</View>,
   };
 
   render() {

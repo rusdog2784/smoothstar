@@ -7,7 +7,7 @@ import { Colors } from '~styles';
 import { StyleTypes } from '~constants';
 
 export const Button = props => {
-  const { children, icon, iconType = 'IonIcons', color, style, onPress, disable } = props;
+  const { children, icon, iconType = 'IonIcons', color, style, onPress, disable, small } = props;
 
   const bgColor = disable ? Colors.buttonDisableColor : color || Colors.buttonNormalColor;
 
@@ -15,7 +15,11 @@ export const Button = props => {
     <TouchableOpacity
       activeOpacity={disable ? 1 : 0.4}
       onPress={onPress}
-      style={[{ backgroundColor: bgColor }, styles.buttonNormalStyle, style]}>
+      style={[
+        { backgroundColor: bgColor },
+        { ...styles.buttonNormalStyle, maxWidth: small ? 300 : 400 },
+        style,
+      ]}>
       {icon ? (
         <View style={styles.iconViewStyle}>
           <Icon

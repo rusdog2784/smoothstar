@@ -37,8 +37,8 @@ class InitScreen extends Component {
   };
 
   cacheResourcesAsync = async () => {
-    const { testImg } = Assets.Images;
-    const images = [require('~assets/images/splash.png'), testImg];
+    const { testImg, surfSkate } = Assets.Images;
+    const images = [require('~assets/images/splash.png'), testImg, surfSkate];
     const cacheImages = images.map(image => Asset.fromModule(image).downloadAsync());
     return Promise.all(cacheImages);
   };
