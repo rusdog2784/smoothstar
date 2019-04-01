@@ -12,7 +12,7 @@ import {
   loginGoogle,
   verifyAttribute,
   verifyAttributeSubmit,
-} from '~utils';
+} from '~utils/AuthController';
 
 const {
   SIGNED_UP,

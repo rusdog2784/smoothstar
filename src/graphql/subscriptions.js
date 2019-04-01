@@ -388,17 +388,17 @@ export const onDeleteUserInfo = `subscription OnDeleteUserInfo {
   }
 }
 `;
-export const onCreateSmoothstarRegistration = `subscription OnCreateSmoothstarRegistration {
-  onCreateSmoothstarRegistration {
+export const onCreateSmoothstarRegisteration = `subscription OnCreateSmoothstarRegisteration {
+  onCreateSmoothstarRegisteration {
     id
     active
     type
-    registrationSubmitDate
-    registrationApprovedDate
+    registerationSubmitDate
+    registerationApprovedDate
     userId
     videoInfoReviewed
-    registrationAttempts
-    registrationStatus
+    registerationAttempts
+    registerationStatus
     orderNum
     orderInfo {
       id
@@ -411,16 +411,16 @@ export const onCreateSmoothstarRegistration = `subscription OnCreateSmoothstarRe
       dateOfPurchase
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -465,16 +465,16 @@ export const onCreateSmoothstarRegistration = `subscription OnCreateSmoothstarRe
       shopName
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -504,17 +504,17 @@ export const onCreateSmoothstarRegistration = `subscription OnCreateSmoothstarRe
   }
 }
 `;
-export const onUpdateSmoothstarRegistration = `subscription OnUpdateSmoothstarRegistration {
-  onUpdateSmoothstarRegistration {
+export const onUpdateSmoothstarRegisteration = `subscription OnUpdateSmoothstarRegisteration {
+  onUpdateSmoothstarRegisteration {
     id
     active
     type
-    registrationSubmitDate
-    registrationApprovedDate
+    registerationSubmitDate
+    registerationApprovedDate
     userId
     videoInfoReviewed
-    registrationAttempts
-    registrationStatus
+    registerationAttempts
+    registerationStatus
     orderNum
     orderInfo {
       id
@@ -527,16 +527,16 @@ export const onUpdateSmoothstarRegistration = `subscription OnUpdateSmoothstarRe
       dateOfPurchase
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -581,16 +581,16 @@ export const onUpdateSmoothstarRegistration = `subscription OnUpdateSmoothstarRe
       shopName
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -620,17 +620,17 @@ export const onUpdateSmoothstarRegistration = `subscription OnUpdateSmoothstarRe
   }
 }
 `;
-export const onDeleteSmoothstarRegistration = `subscription OnDeleteSmoothstarRegistration {
-  onDeleteSmoothstarRegistration {
+export const onDeleteSmoothstarRegisteration = `subscription OnDeleteSmoothstarRegisteration {
+  onDeleteSmoothstarRegisteration {
     id
     active
     type
-    registrationSubmitDate
-    registrationApprovedDate
+    registerationSubmitDate
+    registerationApprovedDate
     userId
     videoInfoReviewed
-    registrationAttempts
-    registrationStatus
+    registerationAttempts
+    registerationStatus
     orderNum
     orderInfo {
       id
@@ -643,16 +643,16 @@ export const onDeleteSmoothstarRegistration = `subscription OnDeleteSmoothstarRe
       dateOfPurchase
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -697,16 +697,16 @@ export const onDeleteSmoothstarRegistration = `subscription OnDeleteSmoothstarRe
       shopName
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -736,24 +736,24 @@ export const onDeleteSmoothstarRegistration = `subscription OnDeleteSmoothstarRe
   }
 }
 `;
-export const onCreateRegistrationMedia = `subscription OnCreateRegistrationMedia {
-  onCreateRegistrationMedia {
+export const onCreateRegisterationMedia = `subscription OnCreateRegisterationMedia {
+  onCreateRegisterationMedia {
     id
     file {
       bucket
       region
       key
     }
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -806,24 +806,24 @@ export const onCreateRegistrationMedia = `subscription OnCreateRegistrationMedia
   }
 }
 `;
-export const onUpdateRegistrationMedia = `subscription OnUpdateRegistrationMedia {
-  onUpdateRegistrationMedia {
+export const onUpdateRegisterationMedia = `subscription OnUpdateRegisterationMedia {
+  onUpdateRegisterationMedia {
     id
     file {
       bucket
       region
       key
     }
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -876,24 +876,24 @@ export const onUpdateRegistrationMedia = `subscription OnUpdateRegistrationMedia
   }
 }
 `;
-export const onDeleteRegistrationMedia = `subscription OnDeleteRegistrationMedia {
-  onDeleteRegistrationMedia {
+export const onDeleteRegisterationMedia = `subscription OnDeleteRegisterationMedia {
+  onDeleteRegisterationMedia {
     id
     file {
       bucket
       region
       key
     }
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -958,16 +958,16 @@ export const onCreateOrderInfo = `subscription OnCreateOrderInfo {
     dateOfPurchase
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -1032,16 +1032,16 @@ export const onUpdateOrderInfo = `subscription OnUpdateOrderInfo {
     dateOfPurchase
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -1106,16 +1106,16 @@ export const onDeleteOrderInfo = `subscription OnDeleteOrderInfo {
     dateOfPurchase
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -1191,16 +1191,16 @@ export const onCreateOcrInfo = `subscription OnCreateOcrInfo {
     shopName
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -1276,16 +1276,16 @@ export const onUpdateOcrInfo = `subscription OnUpdateOcrInfo {
     shopName
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -1361,16 +1361,16 @@ export const onDeleteOcrInfo = `subscription OnDeleteOcrInfo {
     shopName
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id

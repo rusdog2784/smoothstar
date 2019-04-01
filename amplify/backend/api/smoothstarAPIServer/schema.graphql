@@ -57,22 +57,22 @@ type UserInfo @model @versioned {
   country: String
 }
 
-type SmoothstarRegistration @model @versioned {
+type SmoothstarRegisteration @model @versioned {
   id: ID!
 
   active: Boolean!
 
   type: String!
-  registrationSubmitDate: String
-  registrationApprovedDate: String
+  registerationSubmitDate: String
+  registerationApprovedDate: String
   userId: String!
   videoInfoReviewed: Boolean!
 
-  registrationAttempts: Int!
-  registrationStatus: String
+  registerationAttempts: Int!
+  registerationStatus: String
 
   orderNum: String
-  orderInfo: OrderInfo @connection(name: "SmoothstarRegistrationOrder")
+  orderInfo: OrderInfo @connection(name: "SmoothstarRegisterationOrder")
 
   address: String
   postCode: String
@@ -81,21 +81,21 @@ type SmoothstarRegistration @model @versioned {
   smoothstarModel: String
   purchaseDate: String
   shopName: String
-  ocrInfo: OCRInfo @connection(name: "SmoothstarRegistrationOCR")
+  ocrInfo: OCRInfo @connection(name: "SmoothstarRegisterationOCR")
 
   privacyPolicyReviewed: Boolean!
   extendedPolicyReviewed: Boolean!
   termsOfUseReviewed: Boolean!
 
-  files: [RegistrationMedia!] @connection(name: "SmoothstarRegistrationMedia")
+  files: [RegisterationMedia!] @connection(name: "SmoothstarRegisterationMedia")
 }
 
-type RegistrationMedia @model @versioned {
+type RegisterationMedia @model @versioned {
   id: ID!
   file: S3Object!
 
-  registration: SmoothstarRegistration!
-    @connection(name: "SmoothstarRegistrationMedia")
+  registeration: SmoothstarRegisteration!
+    @connection(name: "SmoothstarRegisterationMedia")
 }
 
 type OrderInfo @model @versioned {
@@ -112,8 +112,8 @@ type OrderInfo @model @versioned {
   cityDelivered: String
   countryDelivered: String!
 
-  registration: SmoothstarRegistration
-    @connection(name: "SmoothstarRegistrationOrder")
+  registeration: SmoothstarRegisteration
+    @connection(name: "SmoothstarRegisterationOrder")
 }
 
 type OCRInfo @model @versioned {
@@ -140,6 +140,6 @@ type OCRInfo @model @versioned {
   cityDelivered: String
   countryDelivered: String
 
-  registration: SmoothstarRegistration
-    @connection(name: "SmoothstarRegistrationOCR")
+  registeration: SmoothstarRegisteration
+    @connection(name: "SmoothstarRegisterationOCR")
 }

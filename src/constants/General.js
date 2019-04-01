@@ -26,3 +26,8 @@ export const ApiTypes = {
   MUTATION: 'mutations',
   QUERY: 'queries',
 };
+
+export const AppConstants = {
+  RegiterationAttemptsAllowed: 3,
+  RegisterationStatus: { Unregistered: 'unregistered', Registered: 'registered' },
+};

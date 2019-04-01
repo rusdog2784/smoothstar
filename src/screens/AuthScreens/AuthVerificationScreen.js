@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
 
-import { authConfirmSignUp, authConfirmSignIn } from '~redux/actions';
+import { authConfirmSignUp, authConfirmSignIn, checkSSRegisteration } from '~redux/actions';
 import { Text, Button, InputBox } from '~components/common';
 import { Assets, StyleTypes, AuthActionTypes } from '~constants';
 import { GlobalStyles } from '~styles';
@@ -16,14 +16,24 @@ class AuthVerificationScreen extends Component {
   };
 
   componentDidUpdate = () => {
-    const { navigation, authAction, loading } = this.props;
+    const {
+      navigation,
+      authAction,
+      loading,
+      user,
+      checkSSRegisteration,
+      loadingApp,
+      ready,
+    } = this.props;
 
     if (authAction === CONFIRMED_SIGN_UP && !loading) {
       navigation.navigate('LoginScreen');
     } else if (authAction === CONFIRMED_SIGN_IN && !loading) {
-      navigation.navigate('AppNavigator');
+      checkSSRegisteration(user.username);
     } else if (authAction === VERIFIED_ATTR && !loading) {
       navigation.navigate('LoginScreen');
+    } else if (ready && !loading && !loadingApp) {
+      navigation.navigate('AppNavigator');
     }
   };
 
@@ -125,15 +135,17 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { loading, authAction } = state.auth;
+  const { loading, authAction, user } = state.auth;
+  const { loadingApp, ready } = state.app;
 
   return {
     loading,
+    loadingApp,
     authAction,
   };
 };
 
 export default connect(
   mapStateToProps,
-  { authConfirmSignUp, authConfirmSignIn }
+  { authConfirmSignUp, authConfirmSignIn, checkSSRegisteration }
 )(AuthVerificationScreen);

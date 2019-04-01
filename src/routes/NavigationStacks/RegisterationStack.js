@@ -1,7 +1,11 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import { Colors } from '~styles';
-import { RegisterSmoothStarScreen, RegisterationSuccessScreen } from '~screens/RegisterScreens';
+import {
+  RegisterSmoothStarScreen,
+  RegisterationSuccessScreen,
+  RegisterationUnsuccessfulScreen,
+} from '~screens/RegisterScreens';
 
 const RegisterationStack = createStackNavigator(
   {
@@ -10,6 +14,9 @@ const RegisterationStack = createStackNavigator(
     },
     RegisterationSuccessScreen: {
       screen: RegisterationSuccessScreen,
+    },
+    RegisterationUnsuccessfulScreen: {
+      screen: RegisterationUnsuccessfulScreen,
     },
   },
   {

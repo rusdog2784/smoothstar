@@ -4,7 +4,7 @@ import { SplashScreen, Asset } from 'expo';
 import { connect } from 'react-redux';
 
 import { Assets } from '~constants';
-import { setAuth } from '~redux/actions';
+import { setAuth, checkSSRegisteration } from '~redux/actions';
 
 class InitScreen extends Component {
   state = {
@@ -19,13 +19,15 @@ class InitScreen extends Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    const { user, loading } = this.props;
+    const { navigation, user, loading, loadingApp, ready, checkSSRegisteration } = this.props;
 
-    if (!loading && this.state.readyResources) {
-      if (user) {
-        this.props.navigation.navigate('AppNavigator');
+    if (!loading && !loadingApp && this.state.readyResources) {
+      if (ready) {
+        navigation.navigate('AppNavigator');
+      } else if (user) {
+        checkSSRegisteration(user.username);
       } else {
-        this.props.navigation.navigate('AuthNavigator');
+        navigation.navigate('AuthNavigator');
       }
     }
   };
@@ -54,14 +56,17 @@ class InitScreen extends Component {
 
 const mapStateToProps = state => {
   const { loading, user } = state.auth;
+  const { loadingApp, ready } = state.app;
 
   return {
     loading,
     user,
+    loadingApp,
+    ready,
   };
 };
 
 export default connect(
   mapStateToProps,
-  { setAuth }
+  { setAuth, checkSSRegisteration }
 )(InitScreen);
