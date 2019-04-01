@@ -246,17 +246,17 @@ export const listUserInfos = `query ListUserInfos(
   }
 }
 `;
-export const getSmoothstarRegistration = `query GetSmoothstarRegistration($id: ID!) {
-  getSmoothstarRegistration(id: $id) {
+export const getSmoothstarRegisteration = `query GetSmoothstarRegisteration($id: ID!) {
+  getSmoothstarRegisteration(id: $id) {
     id
     active
     type
-    registrationSubmitDate
-    registrationApprovedDate
+    registerationSubmitDate
+    registerationApprovedDate
     userId
     videoInfoReviewed
-    registrationAttempts
-    registrationStatus
+    registerationAttempts
+    registerationStatus
     orderNum
     orderInfo {
       id
@@ -269,16 +269,16 @@ export const getSmoothstarRegistration = `query GetSmoothstarRegistration($id: I
       dateOfPurchase
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -323,16 +323,16 @@ export const getSmoothstarRegistration = `query GetSmoothstarRegistration($id: I
       shopName
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -362,12 +362,12 @@ export const getSmoothstarRegistration = `query GetSmoothstarRegistration($id: I
   }
 }
 `;
-export const listSmoothstarRegistrations = `query ListSmoothstarRegistrations(
-  $filter: ModelSmoothstarRegistrationFilterInput
+export const listSmoothstarRegisterations = `query ListSmoothstarRegisterations(
+  $filter: ModelSmoothstarRegisterationFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listSmoothstarRegistrations(
+  listSmoothstarRegisterations(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -376,12 +376,12 @@ export const listSmoothstarRegistrations = `query ListSmoothstarRegistrations(
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -434,24 +434,24 @@ export const listSmoothstarRegistrations = `query ListSmoothstarRegistrations(
   }
 }
 `;
-export const getRegistrationMedia = `query GetRegistrationMedia($id: ID!) {
-  getRegistrationMedia(id: $id) {
+export const getRegisterationMedia = `query GetRegisterationMedia($id: ID!) {
+  getRegisterationMedia(id: $id) {
     id
     file {
       bucket
       region
       key
     }
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -504,12 +504,12 @@ export const getRegistrationMedia = `query GetRegistrationMedia($id: ID!) {
   }
 }
 `;
-export const listRegistrationMedias = `query ListRegistrationMedias(
-  $filter: ModelRegistrationMediaFilterInput
+export const listRegisterationMedias = `query ListRegisterationMedias(
+  $filter: ModelRegisterationMediaFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listRegistrationMedias(
+  listRegisterationMedias(
     filter: $filter
     limit: $limit
     nextToken: $nextToken
@@ -521,16 +521,16 @@ export const listRegistrationMedias = `query ListRegistrationMedias(
         region
         key
       }
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -562,16 +562,16 @@ export const getOrderInfo = `query GetOrderInfo($id: ID!) {
     dateOfPurchase
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -641,16 +641,16 @@ export const listOrderInfos = `query ListOrderInfos(
       dateOfPurchase
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -693,16 +693,16 @@ export const getOcrInfo = `query GetOcrInfo($id: ID!) {
     shopName
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -783,16 +783,16 @@ export const listOcrInfos = `query ListOcrInfos(
       shopName
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode

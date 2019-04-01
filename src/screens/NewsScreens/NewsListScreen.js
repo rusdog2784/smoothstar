@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import Moment from 'moment';
 
 import { fetchListNews, authSignOut } from '~redux/actions';
-import { Text } from '~components/common';
+import { Text, CustomIcon } from '~components/common';
 import { CardLI } from '~components';
 import { Assets, StyleTypes, StaticData } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
@@ -20,8 +20,8 @@ class NewsListScreen extends Component {
         NEWS
       </Text>
     ),
-    headerLeft: <View>{null}</View>,
     headerRight: <View>{null}</View>,
+    headerLeft: <CustomIcon shadow style={GlobalStyles.headerLeftStyle} name="menu" />,
   };
 
   componentDidMount() {

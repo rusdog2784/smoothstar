@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
-import { NavigationEvents, StackActions, NavigationActions } from 'react-navigation';
+import { StackActions, NavigationActions } from 'react-navigation';
 import _ from 'lodash';
 
 import { creatSSRegisteration, unsubState } from '~redux/actions';
 import { Text, Button, InputBox, NumberBullet, Switch, DatePicker } from '~components/common';
-import { Assets, StaticData, StyleTypes, AppStates } from '~constants';
+import { Assets, StaticData, StyleTypes, AppStates, AppConstants } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
 import { _c } from '~utils';
 
@@ -25,19 +25,42 @@ class RegisterSmoothStarScreen extends Component {
   };
 
   componentDidUpdate = () => {
-    const { isRegistered, loading, navigation } = this.props;
+    const {
+      isRegistered,
+      loading,
+      navigation,
+      registerationStatus,
+      registerationAttempts: attemps,
+    } = this.props;
 
     if (isRegistered && !loading) {
-      const resetAction = StackActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'RegisterationSuccessScreen' })],
-      });
-      navigation.dispatch(resetAction);
-    }
-  };
+      const availableAttempts = AppConstants.RegiterationAttemptsAllowed - attemps;
 
-  onScreenBlur = () => {
-    this.props.unsubState(AppStates.REGISTER_SS);
+      if (registerationStatus) {
+        const resetAction = StackActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({ routeName: 'RegisterationSuccessScreen', params: {} }),
+          ],
+        });
+        navigation.dispatch(resetAction);
+      } else if (availableAttempts) {
+        navigation.navigate('RegisterationUnsuccessfulScreen', { availableAttempts });
+      } else {
+        const resetAction = StackActions.reset({
+          index: 0,
+          actions: [
+            NavigationActions.navigate({
+              routeName: 'RegisterationUnsuccessfulScreen',
+              params: { availableAttempts },
+            }),
+          ],
+        });
+        navigation.dispatch(resetAction);
+      }
+
+      this.props.unsubState(AppStates.REGISTER_SS);
+    }
   };
 
   formTextChange = (text, type) => {
@@ -83,14 +106,14 @@ class RegisterSmoothStarScreen extends Component {
       shopName,
       stockist,
     } = this.state;
-    const { user } = this.props;
+    const { user, registerationAttempts } = this.props;
 
     const registeration = {
       active: true,
-      registrationSubmitDate: _c.formatDateServer(Date.now()),
+      registerationSubmitDate: _c.formatDateServer(Date.now()),
       userId: user.username,
       videoInfoReviewed: true,
-      registrationAttempts: +1,
+      registerationAttempts: registerationAttempts + 1,
       privacyPolicyReviewed: true,
       extendedPolicyReviewed: true,
       termsOfUseReviewed: true,
@@ -137,7 +160,6 @@ class RegisterSmoothStarScreen extends Component {
 
     return (
       <Container style={screenContainerStyle}>
-        <NavigationEvents onWillBlur={this.onScreenBlur} />
         <Content contentContainerStyle={contentStyle} showsVerticalScrollIndicator={false}>
           <Image source={Assets.Images.logoDark} style={[mdGapStyle, logoStyle]} />
 
@@ -365,12 +387,16 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   const { user } = state.auth;
-  const { loading } = state.app;
+  const { loading, registerationAttempts, registerationStatus } = state.app;
+
+  // console.log('IS_REGISTERED:', state.app[AppStates.REGISTER_SS]);
 
   return {
     loading,
     user,
     isRegistered: state.app[AppStates.REGISTER_SS],
+    registerationAttempts,
+    registerationStatus,
   };
 };
 

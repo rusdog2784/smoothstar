@@ -388,19 +388,19 @@ export const deleteUserInfo = `mutation DeleteUserInfo($input: DeleteUserInfoInp
   }
 }
 `;
-export const createSmoothstarRegistration = `mutation CreateSmoothstarRegistration(
-  $input: CreateSmoothstarRegistrationInput!
+export const createSmoothstarRegisteration = `mutation CreateSmoothstarRegisteration(
+  $input: CreateSmoothstarRegisterationInput!
 ) {
-  createSmoothstarRegistration(input: $input) {
+  createSmoothstarRegisteration(input: $input) {
     id
     active
     type
-    registrationSubmitDate
-    registrationApprovedDate
+    registerationSubmitDate
+    registerationApprovedDate
     userId
     videoInfoReviewed
-    registrationAttempts
-    registrationStatus
+    registerationAttempts
+    registerationStatus
     orderNum
     orderInfo {
       id
@@ -413,16 +413,16 @@ export const createSmoothstarRegistration = `mutation CreateSmoothstarRegistrati
       dateOfPurchase
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -467,16 +467,16 @@ export const createSmoothstarRegistration = `mutation CreateSmoothstarRegistrati
       shopName
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -506,19 +506,19 @@ export const createSmoothstarRegistration = `mutation CreateSmoothstarRegistrati
   }
 }
 `;
-export const updateSmoothstarRegistration = `mutation UpdateSmoothstarRegistration(
-  $input: UpdateSmoothstarRegistrationInput!
+export const updateSmoothstarRegisteration = `mutation UpdateSmoothstarRegisteration(
+  $input: UpdateSmoothstarRegisterationInput!
 ) {
-  updateSmoothstarRegistration(input: $input) {
+  updateSmoothstarRegisteration(input: $input) {
     id
     active
     type
-    registrationSubmitDate
-    registrationApprovedDate
+    registerationSubmitDate
+    registerationApprovedDate
     userId
     videoInfoReviewed
-    registrationAttempts
-    registrationStatus
+    registerationAttempts
+    registerationStatus
     orderNum
     orderInfo {
       id
@@ -531,16 +531,16 @@ export const updateSmoothstarRegistration = `mutation UpdateSmoothstarRegistrati
       dateOfPurchase
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -585,16 +585,16 @@ export const updateSmoothstarRegistration = `mutation UpdateSmoothstarRegistrati
       shopName
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -624,19 +624,19 @@ export const updateSmoothstarRegistration = `mutation UpdateSmoothstarRegistrati
   }
 }
 `;
-export const deleteSmoothstarRegistration = `mutation DeleteSmoothstarRegistration(
-  $input: DeleteSmoothstarRegistrationInput!
+export const deleteSmoothstarRegisteration = `mutation DeleteSmoothstarRegisteration(
+  $input: DeleteSmoothstarRegisterationInput!
 ) {
-  deleteSmoothstarRegistration(input: $input) {
+  deleteSmoothstarRegisteration(input: $input) {
     id
     active
     type
-    registrationSubmitDate
-    registrationApprovedDate
+    registerationSubmitDate
+    registerationApprovedDate
     userId
     videoInfoReviewed
-    registrationAttempts
-    registrationStatus
+    registerationAttempts
+    registerationStatus
     orderNum
     orderInfo {
       id
@@ -649,16 +649,16 @@ export const deleteSmoothstarRegistration = `mutation DeleteSmoothstarRegistrati
       dateOfPurchase
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -703,16 +703,16 @@ export const deleteSmoothstarRegistration = `mutation DeleteSmoothstarRegistrati
       shopName
       cityDelivered
       countryDelivered
-      registration {
+      registeration {
         id
         active
         type
-        registrationSubmitDate
-        registrationApprovedDate
+        registerationSubmitDate
+        registerationApprovedDate
         userId
         videoInfoReviewed
-        registrationAttempts
-        registrationStatus
+        registerationAttempts
+        registerationStatus
         orderNum
         address
         postCode
@@ -742,24 +742,24 @@ export const deleteSmoothstarRegistration = `mutation DeleteSmoothstarRegistrati
   }
 }
 `;
-export const createRegistrationMedia = `mutation CreateRegistrationMedia($input: CreateRegistrationMediaInput!) {
-  createRegistrationMedia(input: $input) {
+export const createRegisterationMedia = `mutation CreateRegisterationMedia($input: CreateRegisterationMediaInput!) {
+  createRegisterationMedia(input: $input) {
     id
     file {
       bucket
       region
       key
     }
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -812,24 +812,24 @@ export const createRegistrationMedia = `mutation CreateRegistrationMedia($input:
   }
 }
 `;
-export const updateRegistrationMedia = `mutation UpdateRegistrationMedia($input: UpdateRegistrationMediaInput!) {
-  updateRegistrationMedia(input: $input) {
+export const updateRegisterationMedia = `mutation UpdateRegisterationMedia($input: UpdateRegisterationMediaInput!) {
+  updateRegisterationMedia(input: $input) {
     id
     file {
       bucket
       region
       key
     }
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -882,24 +882,24 @@ export const updateRegistrationMedia = `mutation UpdateRegistrationMedia($input:
   }
 }
 `;
-export const deleteRegistrationMedia = `mutation DeleteRegistrationMedia($input: DeleteRegistrationMediaInput!) {
-  deleteRegistrationMedia(input: $input) {
+export const deleteRegisterationMedia = `mutation DeleteRegisterationMedia($input: DeleteRegisterationMediaInput!) {
+  deleteRegisterationMedia(input: $input) {
     id
     file {
       bucket
       region
       key
     }
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -964,16 +964,16 @@ export const createOrderInfo = `mutation CreateOrderInfo($input: CreateOrderInfo
     dateOfPurchase
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -1038,16 +1038,16 @@ export const updateOrderInfo = `mutation UpdateOrderInfo($input: UpdateOrderInfo
     dateOfPurchase
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -1112,16 +1112,16 @@ export const deleteOrderInfo = `mutation DeleteOrderInfo($input: DeleteOrderInfo
     dateOfPurchase
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -1197,16 +1197,16 @@ export const createOcrInfo = `mutation CreateOcrInfo($input: CreateOCRInfoInput!
     shopName
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -1282,16 +1282,16 @@ export const updateOcrInfo = `mutation UpdateOcrInfo($input: UpdateOCRInfoInput!
     shopName
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id
@@ -1367,16 +1367,16 @@ export const deleteOcrInfo = `mutation DeleteOcrInfo($input: DeleteOCRInfoInput!
     shopName
     cityDelivered
     countryDelivered
-    registration {
+    registeration {
       id
       active
       type
-      registrationSubmitDate
-      registrationApprovedDate
+      registerationSubmitDate
+      registerationApprovedDate
       userId
       videoInfoReviewed
-      registrationAttempts
-      registrationStatus
+      registerationAttempts
+      registerationStatus
       orderNum
       orderInfo {
         id

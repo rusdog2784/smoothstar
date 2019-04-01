@@ -77,4 +77,20 @@ export const GlobalStyles = StyleSheet.create({
     fontSize: 16,
     color: Colors.inputBoxIconColor,
   },
+  customIconStyle: {
+    height: 20,
+    width: 20,
+    tintColor: Colors.iconColor,
+  },
+  customIconStyleDark: {
+    height: 20,
+    width: 20,
+    tintColor: Colors.iconColorDark,
+  },
+  headerRightStyle: {
+    marginRight: 10,
+  },
+  headerLeftStyle: {
+    marginLeft: 10,
+  },
 });
