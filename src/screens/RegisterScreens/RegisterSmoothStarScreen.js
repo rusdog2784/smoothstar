@@ -13,14 +13,14 @@ import { _c } from '~utils';
 
 class RegisterSmoothStarScreen extends Component {
   state = {
-    websiteOrderNum: 'ABCD1234xyz',
-    address: 'Test Address',
-    postCode: '54000',
-    region: 'Punjab',
-    birthdate: '2019-03-25',
-    productModel: 'TEST MODEL',
-    purchaseDate: '2019-03-21',
-    shopName: 'WICKS SURF',
+    websiteOrderNum: '',
+    address: '',
+    postCode: '',
+    region: '',
+    birthdate: '',
+    productModel: '',
+    purchaseDate: '',
+    shopName: '',
     stockist: true,
   };
 

@@ -29,7 +29,6 @@ class RegisterationUnsuccessfulScreen extends Component {
   };
 
   render() {
-    console.log('navigation2:', this.props.navigation);
     const { availableAttempts } = this.props.navigation.state.params;
     return (
       <Container>

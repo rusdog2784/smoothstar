@@ -3,7 +3,7 @@ import { TouchableOpacity, Image } from 'react-native';
 
 import { Assets } from '~constants';
 import { GlobalStyles } from '~styles';
-import { Colors } from '../../styles/Theme';
+// import { Colors } from '../../styles/Theme';
 
 export const CustomIcon = ({
   name,
@@ -14,7 +14,7 @@ export const CustomIcon = ({
   button,
   hide = false,
   dark = false,
-  shadow,
+  // shadow,
 }) => {
   let cStyle = dark ? { ...GlobalStyles.customIconStyleDark } : { ...GlobalStyles.customIconStyle };
 

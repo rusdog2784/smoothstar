@@ -3,24 +3,24 @@ import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
 
-import { authSignUp } from '~redux/actions';
+import { authSignUp, authLoginFacebook, authLoginGoogle } from '~redux/actions';
 import { Text, Button, InputBox, CheckBox, DatePicker } from '~components/common';
 import { Assets, StaticData, StyleTypes, AuthActionTypes } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
 
-const { SIGNED_UP } = AuthActionTypes;
+const { SIGNED_UP, SIGNED_IN } = AuthActionTypes;
 
 class SignupScreen extends Component {
   state = {
-    email: 'daniyal.intellicel@gmail.com',
-    password: 'Test@123',
-    phone_number: '+923074036388',
-    first_name: 'Daniyal',
-    last_name: 'Awan',
-    birthdate: '1994-05-20',
-    gender: 'M',
-    country: 'Pakistan',
-    city: 'Lahore',
+    email: '',
+    password: '',
+    phone_number: '',
+    first_name: '',
+    last_name: '',
+    birthdate: '',
+    gender: '',
+    country: '',
+    city: '',
     emailSub: false,
   };
 
@@ -31,6 +31,11 @@ class SignupScreen extends Component {
       navigation.navigate('AuthVerificationScreen', {
         username: authActionData,
         type: 'ConfirmSignUp',
+      });
+    } else if (authAction === SIGNED_IN && !loading) {
+      navigation.navigate('AuthVerificationScreen', {
+        type: 'ConfirmSignIn',
+        user: authActionData,
       });
     }
   };
@@ -101,7 +106,7 @@ class SignupScreen extends Component {
           </Text>
 
           <Button
-            onPress={() => {}}
+            onPress={this.props.authLoginGoogle}
             style={smGapStyle}
             color={Colors.buttonGoogleColor}
             icon="google-"
@@ -110,12 +115,12 @@ class SignupScreen extends Component {
           </Button>
 
           <Button
-            onPress={() => {}}
+            onPress={this.props.authLoginFacebook}
             style={lgGapStyle}
             color={Colors.buttonFBColor}
             icon="facebook"
             iconType="FontAwesome">
-            REGISTER WITH GOOGLE
+            REGISTER WITH FACEBOOK
           </Button>
 
           <View style={[lineViewStyle, lgGapStyle]}>
@@ -277,5 +282,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { authSignUp }
+  { authSignUp, authLoginFacebook, authLoginGoogle }
 )(SignupScreen);

@@ -14,15 +14,23 @@ import { GlobalStyles, Colors } from '~styles';
 const { height, width } = Dimensions.get('window');
 
 class NewsListScreen extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({ navigation }) => ({
     headerTitle: (
       <Text shadow type={StyleTypes.headerTitle}>
         NEWS
       </Text>
     ),
     headerRight: <View>{null}</View>,
-    headerLeft: <CustomIcon shadow style={GlobalStyles.headerLeftStyle} name="menu" />,
-  };
+    headerLeft: (
+      <CustomIcon
+        shadow
+        button
+        onPress={navigation.toggleDrawer}
+        style={GlobalStyles.headerLeftStyle}
+        name="menu"
+      />
+    ),
+  });
 
   componentDidMount() {
     this.props.fetchListNews();
