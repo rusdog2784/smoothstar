@@ -1,8 +1,7 @@
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import { Colors } from '~styles';
-import NewsListScreen from '~screens/NewsListScreen';
-import NewsDetailScreen from '~screens/NewsDetailScreen';
+import { NewsListScreen, NewsDetailScreen } from '~screens/NewsScreens';
 
 const NewsStack = createStackNavigator(
   {

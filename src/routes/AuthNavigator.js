@@ -1,15 +1,21 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 
-import SignupScreen from '~screens/SignupScreen';
+import { LoginScreen, SignupScreen, AuthVerificationScreen } from '~screens/AuthScreens';
 
-const AuthNavigator = createStackNavigator(
+const AuthNavigator = createSwitchNavigator(
   {
+    LoginScreen: {
+      screen: LoginScreen,
+    },
     SignupScreen: {
       screen: SignupScreen,
     },
+    AuthVerificationScreen: {
+      screen: AuthVerificationScreen,
+    },
   },
   {
-    initialRouteName: 'SignupScreen',
+    initialRouteName: 'LoginScreen',
     headerMode: 'none',
   }
 );

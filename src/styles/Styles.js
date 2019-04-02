@@ -8,11 +8,15 @@ export const GlobalStyles = StyleSheet.create({
   },
   inputTextStyle: {
     fontSize: 12,
-    color: Colors.inputBoxColor,
+    color: Colors.inputBoxTextColor,
   },
   headerTitleStyle: {
     fontSize: 15,
     color: Colors.headerTitleColor,
+  },
+  headerTitleStyleDark: {
+    fontSize: 15,
+    color: Colors.headerTitleColorDark,
   },
   titleTextStyle: {
     fontSize: 28,
@@ -56,5 +60,37 @@ export const GlobalStyles = StyleSheet.create({
   },
   screenType2ContentStyle: {
     marginHorizontal: 20,
+  },
+  xlgGapStyle: {
+    marginBottom: 55,
+  },
+  lgGapStyle: {
+    marginBottom: 35,
+  },
+  mdGapStyle: {
+    marginBottom: 25,
+  },
+  smGapStyle: {
+    marginBottom: 10,
+  },
+  inputIconStyle: {
+    fontSize: 16,
+    color: Colors.inputBoxIconColor,
+  },
+  customIconStyle: {
+    height: 20,
+    width: 20,
+    tintColor: Colors.iconColor,
+  },
+  customIconStyleDark: {
+    height: 20,
+    width: 20,
+    tintColor: Colors.iconColorDark,
+  },
+  headerRightStyle: {
+    marginRight: 10,
+  },
+  headerLeftStyle: {
+    marginLeft: 10,
   },
 });

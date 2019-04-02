@@ -4,20 +4,25 @@ import { Container, Content } from 'native-base';
 
 import { Text } from '~components/common';
 import { StyleTypes } from '~constants';
-import { GlobalStyles } from '~styles';
+import { GlobalStyles, Colors } from '~styles';
 
 const { height } = Dimensions.get('window');
 
 class NewsDetailScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Text type={StyleTypes.headerTitle}>NEWS</Text>,
+    headerTitle: (
+      <Text shadow type={StyleTypes.headerTitle}>
+        NEWS DETAIL
+      </Text>
+    ),
+    headerRight: <View>{null}</View>,
   };
 
   render() {
     const { imageSource, heading, description } = this.props.navigation.state.params;
     return (
       <Container>
-        <Content>
+        <Content showsVerticalScrollIndicator={false}>
           <Image style={styles.imageStyle} resizeMode="cover" source={imageSource} />
 
           <View style={styles.textViewStyle}>
@@ -37,6 +42,7 @@ const styles = StyleSheet.create({
   imageStyle: {
     height: height / 2,
     width: '100%',
+    backgroundColor: Colors.imageBackgroundColor,
   },
   textViewStyle: {
     marginHorizontal: 25,

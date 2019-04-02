@@ -5,27 +5,30 @@ import { GlobalStyles, Colors } from '~styles';
 import { StyleTypes } from '~constants';
 
 export const Text = props => {
-  const { children, type, style, shadow } = props;
+  const { children, type, style, shadow, dark, light } = props;
 
   const {
     textStyle,
     headerTitleStyle,
+    headerTitleStyleDark,
     titleTextStyle,
     h1Style,
     h2Style,
     smallTextStyle,
     normalTextStyle,
     pStyle,
-    textShadowStyle,
   } = GlobalStyles;
 
-  const { headerTitle, h1, h2, p, small, date, title } = StyleTypes;
+  const { headerTitle, headerTitleDark, h1, h2, p, small, date, title } = StyleTypes;
 
   let typeStyle = null;
 
   switch (type) {
     case headerTitle:
-      typeStyle = { ...headerTitleStyle };
+      typeStyle = { ...headerTitleStyle, flex: 1, textAlign: 'center' };
+      break;
+    case headerTitleDark:
+      typeStyle = { ...headerTitleStyleDark, flex: 1, textAlign: 'center' };
       break;
     case title:
       typeStyle = { ...titleTextStyle };
@@ -52,11 +55,27 @@ export const Text = props => {
       break;
   }
 
+  dark && (typeStyle.color = Colors.tertiaryTextColor);
+
+  light && (typeStyle.color = Colors.secondaryTextColor);
+
   let newProps = { ...props };
   newProps.style = [textStyle, typeStyle];
   style && newProps.style.push(style);
 
-  shadow && newProps.style.push(textShadowStyle);
+  if (shadow && typeStyle.fontSize) {
+    let shadowStyle = {};
+    const fontSize = typeStyle.fontSize;
+
+    const shadowWidth = fontSize / -14;
+    const shadowHeight = fontSize / 11.2;
+
+    shadowStyle.textShadowRadius = fontSize / 2.8;
+    shadowStyle.textShadowOffset = { width: shadowWidth, height: shadowHeight };
+    shadowStyle.textShadowColor = Colors.textShadowColor;
+
+    newProps.style.push(shadowStyle);
+  }
 
   return <RNText {...newProps}>{children}</RNText>;
 };
