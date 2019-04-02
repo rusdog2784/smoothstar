@@ -1,13 +1,19 @@
-import Amplify, { API, graphqlOperation } from 'aws-amplify';
+import { API, graphqlOperation } from 'aws-amplify';
 
+import { ApiTypes } from '~constants';
 import * as queries from '~graphql/queries';
-import config from '~config/aws-exports';
+import * as mutations from '~graphql/mutations';
 
-Amplify.configure(config);
+const { QUERY, MUTATION } = ApiTypes;
 
-export const executeApi = async type => {
-  return API.graphql(graphqlOperation(queries[type])).then(response => {
-    console.log(`%cAPI (${type}) Response => %o`, 'color: blue', response);
-    return response;
-  });
+export const executeApi = async ({ type, name, data = null }) => {
+  const operation = type === QUERY ? queries[name] : type === MUTATION ? mutations[name] : null;
+  return API.graphql(graphqlOperation(operation, data))
+    .then(response => {
+      console.log(`API (${name}) Response => `, response);
+      return response;
+    })
+    .catch(error => {
+      throw error;
+    });
 };

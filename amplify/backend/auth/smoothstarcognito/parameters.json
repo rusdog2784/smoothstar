@@ -1,0 +1,98 @@
+{
+    "identityPoolName": "smoothstar_identitypool",
+    "allowUnauthenticatedIdentities": false,
+    "thirdPartyAuth": true,
+    "lambdaLogPolicy": "smoothstarcognito_lambda_log_policy",
+    "openIdLambdaRoleName": "smoothstarcognito_openid_lambda_role",
+    "openIdRolePolicy": "smoothstarcognito_openid_pass_role_policy",
+    "openIdLambdaIAMPolicy": "smoothstarcognito_openid_lambda_iam_policy",
+    "openIdLogPolicy": "smoothstarcognito_openid_lambda_log_policy",
+    "userPoolName": "smoothstar_userpool",
+    "autoVerifiedAttributes": [
+        "phone_number"
+    ],
+    "mfaConfiguration": "ON",
+    "mfaTypes": [
+        "SMS Text Message"
+    ],
+    "roleName": "smoothstarcognito_sns-role",
+    "roleExternalId": "smoothstarcognito_role_external_id",
+    "policyName": "smoothstarcognito-sns-policy",
+    "smsAuthenticationMessage": "Your authentication code is {####}",
+    "smsVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
+    "defaultPasswordPolicy": false,
+    "passwordPolicyMinLength": 8,
+    "passwordPolicyCharacters": [
+        "Requires Lowercase",
+        "Requires Uppercase",
+        "Requires Numbers",
+        "Requires Symbols"
+    ],
+    "requiredAttributes": [
+        "address",
+        "birthdate",
+        "email",
+        "family_name",
+        "given_name",
+        "locale",
+        "phone_number"
+    ],
+    "userpoolClientName": "smoothstarcognito_app_client",
+    "userpoolClientGenerateSecret": true,
+    "userpoolClientRefreshTokenValidity": 30,
+    "userpoolClientReadAttributes": [
+        "address",
+        "birthdate",
+        "email",
+        "family_name",
+        "given_name",
+        "locale",
+        "phone_number",
+        "email_verified",
+        "phone_number_verified"
+    ],
+    "mfaLambdaRole": "smoothstarcognito_totp_lambda_role",
+    "mfaLambdaLogPolicy": "smoothstarcognito_totp_lambda_log_policy",
+    "mfaPassRolePolicy": "smoothstarcognito_totp_pass_role_policy",
+    "mfaLambdaIAMPolicy": "smoothstarcognito_totp_lambda_iam_policy",
+    "userpoolClientLambdaRole": "smoothstarcognito_userpoolclient_lambda_role",
+    "userpoolClientLogPolicy": "smoothstarcognito_userpoolclient_lambda_log_policy",
+    "userpoolClientLambdaPolicy": "smoothstarcognito_userpoolclient_lambda_iam_policy",
+    "userpoolClientSetAttributes": true,
+    "useDefault": "manual",
+    "authSelections": "identityPoolAndUserPool",
+    "resourceName": "smoothstarcognito",
+    "authProviders": [
+        "graph.facebook.com"
+    ],
+    "userpoolClientWriteAttributes": [
+        "address",
+        "birthdate",
+        "email",
+        "family_name",
+        "given_name",
+        "locale",
+        "phone_number"
+    ],
+    "selectedParties": "{\"graph.facebook.com\":\"522158348253985\"}",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    },
+    "unauthRoleArn": {
+        "Fn::GetAtt": [
+            "UnauthRole",
+            "Arn"
+        ]
+    }
+}
