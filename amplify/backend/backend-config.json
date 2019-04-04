@@ -13,5 +13,11 @@
 			"service": "Cognito",
 			"providerPlugin": "awscloudformation"
 		}
+	},
+	"storage": {
+		"smoothstarStorage": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
 	}
 }
