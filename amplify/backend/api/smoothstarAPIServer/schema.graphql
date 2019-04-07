@@ -96,6 +96,8 @@ type RegisterationMedia @model @versioned {
 
   registeration: SmoothstarRegisteration!
     @connection(name: "SmoothstarRegisterationMedia")
+
+  registerationId: String!
 }
 
 type OrderInfo @model @versioned {

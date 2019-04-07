@@ -498,6 +498,7 @@ export const createSmoothstarRegisteration = `mutation CreateSmoothstarRegistera
     files {
       items {
         id
+        registerationId
         version
       }
       nextToken
@@ -616,6 +617,7 @@ export const updateSmoothstarRegisteration = `mutation UpdateSmoothstarRegistera
     files {
       items {
         id
+        registerationId
         version
       }
       nextToken
@@ -734,6 +736,7 @@ export const deleteSmoothstarRegisteration = `mutation DeleteSmoothstarRegistera
     files {
       items {
         id
+        registerationId
         version
       }
       nextToken
@@ -808,6 +811,7 @@ export const createRegisterationMedia = `mutation CreateRegisterationMedia($inpu
       }
       version
     }
+    registerationId
     version
   }
 }
@@ -878,6 +882,7 @@ export const updateRegisterationMedia = `mutation UpdateRegisterationMedia($inpu
       }
       version
     }
+    registerationId
     version
   }
 }
@@ -948,6 +953,7 @@ export const deleteRegisterationMedia = `mutation DeleteRegisterationMedia($inpu
       }
       version
     }
+    registerationId
     version
   }
 }
