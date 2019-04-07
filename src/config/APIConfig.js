@@ -4,3 +4,6 @@ export const UPDATE_SS_REGISTERATION = 'updateSmoothstarRegisteration';
 export const SEARCH_ORDER_INFO = 'listOrderInfos';
 export const SEARCH_OCR_INFO = 'listOcrInfos';
 export const SEARCH_SS_REGISTERATION = 'listSmoothstarRegisterations';
+export const CREATE_REGISTERATION_MEDIA = 'createRegisterationMedia';
+export const UPDATE_REGISTERATION_MEDIA = 'updateRegisterationMedia';
+export const SEARCH_REGISTERATION_MEDIA = 'listRegisterationMedias';

@@ -496,6 +496,7 @@ export const onCreateSmoothstarRegisteration = `subscription OnCreateSmoothstarR
     files {
       items {
         id
+        registerationId
         version
       }
       nextToken
@@ -612,6 +613,7 @@ export const onUpdateSmoothstarRegisteration = `subscription OnUpdateSmoothstarR
     files {
       items {
         id
+        registerationId
         version
       }
       nextToken
@@ -728,6 +730,7 @@ export const onDeleteSmoothstarRegisteration = `subscription OnDeleteSmoothstarR
     files {
       items {
         id
+        registerationId
         version
       }
       nextToken
@@ -802,6 +805,7 @@ export const onCreateRegisterationMedia = `subscription OnCreateRegisterationMed
       }
       version
     }
+    registerationId
     version
   }
 }
@@ -872,6 +876,7 @@ export const onUpdateRegisterationMedia = `subscription OnUpdateRegisterationMed
       }
       version
     }
+    registerationId
     version
   }
 }
@@ -942,6 +947,7 @@ export const onDeleteRegisterationMedia = `subscription OnDeleteRegisterationMed
       }
       version
     }
+    registerationId
     version
   }
 }

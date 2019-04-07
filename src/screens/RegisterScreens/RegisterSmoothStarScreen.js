@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { ImagePicker } from 'expo';
 import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
 import { StackActions, NavigationActions } from 'react-navigation';
@@ -22,6 +23,7 @@ class RegisterSmoothStarScreen extends Component {
     purchaseDate: '',
     shopName: '',
     stockist: true,
+    image: null,
   };
 
   componentDidUpdate = () => {
@@ -63,6 +65,20 @@ class RegisterSmoothStarScreen extends Component {
     }
   };
 
+  pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+    });
+
+    if (!result.cancelled) {
+      const { uri, type } = result;
+
+      const [, , , extension] = /([^.]+)(\.(\w+))?$/.exec(uri);
+
+      this.setState({ image: { uri, extension, type } });
+    }
+  };
+
   formTextChange = (text, type) => {
     this.setState({ [type]: text });
   };
@@ -78,9 +94,12 @@ class RegisterSmoothStarScreen extends Component {
   };
 
   checkStockist = () => {
-    const { productModel, purchaseDate, shopName } = this.state;
+    const { productModel, purchaseDate, shopName, image } = this.state;
 
-    if (_.isEmpty(productModel.trim())) {
+    if (!image) {
+      console.log('Image is required');
+      return false;
+    } else if (_.isEmpty(productModel.trim())) {
       console.log('Product model can not be empty');
       return false;
     } else if (_.isEmpty(purchaseDate.trim())) {
@@ -105,10 +124,11 @@ class RegisterSmoothStarScreen extends Component {
       purchaseDate,
       shopName,
       stockist,
+      image,
     } = this.state;
     const { user, registerationAttempts } = this.props;
 
-    const registeration = {
+    let registeration = {
       active: true,
       registerationSubmitDate: _c.formatDateServer(Date.now()),
       userId: user.username,
@@ -120,18 +140,22 @@ class RegisterSmoothStarScreen extends Component {
     };
 
     if (stockist) {
-      if (!this.checkStockist) return;
+      if (!this.checkStockist()) return;
 
-      registeration.type = 'S';
-      registeration.address = address;
-      registeration.postCode = postCode;
-      registeration.region = region;
-      registeration.dateOfBirth = _c.formatDateServer(birthdate);
-      registeration.smoothstarModel = productModel;
-      registeration.purchaseDate = _c.formatDateServer(purchaseDate);
-      registeration.shopName = shopName;
+      registeration = {
+        ...registeration,
+        ...(address && { address }),
+        ...(postCode && { postCode }),
+        ...(region && { region }),
+        ...(birthdate && { dateOfBirth: _c.formatDateServer(birthdate) }),
+        type: 'S',
+        smoothstarModel: productModel,
+        purchaseDate: _c.formatDateServer(purchaseDate),
+        shopName,
+        image,
+      };
     } else {
-      if (!this.checkWebsiteOrderNum) return;
+      if (!this.checkWebsiteOrderNum()) return;
 
       registeration.type = 'W';
       registeration.orderNum = websiteOrderNum;
@@ -254,7 +278,7 @@ class RegisterSmoothStarScreen extends Component {
 
           <Button
             disable={!this.state.stockist}
-            onPress={() => {}}
+            onPress={this.pickImage}
             style={smGapStyle}
             icon="upload"
             iconType="AntDesign">
