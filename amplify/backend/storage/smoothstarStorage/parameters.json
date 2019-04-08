@@ -1,0 +1,13 @@
+{
+    "bucketName": "smoothstarab153e49aebe45d7b39fcbbb94fbf361",
+    "authPolicyName": "s3_amplify_8a3e3c19",
+    "unauthPolicyName": "s3_amplify_8a3e3c19",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authPermissions": "rw",
+    "unauthPermissions": "rw"
+}
