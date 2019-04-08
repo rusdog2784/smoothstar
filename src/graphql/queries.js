@@ -354,6 +354,7 @@ export const getSmoothstarRegisteration = `query GetSmoothstarRegisteration($id:
     files {
       items {
         id
+        registerationId
         version
       }
       nextToken
@@ -500,6 +501,7 @@ export const getRegisterationMedia = `query GetRegisterationMedia($id: ID!) {
       }
       version
     }
+    registerationId
     version
   }
 }
@@ -544,6 +546,7 @@ export const listRegisterationMedias = `query ListRegisterationMedias(
         termsOfUseReviewed
         version
       }
+      registerationId
       version
     }
     nextToken

@@ -1,6 +1,6 @@
 {
     "identityPoolName": "smoothstar_identitypool",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "thirdPartyAuth": true,
     "lambdaLogPolicy": "smoothstarcognito_lambda_log_policy",
     "openIdLambdaRoleName": "smoothstarcognito_openid_lambda_role",
