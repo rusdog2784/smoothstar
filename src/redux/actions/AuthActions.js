@@ -1,5 +1,5 @@
 import { ActionTypes, AuthActionTypes } from '~constants';
-
+import { _c } from '~utils';
 import NavigationService from '~utils/NavigationService';
 import {
   checkAuth,
@@ -13,6 +13,7 @@ import {
   verifyAttribute,
   verifyAttributeSubmit,
 } from '~utils/AuthController';
+import { AppConstants } from '../../constants/General';
 
 const {
   SIGNED_UP,
@@ -31,6 +32,7 @@ const {
   CONFIRM_SIGNUP,
   CONFIRM_SIGNIN,
   SET_AUTH_ACTION_COMPLETED,
+  SET_INIT_LAUNCH,
 } = ActionTypes;
 
 export const setAuth = () => {
@@ -232,5 +234,31 @@ export const authVerifyAttributeSubmit = (attr, code) => {
         dispatch({ type: CLEAR_AUTH });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
+  };
+};
+
+export const checkInitLaunch = () => {
+  return dispatch => {
+    _c.retrieveAsyncStorage(AppConstants.InitLaunchStorageFlag)
+      .then(response => {
+        dispatch({
+          type: SET_INIT_LAUNCH,
+          payload: false,
+        });
+      })
+      .catch(() => {
+        dispatch({
+          type: SET_INIT_LAUNCH,
+          payload: true,
+        });
+      });
+  };
+};
+
+export const setInitLaunch = () => {
+  _c.storeAsyncStorage({ key: AppConstants.InitLaunchStorageFlag, value: '1' });
+  return {
+    type: SET_INIT_LAUNCH,
+    payload: false,
   };
 };
