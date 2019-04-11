@@ -30,4 +30,5 @@ export const ApiTypes = {
 export const AppConstants = {
   RegiterationAttemptsAllowed: 3,
   RegisterationStatus: { Unregistered: 'unregistered', Registered: 'registered' },
+  InitLaunchStorageFlag: 'initLaunch',
 };
