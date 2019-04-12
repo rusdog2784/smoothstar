@@ -28,7 +28,7 @@ class AuthVerificationScreen extends Component {
 
     if (authAction === CONFIRMED_SIGN_UP && !loading) {
       navigation.navigate('LoginScreen');
-    } else if (authAction === CONFIRMED_SIGN_IN && !loading) {
+    } else if (authAction === CONFIRMED_SIGN_IN && !loading && !ready) {
       checkSSRegisteration(user.username);
     } else if (authAction === VERIFIED_ATTR && !loading) {
       navigation.navigate('LoginScreen');
@@ -48,7 +48,7 @@ class AuthVerificationScreen extends Component {
     if (type === 'ConfirmSignUp') {
       this.props.authConfirmSignUp({ username, code: this.state.code });
     } else if (type === 'ConfirmSignIn') {
-      this.props.authConfirmSignIn({ user, code: this.state.code, mfaType: 'SMS' });
+      this.props.authConfirmSignIn({ user, code: this.state.code, mfaType: 'SMS_MFA' });
     }
   };
 
@@ -139,6 +139,8 @@ const mapStateToProps = state => {
   const { loadingApp, ready } = state.app;
 
   return {
+    ready,
+    user,
     loading,
     loadingApp,
     authAction,

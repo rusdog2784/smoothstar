@@ -11,9 +11,6 @@ const { QUERY, MUTATION } = ApiTypes;
 export const executeApi = async ({ type, name, data = null }) => {
   const operation = type === QUERY ? queries[name] : type === MUTATION ? mutations[name] : null;
 
-  console.log('API Data => ', data);
-  // console.log('Operation => ', operation);
-
   return API.graphql(graphqlOperation(operation, data))
     .then(response => {
       console.log(`API (${name}) Response => `, response);
