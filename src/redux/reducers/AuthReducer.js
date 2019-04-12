@@ -7,6 +7,7 @@ const {
   SET_AUTH_ACTION_COMPLETED,
   SET_AUTH,
   CONFIRM_SIGNUP,
+  CONFIRM_SIGNIN,
   SET_INIT_LAUNCH,
 } = ActionTypes;
 
@@ -35,6 +36,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, user: action.payload };
     case CONFIRM_SIGNUP:
       return { ...state, username: action.payload };
+    case CONFIRM_SIGNIN:
+      return { ...state, user: action.payload };
     default:
       return state;
   }

@@ -41,7 +41,6 @@ export const setAuth = () => {
 
     checkAuth()
       .then(response => {
-        console.log('responseCheck:', response);
         const user = { username: response.username, ...response.attributes };
         dispatch({ type: SET_AUTH, payload: user });
       })
@@ -59,7 +58,6 @@ export const authSignUp = ({ user }) => {
 
     signUp(user)
       .then(response => {
-        console.log('responseSignUp:', response);
         dispatch({
           type: SET_AUTH_ACTION_COMPLETED,
           payload: { type: SIGNED_UP, data: user.email },
@@ -79,7 +77,6 @@ export const authConfirmSignUp = ({ username, code }) => {
 
     confirmSignUp({ username, code })
       .then(response => {
-        console.log('responseConfirmSignUp:', response);
         if (response === 'SUCCESS') {
           dispatch({ type: CONFIRM_SIGNUP, payload: username });
           dispatch({
@@ -102,7 +99,6 @@ export const authSignIn = user => {
 
     signIn(user)
       .then(response => {
-        console.log('responseSignIn:', response);
         dispatch({ type: SET_AUTH_ACTION_COMPLETED, payload: { type: SIGNED_IN, data: response } });
       })
       .catch(error => {
@@ -119,9 +115,12 @@ export const authConfirmSignIn = data => {
 
     confirmSignIn(data)
       .then(response => {
-        console.log('responseConfirmSignIn:', response);
-        if (response === 'SUCCESS') {
-          dispatch({ type: CONFIRM_SIGNIN, payload: response });
+        if (response.username) {
+          const user = {
+            ...response.signInUserSession.idToken.payload,
+            username: response.username,
+          };
+          dispatch({ type: CONFIRM_SIGNIN, payload: user });
           dispatch({
             type: SET_AUTH_ACTION_COMPLETED,
             payload: { type: CONFIRMED_SIGN_IN, data: null },
@@ -142,7 +141,6 @@ export const authLoginFacebook = () => {
 
     loginFacebook()
       .then(response => {
-        console.log('responseLoginFacebbok:', response);
         if (response) {
           dispatch({ type: CONFIRM_SIGNIN, payload: response });
           NavigationService.navigate('AppNavigator');
@@ -162,7 +160,6 @@ export const authLoginGoogle = () => {
 
     loginGoogle()
       .then(response => {
-        console.log('responseLoginGoogle:', response);
         if (response) {
           dispatch({ type: CONFIRM_SIGNIN, payload: response });
           NavigationService.navigate('AppNavigator');
@@ -199,7 +196,6 @@ export const authVerifyAttribute = attr => {
 
     verifyAttribute(attr)
       .then(response => {
-        console.log('responseverifyAttribute:', response);
         if (response === 'SUCCESS') {
           dispatch({
             type: SET_AUTH_ACTION_COMPLETED,
@@ -221,7 +217,6 @@ export const authVerifyAttributeSubmit = (attr, code) => {
 
     verifyAttributeSubmit(attr, code)
       .then(response => {
-        console.log('responseverifyAttributeSubmit:', response);
         if (response === 'SUCCESS') {
           dispatch({
             type: SET_AUTH_ACTION_COMPLETED,

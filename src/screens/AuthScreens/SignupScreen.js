@@ -64,10 +64,8 @@ class SignupScreen extends Component {
     user.locale = 'en_US';
     user.given_name = user.first_name;
     user.family_name = user.last_name;
-    user['custom:gender'] = user.gender;
     delete user.country;
     delete user.city;
-    delete user.gender;
     delete user.first_name;
     delete user.last_name;
     delete user.emailSub;

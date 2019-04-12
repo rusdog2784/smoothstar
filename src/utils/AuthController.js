@@ -89,9 +89,6 @@ export const loginFacebook = async () => {
       permissions: ['public_profile', 'email'],
     });
 
-    console.log('type:', type);
-    console.log('token:', token);
-
     const fieldsRequired = 'id,first_name,last_name,email';
 
     if (type === 'success') {
@@ -128,8 +125,6 @@ export const loginGoogle = async () => {
       androidClientId: '671149193257-q40l6m57qn2el5d88qqgtgbaaujlbgf4.apps.googleusercontent.com',
       scopes: ['profile', 'email'],
     });
-
-    console.log('result:', result);
 
     if (result.type === 'success') {
       const { id_token: token, accessTokenExpirationDate: expires_at } = result;
