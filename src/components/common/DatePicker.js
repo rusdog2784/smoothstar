@@ -38,6 +38,7 @@ export const Datepicker = props => {
         dateInput: CustomStyles.dateInputStyle,
         dateText: [inputTextStyle, textStyle],
         disabled: { backgroundColor: Colors.inputBoxDisabledColor },
+        placeholderText: { ...textStyle, ...inputTextStyle, color: Colors.inputBoxColor },
       }}
       onDateChange={onDateChange}
       disabled={disable}

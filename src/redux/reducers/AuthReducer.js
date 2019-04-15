@@ -23,6 +23,9 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CLEAR_AUTH:
+      if (action.error && action.error !== undefined) {
+        alert(action.error.message);
+      }
       return { ...INITIAL_STATE, isInitLaunch: state.isInitLaunch };
     case AUTH_INITIATE:
       return { ...state, loading: true };

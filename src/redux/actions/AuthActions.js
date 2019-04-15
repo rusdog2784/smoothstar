@@ -65,7 +65,7 @@ export const authSignUp = ({ user }) => {
       })
       .catch(error => {
         console.log(error);
-        dispatch({ type: CLEAR_AUTH });
+        dispatch({ type: CLEAR_AUTH, error });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -87,7 +87,7 @@ export const authConfirmSignUp = ({ username, code }) => {
       })
       .catch(error => {
         console.log(error);
-        dispatch({ type: CLEAR_AUTH });
+        dispatch({ type: CLEAR_AUTH, error });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -103,7 +103,7 @@ export const authSignIn = user => {
       })
       .catch(error => {
         console.log(error);
-        dispatch({ type: CLEAR_AUTH });
+        dispatch({ type: CLEAR_AUTH, error });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -129,7 +129,7 @@ export const authConfirmSignIn = data => {
       })
       .catch(error => {
         console.log(error);
-        dispatch({ type: CLEAR_AUTH });
+        dispatch({ type: CLEAR_AUTH, error });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -148,7 +148,7 @@ export const authLoginFacebook = () => {
       })
       .catch(error => {
         console.log(error);
-        dispatch({ type: CLEAR_AUTH });
+        dispatch({ type: CLEAR_AUTH, error });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -167,7 +167,7 @@ export const authLoginGoogle = () => {
       })
       .catch(error => {
         console.log(error);
-        dispatch({ type: CLEAR_AUTH });
+        dispatch({ type: CLEAR_AUTH, error });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -205,7 +205,7 @@ export const authVerifyAttribute = attr => {
       })
       .catch(error => {
         console.log(error);
-        dispatch({ type: CLEAR_AUTH });
+        dispatch({ type: CLEAR_AUTH, error });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
@@ -226,7 +226,7 @@ export const authVerifyAttributeSubmit = (attr, code) => {
       })
       .catch(error => {
         console.log(error);
-        dispatch({ type: CLEAR_AUTH });
+        dispatch({ type: CLEAR_AUTH, error });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
