@@ -4,7 +4,7 @@ import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
 
 import { authSignUp, authLoginFacebook, authLoginGoogle } from '~redux/actions';
-import { Text, Button, InputBox, CheckBox, DatePicker } from '~components/common';
+import { Text, Button, InputBox, CheckBox, DatePicker, Dropdown } from '~components/common';
 import { Assets, StaticData, StyleTypes, AuthActionTypes } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
 
@@ -167,11 +167,11 @@ class SignupScreen extends Component {
             style={smGapStyle}
             placeholder="Birthdate"
           />
-          <InputBox
-            onChangeText={text => this.formTextChange(text, 'gender')}
-            value={this.state.gender}
+          <Dropdown
             style={smGapStyle}
-            placeholder="Gender"
+            selectedValue={this.state.gender}
+            onValueChange={value => this.formTextChange(value, 'gender')}
+            items={[{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }]}
           />
           <InputBox
             onChangeText={text => this.formTextChange(text, 'country')}
