@@ -103,8 +103,8 @@ class InitScreen extends Component {
 
 const TouchableBackground = ({ source, onPress }) => {
   return (
-    <TouchableWithoutFeedback onPress={onPress} style={{ flex: 1, backgroundColor: '#000000' }}>
-      <ImageBackground source={source} style={{ flex: 1 }} />
+    <TouchableWithoutFeedback onPress={onPress} style={{ flex: 1 }}>
+      <ImageBackground source={source} style={{ flex: 1, backgroundColor: '#000000' }} />
     </TouchableWithoutFeedback>
   );
 };

@@ -6,7 +6,7 @@ import { Colors, GlobalStyles } from '~styles';
 
 const { inputTextStyle, textStyle } = GlobalStyles;
 
-export const Dropdown = ({ onValueChange, selectedValue, style, items }) => {
+export const Dropdown = ({ onValueChange, selectedValue, style, items, placeholderLabel }) => {
   return (
     <View style={[styles.normalInputStyle, style]}>
       <RNPickerSelect
@@ -14,7 +14,7 @@ export const Dropdown = ({ onValueChange, selectedValue, style, items }) => {
         items={items}
         onValueChange={onValueChange}
         value={selectedValue}
-        placeholder={{ label: 'Select Gender', value: '' }}
+        placeholder={{ label: placeholderLabel, value: '' }}
         style={{
           ...pickerSelectStyles,
           placeholder: {
