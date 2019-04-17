@@ -7,8 +7,11 @@ import { authSignUp, authLoginFacebook, authLoginGoogle } from '~redux/actions';
 import { Text, Button, InputBox, CheckBox, DatePicker, Dropdown } from '~components/common';
 import { Assets, StaticData, StyleTypes, AuthActionTypes } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
+import countries from '~constants/countries.json';
 
 const { SIGNED_UP, SIGNED_IN } = AuthActionTypes;
+
+const countriesList = Object.keys(countries).map(name => ({ label: name, value: name }));
 
 class SignupScreen extends Component {
   state = {
@@ -22,6 +25,7 @@ class SignupScreen extends Component {
     country: '',
     city: '',
     emailSub: false,
+    citiesList: [],
   };
 
   componentDidUpdate = () => {
@@ -41,6 +45,14 @@ class SignupScreen extends Component {
   };
 
   formTextChange = (text, type) => {
+    if (type === 'country') {
+      if (text) {
+        const citiesList = countries[text].map(city => ({ label: city, value: city }));
+        this.setState({ citiesList });
+      } else {
+        this.setState({ citiesList: [] });
+      }
+    }
     this.setState({ [type]: text });
   };
 
@@ -69,6 +81,7 @@ class SignupScreen extends Component {
     delete user.first_name;
     delete user.last_name;
     delete user.emailSub;
+    delete user.citiesList;
 
     this.props.authSignUp({ user, verifyEmail: this.state.emailSub });
   };
@@ -171,19 +184,22 @@ class SignupScreen extends Component {
             style={smGapStyle}
             selectedValue={this.state.gender}
             onValueChange={value => this.formTextChange(value, 'gender')}
+            placeholderLabel="Select Gender"
             items={[{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }]}
           />
-          <InputBox
-            onChangeText={text => this.formTextChange(text, 'country')}
-            value={this.state.country}
+          <Dropdown
             style={smGapStyle}
-            placeholder="Country"
+            selectedValue={this.state.country}
+            placeholderLabel="Select Country"
+            onValueChange={value => this.formTextChange(value, 'country')}
+            items={countriesList}
           />
-          <InputBox
-            onChangeText={text => this.formTextChange(text, 'city')}
-            value={this.state.city}
-            style={lgGapStyle}
-            placeholder="City"
+          <Dropdown
+            style={smGapStyle}
+            selectedValue={this.state.city}
+            placeholderLabel="Select City"
+            onValueChange={value => this.formTextChange(value, 'city')}
+            items={this.state.citiesList}
           />
 
           <View style={[checkBoxViewStyle, mdGapStyle]}>
