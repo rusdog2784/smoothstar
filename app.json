@@ -19,10 +19,21 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.appsols.smoothstar"
+      "bundleIdentifier": "com.appsols.smoothstar",
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.811639205989-uv20hpiuah5u1acshln77ek1icgfhhks"
+        }
+      }
     },
     "android": {
-      "package": "com.appsols.smoothstar"
+      "package": "com.appsols.smoothstar",
+      "googleServicesFile": "./google-services.json",
+      "config": {
+        "googleSignIn": {
+          "certificateHash": "68:B0:A2:94:3A:6C:6A:D1:2C:E5:C4:52:C6:D1:D5:0D:E9:EA:70:98"
+        }
+      }
     },
     "description": "",
     "androidStatusBar": {

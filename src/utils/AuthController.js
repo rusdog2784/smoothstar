@@ -1,5 +1,5 @@
 import { Auth } from 'aws-amplify';
-import { Facebook, Google } from 'expo';
+import { Facebook, GoogleSignIn } from 'expo';
 
 import { FacebookAppId } from '~config/AuthConfig';
 
@@ -59,7 +59,11 @@ export const confirmSignIn = async ({ user, code, mfaType }) => {
     });
 };
 
-export const signOut = async () => {
+export const signOut = async ({ provider }) => {
+  if (provider && provider === 'google') {
+    await googleSignOut();
+  }
+
   return Auth.signOut()
     .then(() => true)
     .catch(error => {
@@ -119,19 +123,50 @@ export const loginFacebook = async () => {
   }
 };
 
-export const loginGoogle = async () => {
+// const loginGoogleClient = async () => {
+//   try {
+//     const result = await Google.logInAsync({
+//       androidClientId: '671149193257-q40l6m57qn2el5d88qqgtgbaaujlbgf4.apps.googleusercontent.com',
+//       scopes: ['profile', 'email'],
+//     });
+
+//     if (result.type === 'success') {
+//       const { id_token: token, accessTokenExpirationDate: expires_at } = result;
+//       const { email, familyName, givenName } = result.user;
+//       const user = {
+//         given_name: givenName,
+//         family_name: familyName,
+//         email,
+//         provider: 'google',
+//       };
+
+//       return Auth.federatedSignIn('google', { token, expires_at }, user).then(() => {
+//         return checkAuth();
+//       });
+//     } else {
+//       return false;
+//     }
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+const loginGoogleStandAlone = async () => {
+  await GoogleSignIn.initAsync({
+    clientId: '811639205989-52giv25pt95h41usegn3g595q97omkcr.apps.googleusercontent.com',
+  });
+
   try {
-    const result = await Google.logInAsync({
-      androidClientId: '671149193257-q40l6m57qn2el5d88qqgtgbaaujlbgf4.apps.googleusercontent.com',
-      scopes: ['profile', 'email'],
-    });
+    await GoogleSignIn.askForPlayServicesAsync();
+
+    const result = await GoogleSignIn.signInAsync();
 
     if (result.type === 'success') {
-      const { id_token: token, accessTokenExpirationDate: expires_at } = result;
-      const { email, familyName, givenName } = result.user;
+      const { email, lastName, firstName, auth } = result.user;
+      const { accessTokenExpirationDate: expires_at, idToken: token } = auth;
       const user = {
-        given_name: givenName,
-        family_name: familyName,
+        given_name: firstName,
+        family_name: lastName,
         email,
         provider: 'google',
       };
@@ -146,3 +181,12 @@ export const loginGoogle = async () => {
     throw error;
   }
 };
+
+const googleSignOut = async () => {
+  try {
+    await GoogleSignIn.signOutAsync();
+  } catch (error) {
+    throw error;
+  }
+};
+export const loginGoogle = loginGoogleStandAlone;

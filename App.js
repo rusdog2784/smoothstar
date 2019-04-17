@@ -6,6 +6,7 @@ import ReduxThunk from 'redux-thunk';
 import { SplashScreen } from 'expo';
 import { SafeAreaView } from 'react-navigation';
 import Amplify from 'aws-amplify';
+import { Root } from 'native-base';
 
 import reducers from '~redux/reducers';
 import RootNavigator from '~routes/RootNavigator';
@@ -29,11 +30,13 @@ class App extends Component {
   render() {
     return (
       <Provider store={STORE}>
-        <RootNavigator
-          ref={navigatorRef => {
-            NavigationService.setTopLevelNavigator(navigatorRef);
-          }}
-        />
+        <Root>
+          <RootNavigator
+            ref={navigatorRef => {
+              NavigationService.setTopLevelNavigator(navigatorRef);
+            }}
+          />
+        </Root>
       </Provider>
     );
   }
