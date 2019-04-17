@@ -138,6 +138,9 @@ Parameters:
                                                     
   facebookAppId:
     Type: String
+            
+  googleClientId:
+    Type: String
           
 Conditions:
   ShouldNotCreateEnvResources: !Equals [ !Ref env, NONE ]
@@ -517,6 +520,9 @@ Resources:
         
           
           graph.facebook.com: '522158348253985'
+                  
+          
+          accounts.google.com: '811639205989-52giv25pt95h41usegn3g595q97omkcr.apps.googleusercontent.com'
                    
       
       AllowUnauthenticatedIdentities: !Ref allowUnauthenticatedIdentities
@@ -564,6 +570,9 @@ Outputs :
     Value: !GetAtt SNSRole.Arn
     Description: role arn
   
+  
+  GoogleWebClient:
+    Value: 811639205989-52giv25pt95h41usegn3g595q97omkcr.apps.googleusercontent.com
    
    
   

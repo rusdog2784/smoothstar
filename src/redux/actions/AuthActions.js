@@ -174,10 +174,12 @@ export const authLoginGoogle = () => {
 };
 
 export const authSignOut = () => {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch({ type: AUTH_INITIATE });
 
-    signOut()
+    const { provider } = getState().auth.user;
+
+    signOut({ provider })
       .then(response => {
         console.log('signOut:', response);
         dispatch({ type: CLEAR_AUTH });

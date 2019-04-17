@@ -32,7 +32,8 @@
         "categories": {
             "auth": {
                 "smoothstarcognito": {
-                    "facebookAppId": "522158348253985"
+                    "facebookAppId": "522158348253985",
+                    "googleClientId": "811639205989-52giv25pt95h41usegn3g595q97omkcr.apps.googleusercontent.com"
                 }
             }
         }

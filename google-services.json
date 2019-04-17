@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "811639205989",
+    "firebase_url": "https://smoothstar-99987.firebaseio.com",
+    "project_id": "smoothstar-99987",
+    "storage_bucket": "smoothstar-99987.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811639205989:android:e6617c5d40553e21",
+        "android_client_info": {
+          "package_name": "com.appsols.smoothstar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811639205989-52giv25pt95h41usegn3g595q97omkcr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbcvlk8O76RohRHPRjyP0eLuWwD2yfGGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811639205989-52giv25pt95h41usegn3g595q97omkcr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

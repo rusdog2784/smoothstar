@@ -1,6 +1,6 @@
 {
     "identityPoolName": "smoothstar_identitypool",
-    "allowUnauthenticatedIdentities": true,
+    "allowUnauthenticatedIdentities": false,
     "thirdPartyAuth": true,
     "lambdaLogPolicy": "smoothstarcognito_lambda_log_policy",
     "openIdLambdaRoleName": "smoothstarcognito_openid_lambda_role",
@@ -65,7 +65,8 @@
     "authSelections": "identityPoolAndUserPool",
     "resourceName": "smoothstarcognito",
     "authProviders": [
-        "graph.facebook.com"
+        "graph.facebook.com",
+        "accounts.google.com"
     ],
     "userpoolClientWriteAttributes": [
         "address",
@@ -76,7 +77,7 @@
         "locale",
         "phone_number"
     ],
-    "selectedParties": "{\"graph.facebook.com\":\"522158348253985\"}",
+    "selectedParties": "{\"graph.facebook.com\":\"522158348253985\",\"accounts.google.com\":\"811639205989-52giv25pt95h41usegn3g595q97omkcr.apps.googleusercontent.com\"}",
     "authRoleName": {
         "Ref": "AuthRoleName"
     },
