@@ -63,10 +63,20 @@ export const listNewss = `query ListNewss(
         key
       }
       paragraphs {
-        nextToken
+        items {
+          id
+          content
+        }
       }
       images {
-        nextToken
+        items {
+          id
+          file {
+            bucket
+            key
+            region
+          }
+        }
       }
       tags
       version

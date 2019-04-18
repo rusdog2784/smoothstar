@@ -25,7 +25,6 @@ class SignupScreen extends Component {
     country: '',
     city: '',
     emailSub: false,
-    citiesList: [],
   };
 
   componentDidUpdate = () => {
@@ -45,14 +44,6 @@ class SignupScreen extends Component {
   };
 
   formTextChange = (text, type) => {
-    if (type === 'country') {
-      if (text) {
-        const citiesList = countries[text].map(city => ({ label: city, value: city }));
-        this.setState({ citiesList });
-      } else {
-        this.setState({ citiesList: [] });
-      }
-    }
     this.setState({ [type]: text });
   };
 
@@ -81,7 +72,6 @@ class SignupScreen extends Component {
     delete user.first_name;
     delete user.last_name;
     delete user.emailSub;
-    delete user.citiesList;
 
     this.props.authSignUp({ user, verifyEmail: this.state.emailSub });
   };
@@ -122,7 +112,7 @@ class SignupScreen extends Component {
             color={Colors.buttonGoogleColor}
             icon="google-"
             iconType="Entypo">
-            REGISTER WITH GOOGLE
+            LOGIN WITH GOOGLE
           </Button>
 
           <Button
@@ -131,7 +121,7 @@ class SignupScreen extends Component {
             color={Colors.buttonFBColor}
             icon="facebook"
             iconType="FontAwesome">
-            REGISTER WITH FACEBOOK
+            LOGIN WITH FACEBOOK
           </Button>
 
           <View style={[lineViewStyle, lgGapStyle]}>
@@ -194,12 +184,11 @@ class SignupScreen extends Component {
             onValueChange={value => this.formTextChange(value, 'country')}
             items={countriesList}
           />
-          <Dropdown
-            style={smGapStyle}
-            selectedValue={this.state.city}
-            placeholderLabel="Select City"
-            onValueChange={value => this.formTextChange(value, 'city')}
-            items={this.state.citiesList}
+          <InputBox
+            onChangeText={text => this.formTextChange(text, 'city')}
+            value={this.state.city}
+            style={lgGapStyle}
+            placeholder="City"
           />
 
           <View style={[checkBoxViewStyle, mdGapStyle]}>

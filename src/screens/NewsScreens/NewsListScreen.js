@@ -37,7 +37,7 @@ class NewsListScreen extends Component {
   }
 
   _renderItem = ({ item }) => {
-    const { title, publishedOn, rawContent } = item;
+    const { title, publishedOn, rawContent, paragraphs, images } = item;
     return (
       <CardLI
         style={styles.listItemStyle}
@@ -49,6 +49,8 @@ class NewsListScreen extends Component {
             },
             heading: title,
             description: rawContent,
+            paragraphs: paragraphs.items,
+            images: images.items,
           })
         }
         heading={title}

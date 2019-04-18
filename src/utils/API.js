@@ -26,7 +26,7 @@ export const executeApiWithMedia = async ({ name, data }) => {
 
   const bucket = aws_config.aws_user_files_s3_bucket;
   const region = aws_config.aws_user_files_s3_bucket_region;
-  const visibility = 'public';
+  const visibility = 'private';
 
   const key = `${identityId}/${uuidv1()}${extension && '.'}${extension}`;
 
