@@ -22,6 +22,8 @@ export const createNews = `mutation CreateNews($input: CreateNewsInput!) {
       items {
         id
         content
+        active
+        sortOrder
         version
       }
       nextToken
@@ -59,6 +61,8 @@ export const updateNews = `mutation UpdateNews($input: UpdateNewsInput!) {
       items {
         id
         content
+        active
+        sortOrder
         version
       }
       nextToken
@@ -96,6 +100,8 @@ export const deleteNews = `mutation DeleteNews($input: DeleteNewsInput!) {
       items {
         id
         content
+        active
+        sortOrder
         version
       }
       nextToken
@@ -116,6 +122,8 @@ export const createParagraph = `mutation CreateParagraph($input: CreateParagraph
   createParagraph(input: $input) {
     id
     content
+    active
+    sortOrder
     news {
       id
       publishedOn
@@ -149,6 +157,8 @@ export const updateParagraph = `mutation UpdateParagraph($input: UpdateParagraph
   updateParagraph(input: $input) {
     id
     content
+    active
+    sortOrder
     news {
       id
       publishedOn
@@ -182,6 +192,8 @@ export const deleteParagraph = `mutation DeleteParagraph($input: DeleteParagraph
   deleteParagraph(input: $input) {
     id
     content
+    active
+    sortOrder
     news {
       id
       publishedOn
@@ -388,19 +400,19 @@ export const deleteUserInfo = `mutation DeleteUserInfo($input: DeleteUserInfoInp
   }
 }
 `;
-export const createSmoothstarRegisteration = `mutation CreateSmoothstarRegisteration(
-  $input: CreateSmoothstarRegisterationInput!
+export const createSmoothstarRegistration = `mutation CreateSmoothstarRegistration(
+  $input: CreateSmoothstarRegistrationInput!
 ) {
-  createSmoothstarRegisteration(input: $input) {
+  createSmoothstarRegistration(input: $input) {
     id
     active
     type
-    registerationSubmitDate
-    registerationApprovedDate
+    registrationSubmitDate
+    registrationApprovedDate
     userId
     videoInfoReviewed
-    registerationAttempts
-    registerationStatus
+    registrationAttempts
+    registrationStatus
     orderNum
     orderInfo {
       id
@@ -413,16 +425,16 @@ export const createSmoothstarRegisteration = `mutation CreateSmoothstarRegistera
       dateOfPurchase
       cityDelivered
       countryDelivered
-      registeration {
+      registration {
         id
         active
         type
-        registerationSubmitDate
-        registerationApprovedDate
+        registrationSubmitDate
+        registrationApprovedDate
         userId
         videoInfoReviewed
-        registerationAttempts
-        registerationStatus
+        registrationAttempts
+        registrationStatus
         orderNum
         address
         postCode
@@ -467,16 +479,16 @@ export const createSmoothstarRegisteration = `mutation CreateSmoothstarRegistera
       shopName
       cityDelivered
       countryDelivered
-      registeration {
+      registration {
         id
         active
         type
-        registerationSubmitDate
-        registerationApprovedDate
+        registrationSubmitDate
+        registrationApprovedDate
         userId
         videoInfoReviewed
-        registerationAttempts
-        registerationStatus
+        registrationAttempts
+        registrationStatus
         orderNum
         address
         postCode
@@ -498,7 +510,7 @@ export const createSmoothstarRegisteration = `mutation CreateSmoothstarRegistera
     files {
       items {
         id
-        registerationId
+        registrationId
         version
       }
       nextToken
@@ -507,19 +519,19 @@ export const createSmoothstarRegisteration = `mutation CreateSmoothstarRegistera
   }
 }
 `;
-export const updateSmoothstarRegisteration = `mutation UpdateSmoothstarRegisteration(
-  $input: UpdateSmoothstarRegisterationInput!
+export const updateSmoothstarRegistration = `mutation UpdateSmoothstarRegistration(
+  $input: UpdateSmoothstarRegistrationInput!
 ) {
-  updateSmoothstarRegisteration(input: $input) {
+  updateSmoothstarRegistration(input: $input) {
     id
     active
     type
-    registerationSubmitDate
-    registerationApprovedDate
+    registrationSubmitDate
+    registrationApprovedDate
     userId
     videoInfoReviewed
-    registerationAttempts
-    registerationStatus
+    registrationAttempts
+    registrationStatus
     orderNum
     orderInfo {
       id
@@ -532,16 +544,16 @@ export const updateSmoothstarRegisteration = `mutation UpdateSmoothstarRegistera
       dateOfPurchase
       cityDelivered
       countryDelivered
-      registeration {
+      registration {
         id
         active
         type
-        registerationSubmitDate
-        registerationApprovedDate
+        registrationSubmitDate
+        registrationApprovedDate
         userId
         videoInfoReviewed
-        registerationAttempts
-        registerationStatus
+        registrationAttempts
+        registrationStatus
         orderNum
         address
         postCode
@@ -586,16 +598,16 @@ export const updateSmoothstarRegisteration = `mutation UpdateSmoothstarRegistera
       shopName
       cityDelivered
       countryDelivered
-      registeration {
+      registration {
         id
         active
         type
-        registerationSubmitDate
-        registerationApprovedDate
+        registrationSubmitDate
+        registrationApprovedDate
         userId
         videoInfoReviewed
-        registerationAttempts
-        registerationStatus
+        registrationAttempts
+        registrationStatus
         orderNum
         address
         postCode
@@ -617,7 +629,7 @@ export const updateSmoothstarRegisteration = `mutation UpdateSmoothstarRegistera
     files {
       items {
         id
-        registerationId
+        registrationId
         version
       }
       nextToken
@@ -626,19 +638,19 @@ export const updateSmoothstarRegisteration = `mutation UpdateSmoothstarRegistera
   }
 }
 `;
-export const deleteSmoothstarRegisteration = `mutation DeleteSmoothstarRegisteration(
-  $input: DeleteSmoothstarRegisterationInput!
+export const deleteSmoothstarRegistration = `mutation DeleteSmoothstarRegistration(
+  $input: DeleteSmoothstarRegistrationInput!
 ) {
-  deleteSmoothstarRegisteration(input: $input) {
+  deleteSmoothstarRegistration(input: $input) {
     id
     active
     type
-    registerationSubmitDate
-    registerationApprovedDate
+    registrationSubmitDate
+    registrationApprovedDate
     userId
     videoInfoReviewed
-    registerationAttempts
-    registerationStatus
+    registrationAttempts
+    registrationStatus
     orderNum
     orderInfo {
       id
@@ -651,16 +663,16 @@ export const deleteSmoothstarRegisteration = `mutation DeleteSmoothstarRegistera
       dateOfPurchase
       cityDelivered
       countryDelivered
-      registeration {
+      registration {
         id
         active
         type
-        registerationSubmitDate
-        registerationApprovedDate
+        registrationSubmitDate
+        registrationApprovedDate
         userId
         videoInfoReviewed
-        registerationAttempts
-        registerationStatus
+        registrationAttempts
+        registrationStatus
         orderNum
         address
         postCode
@@ -705,16 +717,16 @@ export const deleteSmoothstarRegisteration = `mutation DeleteSmoothstarRegistera
       shopName
       cityDelivered
       countryDelivered
-      registeration {
+      registration {
         id
         active
         type
-        registerationSubmitDate
-        registerationApprovedDate
+        registrationSubmitDate
+        registrationApprovedDate
         userId
         videoInfoReviewed
-        registerationAttempts
-        registerationStatus
+        registrationAttempts
+        registrationStatus
         orderNum
         address
         postCode
@@ -736,7 +748,7 @@ export const deleteSmoothstarRegisteration = `mutation DeleteSmoothstarRegistera
     files {
       items {
         id
-        registerationId
+        registrationId
         version
       }
       nextToken
@@ -745,24 +757,24 @@ export const deleteSmoothstarRegisteration = `mutation DeleteSmoothstarRegistera
   }
 }
 `;
-export const createRegisterationMedia = `mutation CreateRegisterationMedia($input: CreateRegisterationMediaInput!) {
-  createRegisterationMedia(input: $input) {
+export const createRegistrationMedia = `mutation CreateRegistrationMedia($input: CreateRegistrationMediaInput!) {
+  createRegistrationMedia(input: $input) {
     id
     file {
       bucket
       region
       key
     }
-    registeration {
+    registration {
       id
       active
       type
-      registerationSubmitDate
-      registerationApprovedDate
+      registrationSubmitDate
+      registrationApprovedDate
       userId
       videoInfoReviewed
-      registerationAttempts
-      registerationStatus
+      registrationAttempts
+      registrationStatus
       orderNum
       orderInfo {
         id
@@ -811,29 +823,29 @@ export const createRegisterationMedia = `mutation CreateRegisterationMedia($inpu
       }
       version
     }
-    registerationId
+    registrationId
     version
   }
 }
 `;
-export const updateRegisterationMedia = `mutation UpdateRegisterationMedia($input: UpdateRegisterationMediaInput!) {
-  updateRegisterationMedia(input: $input) {
+export const updateRegistrationMedia = `mutation UpdateRegistrationMedia($input: UpdateRegistrationMediaInput!) {
+  updateRegistrationMedia(input: $input) {
     id
     file {
       bucket
       region
       key
     }
-    registeration {
+    registration {
       id
       active
       type
-      registerationSubmitDate
-      registerationApprovedDate
+      registrationSubmitDate
+      registrationApprovedDate
       userId
       videoInfoReviewed
-      registerationAttempts
-      registerationStatus
+      registrationAttempts
+      registrationStatus
       orderNum
       orderInfo {
         id
@@ -882,29 +894,29 @@ export const updateRegisterationMedia = `mutation UpdateRegisterationMedia($inpu
       }
       version
     }
-    registerationId
+    registrationId
     version
   }
 }
 `;
-export const deleteRegisterationMedia = `mutation DeleteRegisterationMedia($input: DeleteRegisterationMediaInput!) {
-  deleteRegisterationMedia(input: $input) {
+export const deleteRegistrationMedia = `mutation DeleteRegistrationMedia($input: DeleteRegistrationMediaInput!) {
+  deleteRegistrationMedia(input: $input) {
     id
     file {
       bucket
       region
       key
     }
-    registeration {
+    registration {
       id
       active
       type
-      registerationSubmitDate
-      registerationApprovedDate
+      registrationSubmitDate
+      registrationApprovedDate
       userId
       videoInfoReviewed
-      registerationAttempts
-      registerationStatus
+      registrationAttempts
+      registrationStatus
       orderNum
       orderInfo {
         id
@@ -953,7 +965,7 @@ export const deleteRegisterationMedia = `mutation DeleteRegisterationMedia($inpu
       }
       version
     }
-    registerationId
+    registrationId
     version
   }
 }
@@ -970,16 +982,16 @@ export const createOrderInfo = `mutation CreateOrderInfo($input: CreateOrderInfo
     dateOfPurchase
     cityDelivered
     countryDelivered
-    registeration {
+    registration {
       id
       active
       type
-      registerationSubmitDate
-      registerationApprovedDate
+      registrationSubmitDate
+      registrationApprovedDate
       userId
       videoInfoReviewed
-      registerationAttempts
-      registerationStatus
+      registrationAttempts
+      registrationStatus
       orderNum
       orderInfo {
         id
@@ -1044,16 +1056,16 @@ export const updateOrderInfo = `mutation UpdateOrderInfo($input: UpdateOrderInfo
     dateOfPurchase
     cityDelivered
     countryDelivered
-    registeration {
+    registration {
       id
       active
       type
-      registerationSubmitDate
-      registerationApprovedDate
+      registrationSubmitDate
+      registrationApprovedDate
       userId
       videoInfoReviewed
-      registerationAttempts
-      registerationStatus
+      registrationAttempts
+      registrationStatus
       orderNum
       orderInfo {
         id
@@ -1118,16 +1130,16 @@ export const deleteOrderInfo = `mutation DeleteOrderInfo($input: DeleteOrderInfo
     dateOfPurchase
     cityDelivered
     countryDelivered
-    registeration {
+    registration {
       id
       active
       type
-      registerationSubmitDate
-      registerationApprovedDate
+      registrationSubmitDate
+      registrationApprovedDate
       userId
       videoInfoReviewed
-      registerationAttempts
-      registerationStatus
+      registrationAttempts
+      registrationStatus
       orderNum
       orderInfo {
         id
@@ -1203,16 +1215,16 @@ export const createOcrInfo = `mutation CreateOcrInfo($input: CreateOCRInfoInput!
     shopName
     cityDelivered
     countryDelivered
-    registeration {
+    registration {
       id
       active
       type
-      registerationSubmitDate
-      registerationApprovedDate
+      registrationSubmitDate
+      registrationApprovedDate
       userId
       videoInfoReviewed
-      registerationAttempts
-      registerationStatus
+      registrationAttempts
+      registrationStatus
       orderNum
       orderInfo {
         id
@@ -1288,16 +1300,16 @@ export const updateOcrInfo = `mutation UpdateOcrInfo($input: UpdateOCRInfoInput!
     shopName
     cityDelivered
     countryDelivered
-    registeration {
+    registration {
       id
       active
       type
-      registerationSubmitDate
-      registerationApprovedDate
+      registrationSubmitDate
+      registrationApprovedDate
       userId
       videoInfoReviewed
-      registerationAttempts
-      registerationStatus
+      registrationAttempts
+      registrationStatus
       orderNum
       orderInfo {
         id
@@ -1373,16 +1385,16 @@ export const deleteOcrInfo = `mutation DeleteOcrInfo($input: DeleteOCRInfoInput!
     shopName
     cityDelivered
     countryDelivered
-    registeration {
+    registration {
       id
       active
       type
-      registerationSubmitDate
-      registerationApprovedDate
+      registrationSubmitDate
+      registrationApprovedDate
       userId
       videoInfoReviewed
-      registerationAttempts
-      registerationStatus
+      registrationAttempts
+      registrationStatus
       orderNum
       orderInfo {
         id

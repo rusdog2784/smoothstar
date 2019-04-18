@@ -22,9 +22,6 @@ export const Dropdown = ({ onValueChange, selectedValue, style, items, placehold
           },
         }}
       />
-      {/* <Picker mode="dropdown" selectedValue={selectedValue} onValueChange={onValueChange}>
-        {pickerItems}
-      </Picker> */}
     </View>
   );
 };

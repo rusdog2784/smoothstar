@@ -20,6 +20,9 @@ type Paragraph @model @versioned {
   id: ID!
   content: String!
 
+  active: Boolean!
+  sortOrder: Int!
+
   news: News! @connection(name: "NewsParagraphs")
 }
 
@@ -57,22 +60,22 @@ type UserInfo @model @versioned {
   country: String
 }
 
-type SmoothstarRegisteration @model @versioned {
+type SmoothstarRegistration @model @versioned {
   id: ID!
 
   active: Boolean!
 
   type: String!
-  registerationSubmitDate: String
-  registerationApprovedDate: String
+  registrationSubmitDate: String
+  registrationApprovedDate: String
   userId: String!
   videoInfoReviewed: Boolean!
 
-  registerationAttempts: Int!
-  registerationStatus: String
+  registrationAttempts: Int!
+  registrationStatus: String
 
   orderNum: String
-  orderInfo: OrderInfo @connection(name: "SmoothstarRegisterationOrder")
+  orderInfo: OrderInfo @connection(name: "SmoothstarRegistrationOrder")
 
   address: String
   postCode: String
@@ -81,23 +84,23 @@ type SmoothstarRegisteration @model @versioned {
   smoothstarModel: String
   purchaseDate: String
   shopName: String
-  ocrInfo: OCRInfo @connection(name: "SmoothstarRegisterationOCR")
+  ocrInfo: OCRInfo @connection(name: "SmoothstarRegistrationOCR")
 
   privacyPolicyReviewed: Boolean!
   extendedPolicyReviewed: Boolean!
   termsOfUseReviewed: Boolean!
 
-  files: [RegisterationMedia!] @connection(name: "SmoothstarRegisterationMedia")
+  files: [RegistrationMedia!] @connection(name: "SmoothstarRegistrationMedia")
 }
 
-type RegisterationMedia @model @versioned {
+type RegistrationMedia @model @versioned {
   id: ID!
   file: S3Object!
 
-  registeration: SmoothstarRegisteration!
-    @connection(name: "SmoothstarRegisterationMedia")
+  registration: SmoothstarRegistration!
+    @connection(name: "SmoothstarRegistrationMedia")
 
-  registerationId: String!
+  registrationId: String!
 }
 
 type OrderInfo @model @versioned {
@@ -114,8 +117,8 @@ type OrderInfo @model @versioned {
   cityDelivered: String
   countryDelivered: String!
 
-  registeration: SmoothstarRegisteration
-    @connection(name: "SmoothstarRegisterationOrder")
+  registration: SmoothstarRegistration
+    @connection(name: "SmoothstarRegistrationOrder")
 }
 
 type OCRInfo @model @versioned {
@@ -142,6 +145,6 @@ type OCRInfo @model @versioned {
   cityDelivered: String
   countryDelivered: String
 
-  registeration: SmoothstarRegisteration
-    @connection(name: "SmoothstarRegisterationOCR")
+  registration: SmoothstarRegistration
+    @connection(name: "SmoothstarRegistrationOCR")
 }

@@ -263,7 +263,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getSmoothstarRegisteration",
+          "name" : "getSmoothstarRegistration",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -281,20 +281,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "SmoothstarRegisteration",
+            "name" : "SmoothstarRegistration",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listSmoothstarRegisterations",
+          "name" : "listSmoothstarRegistrations",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelSmoothstarRegisterationFilterInput",
+              "name" : "ModelSmoothstarRegistrationFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -319,13 +319,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelSmoothstarRegisterationConnection",
+            "name" : "ModelSmoothstarRegistrationConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getRegisterationMedia",
+          "name" : "getRegistrationMedia",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -343,20 +343,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "RegisterationMedia",
+            "name" : "RegistrationMedia",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listRegisterationMedias",
+          "name" : "listRegistrationMedias",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelRegisterationMediaFilterInput",
+              "name" : "ModelRegistrationMediaFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -381,7 +381,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelRegisterationMediaConnection",
+            "name" : "ModelRegistrationMediaConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -900,6 +900,36 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
+          "name" : "active",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Boolean",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
+          "name" : "sortOrder",
+          "description" : null,
+          "args" : [ ],
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Int",
+              "ofType" : null
+            }
+          },
+          "isDeprecated" : false,
+          "deprecationReason" : null
+        }, {
           "name" : "news",
           "description" : null,
           "args" : [ ],
@@ -963,6 +993,24 @@
           "type" : {
             "kind" : "INPUT_OBJECT",
             "name" : "ModelStringFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "active",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelBooleanFilterInput",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "sortOrder",
+          "description" : null,
+          "type" : {
+            "kind" : "INPUT_OBJECT",
+            "name" : "ModelIntFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -1205,6 +1253,127 @@
             "kind" : "SCALAR",
             "name" : "String",
             "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelBooleanFilterInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelIntFilterInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "le",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "lt",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "ge",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "gt",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "contains",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "notContains",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "between",
+          "description" : null,
+          "type" : {
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Int",
+              "ofType" : null
+            }
           },
           "defaultValue" : null
         } ],
@@ -1513,33 +1682,6 @@
           "type" : {
             "kind" : "INPUT_OBJECT",
             "name" : "ModelNewsFilterInput",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
-        "name" : "ModelBooleanFilterInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "ne",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "eq",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2024,7 +2166,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "SmoothstarRegisteration",
+        "name" : "SmoothstarRegistration",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -2072,7 +2214,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "registerationSubmitDate",
+          "name" : "registrationSubmitDate",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2083,7 +2225,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "registerationApprovedDate",
+          "name" : "registrationApprovedDate",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2124,7 +2266,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "registerationAttempts",
+          "name" : "registrationAttempts",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2139,7 +2281,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "registerationStatus",
+          "name" : "registrationStatus",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2312,7 +2454,7 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelRegisterationMediaFilterInput",
+              "name" : "ModelRegistrationMediaFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -2346,7 +2488,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelRegisterationMediaConnection",
+            "name" : "ModelRegistrationMediaConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2514,12 +2656,12 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "registeration",
+          "name" : "registration",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "SmoothstarRegisteration",
+            "name" : "SmoothstarRegistration",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2752,12 +2894,12 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "registeration",
+          "name" : "registration",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "SmoothstarRegisteration",
+            "name" : "SmoothstarRegistration",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2784,7 +2926,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelRegisterationMediaConnection",
+        "name" : "ModelRegistrationMediaConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -2795,7 +2937,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "RegisterationMedia",
+              "name" : "RegistrationMedia",
               "ofType" : null
             }
           },
@@ -2819,7 +2961,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "RegisterationMedia",
+        "name" : "RegistrationMedia",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -2852,7 +2994,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "registeration",
+          "name" : "registration",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2860,14 +3002,14 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "SmoothstarRegisteration",
+              "name" : "SmoothstarRegistration",
               "ofType" : null
             }
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "registerationId",
+          "name" : "registrationId",
           "description" : null,
           "args" : [ ],
           "type" : {
@@ -2903,7 +3045,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelRegisterationMediaFilterInput",
+        "name" : "ModelRegistrationMediaFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2916,7 +3058,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationId",
+          "name" : "registrationId",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -2932,7 +3074,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelRegisterationMediaFilterInput",
+              "name" : "ModelRegistrationMediaFilterInput",
               "ofType" : null
             }
           },
@@ -2945,7 +3087,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelRegisterationMediaFilterInput",
+              "name" : "ModelRegistrationMediaFilterInput",
               "ofType" : null
             }
           },
@@ -2955,7 +3097,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelRegisterationMediaFilterInput",
+            "name" : "ModelRegistrationMediaFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2965,7 +3107,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelSmoothstarRegisterationConnection",
+        "name" : "ModelSmoothstarRegistrationConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -2976,7 +3118,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "OBJECT",
-              "name" : "SmoothstarRegisteration",
+              "name" : "SmoothstarRegistration",
               "ofType" : null
             }
           },
@@ -3000,7 +3142,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelSmoothstarRegisterationFilterInput",
+        "name" : "ModelSmoothstarRegistrationFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -3031,7 +3173,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationSubmitDate",
+          "name" : "registrationSubmitDate",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -3040,7 +3182,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationApprovedDate",
+          "name" : "registrationApprovedDate",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -3067,7 +3209,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationAttempts",
+          "name" : "registrationAttempts",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -3076,7 +3218,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationStatus",
+          "name" : "registrationStatus",
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
@@ -3191,7 +3333,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelSmoothstarRegisterationFilterInput",
+              "name" : "ModelSmoothstarRegistrationFilterInput",
               "ofType" : null
             }
           },
@@ -3204,7 +3346,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelSmoothstarRegisterationFilterInput",
+              "name" : "ModelSmoothstarRegistrationFilterInput",
               "ofType" : null
             }
           },
@@ -3214,102 +3356,8 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelSmoothstarRegisterationFilterInput",
+            "name" : "ModelSmoothstarRegistrationFilterInput",
             "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
-        "name" : "ModelIntFilterInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "ne",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "eq",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "le",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "lt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "ge",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "gt",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "contains",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "notContains",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Int",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "between",
-          "description" : null,
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "Int",
-              "ofType" : null
-            }
           },
           "defaultValue" : null
         } ],
@@ -4001,7 +4049,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createSmoothstarRegisteration",
+          "name" : "createSmoothstarRegistration",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -4011,7 +4059,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateSmoothstarRegisterationInput",
+                "name" : "CreateSmoothstarRegistrationInput",
                 "ofType" : null
               }
             },
@@ -4019,13 +4067,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "SmoothstarRegisteration",
+            "name" : "SmoothstarRegistration",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateSmoothstarRegisteration",
+          "name" : "updateSmoothstarRegistration",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -4035,7 +4083,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateSmoothstarRegisterationInput",
+                "name" : "UpdateSmoothstarRegistrationInput",
                 "ofType" : null
               }
             },
@@ -4043,13 +4091,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "SmoothstarRegisteration",
+            "name" : "SmoothstarRegistration",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteSmoothstarRegisteration",
+          "name" : "deleteSmoothstarRegistration",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -4059,7 +4107,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteSmoothstarRegisterationInput",
+                "name" : "DeleteSmoothstarRegistrationInput",
                 "ofType" : null
               }
             },
@@ -4067,13 +4115,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "SmoothstarRegisteration",
+            "name" : "SmoothstarRegistration",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createRegisterationMedia",
+          "name" : "createRegistrationMedia",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -4083,7 +4131,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateRegisterationMediaInput",
+                "name" : "CreateRegistrationMediaInput",
                 "ofType" : null
               }
             },
@@ -4091,13 +4139,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "RegisterationMedia",
+            "name" : "RegistrationMedia",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateRegisterationMedia",
+          "name" : "updateRegistrationMedia",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -4107,7 +4155,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateRegisterationMediaInput",
+                "name" : "UpdateRegistrationMediaInput",
                 "ofType" : null
               }
             },
@@ -4115,13 +4163,13 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "RegisterationMedia",
+            "name" : "RegistrationMedia",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteRegisterationMedia",
+          "name" : "deleteRegistrationMedia",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -4131,7 +4179,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteRegisterationMediaInput",
+                "name" : "DeleteRegistrationMediaInput",
                 "ofType" : null
               }
             },
@@ -4139,7 +4187,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "RegisterationMedia",
+            "name" : "RegistrationMedia",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -4611,6 +4659,32 @@
           },
           "defaultValue" : null
         }, {
+          "name" : "active",
+          "description" : null,
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Boolean",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "sortOrder",
+          "description" : null,
+          "type" : {
+            "kind" : "NON_NULL",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "Int",
+              "ofType" : null
+            }
+          },
+          "defaultValue" : null
+        }, {
           "name" : "paragraphNewsId",
           "description" : null,
           "type" : {
@@ -4651,6 +4725,24 @@
           "type" : {
             "kind" : "SCALAR",
             "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "active",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "sortOrder",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Int",
             "ofType" : null
           },
           "defaultValue" : null
@@ -5243,7 +5335,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateSmoothstarRegisterationInput",
+        "name" : "CreateSmoothstarRegistrationInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -5282,7 +5374,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationSubmitDate",
+          "name" : "registrationSubmitDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5291,7 +5383,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationApprovedDate",
+          "name" : "registrationApprovedDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5326,7 +5418,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationAttempts",
+          "name" : "registrationAttempts",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -5339,7 +5431,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationStatus",
+          "name" : "registrationStatus",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5459,7 +5551,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "smoothstarRegisterationOrderInfoId",
+          "name" : "smoothstarRegistrationOrderInfoId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5468,7 +5560,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "smoothstarRegisterationOcrInfoId",
+          "name" : "smoothstarRegistrationOcrInfoId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5482,7 +5574,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateSmoothstarRegisterationInput",
+        "name" : "UpdateSmoothstarRegistrationInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -5517,7 +5609,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationSubmitDate",
+          "name" : "registrationSubmitDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5526,7 +5618,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationApprovedDate",
+          "name" : "registrationApprovedDate",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5553,7 +5645,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationAttempts",
+          "name" : "registrationAttempts",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5562,7 +5654,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationStatus",
+          "name" : "registrationStatus",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5670,7 +5762,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "smoothstarRegisterationOrderInfoId",
+          "name" : "smoothstarRegistrationOrderInfoId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5679,7 +5771,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "smoothstarRegisterationOcrInfoId",
+          "name" : "smoothstarRegistrationOcrInfoId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5706,7 +5798,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteSmoothstarRegisterationInput",
+        "name" : "DeleteSmoothstarRegistrationInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -5737,7 +5829,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateRegisterationMediaInput",
+        "name" : "CreateRegistrationMediaInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -5763,7 +5855,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationId",
+          "name" : "registrationId",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -5776,7 +5868,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationMediaRegisterationId",
+          "name" : "registrationMediaRegistrationId",
           "description" : null,
           "type" : {
             "kind" : "NON_NULL",
@@ -5794,7 +5886,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateRegisterationMediaInput",
+        "name" : "UpdateRegistrationMediaInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -5820,7 +5912,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationId",
+          "name" : "registrationId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5829,7 +5921,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "registerationMediaRegisterationId",
+          "name" : "registrationMediaRegistrationId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -5856,7 +5948,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteRegisterationMediaInput",
+        "name" : "DeleteRegistrationMediaInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -6005,7 +6097,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "orderInfoRegisterationId",
+          "name" : "orderInfoRegistrationId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -6117,7 +6209,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "orderInfoRegisterationId",
+          "name" : "orderInfoRegistrationId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -6344,7 +6436,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "oCRInfoRegisterationId",
+          "name" : "oCRInfoRegistrationId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -6519,7 +6611,7 @@
           },
           "defaultValue" : null
         }, {
-          "name" : "oCRInfoRegisterationId",
+          "name" : "oCRInfoRegistrationId",
           "description" : null,
           "type" : {
             "kind" : "SCALAR",
@@ -6712,67 +6804,67 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateSmoothstarRegisteration",
+          "name" : "onCreateSmoothstarRegistration",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "SmoothstarRegisteration",
+            "name" : "SmoothstarRegistration",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateSmoothstarRegisteration",
+          "name" : "onUpdateSmoothstarRegistration",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "SmoothstarRegisteration",
+            "name" : "SmoothstarRegistration",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteSmoothstarRegisteration",
+          "name" : "onDeleteSmoothstarRegistration",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "SmoothstarRegisteration",
+            "name" : "SmoothstarRegistration",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateRegisterationMedia",
+          "name" : "onCreateRegistrationMedia",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "RegisterationMedia",
+            "name" : "RegistrationMedia",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateRegisterationMedia",
+          "name" : "onUpdateRegistrationMedia",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "RegisterationMedia",
+            "name" : "RegistrationMedia",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteRegisterationMedia",
+          "name" : "onDeleteRegistrationMedia",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "RegisterationMedia",
+            "name" : "RegistrationMedia",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -7735,23 +7827,6 @@
         "onFragment" : false,
         "onField" : true
       }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
-        "args" : [ {
-          "name" : "reason",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
-          },
-          "defaultValue" : "\"No longer supported\""
-        } ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
         "name" : "aws_auth",
         "description" : "Directs the schema to enforce authorization on a field",
         "locations" : [ "FIELD_DEFINITION" ],
@@ -7810,6 +7885,23 @@
             }
           },
           "defaultValue" : null
+        } ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
         } ],
         "onOperation" : false,
         "onFragment" : false,

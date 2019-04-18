@@ -6,18 +6,18 @@ import { Text } from '~components/common';
 import { StyleTypes } from '~constants';
 import { GlobalStyles } from '~styles';
 
-class RegisterationUnsuccessfulScreen extends Component {
+class RegistrationUnsuccessfulScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { availableAttempts } = navigation.state.params;
 
     if (availableAttempts) {
       return {
-        headerTitle: <Text type={StyleTypes.headerTitleDark}>REGISTERATION</Text>,
+        headerTitle: <Text type={StyleTypes.headerTitleDark}>REGISTRATION</Text>,
         headerRight: <View>{null}</View>,
       };
     } else {
       return {
-        headerTitle: <Text type={StyleTypes.headerTitleDark}>REGISTERATION</Text>,
+        headerTitle: <Text type={StyleTypes.headerTitleDark}>REGISTRATION</Text>,
         headerLeft: <View>{null}</View>,
         headerRight: <View>{null}</View>,
       };
@@ -35,7 +35,7 @@ class RegisterationUnsuccessfulScreen extends Component {
         <Content contentContainerStyle={styles.contentStyle} showsVerticalScrollIndicator={false}>
           <View style={[styles.textViewStyle, GlobalStyles.lgGapStyle]}>
             <Text style={[styles.headingStyle, GlobalStyles.lgGapStyle]} type={StyleTypes.h1}>
-              REGISTERATION UNSUCCESSFUL
+              REGISTRATION UNSUCCESSFUL
             </Text>
 
             {availableAttempts ? (
@@ -79,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterationUnsuccessfulScreen;
+export default RegistrationUnsuccessfulScreen;

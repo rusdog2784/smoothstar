@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { StackActions, NavigationActions } from 'react-navigation';
 import _ from 'lodash';
 
-import { creatSSRegisteration, unsubState } from '~redux/actions';
+import { createSSRegistration, unsubState } from '~redux/actions';
 import { Text, Button, InputBox, NumberBullet, Switch, DatePicker } from '~components/common';
 import { Assets, StaticData, StyleTypes, AppStates, AppConstants } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
@@ -31,29 +31,29 @@ class RegisterSmoothStarScreen extends Component {
       isRegistered,
       loading,
       navigation,
-      registerationStatus,
-      registerationAttempts: attemps,
+      registrationStatus,
+      registrationAttempts: attemps,
     } = this.props;
 
     if (isRegistered && !loading) {
-      const availableAttempts = AppConstants.RegiterationAttemptsAllowed - attemps;
+      const availableAttempts = AppConstants.RegitrationAttemptsAllowed - attemps;
 
-      if (registerationStatus) {
+      if (registrationStatus) {
         const resetAction = StackActions.reset({
           index: 0,
           actions: [
-            NavigationActions.navigate({ routeName: 'RegisterationSuccessScreen', params: {} }),
+            NavigationActions.navigate({ routeName: 'RegistrationSuccessScreen', params: {} }),
           ],
         });
         navigation.dispatch(resetAction);
       } else if (availableAttempts) {
-        navigation.navigate('RegisterationUnsuccessfulScreen', { availableAttempts });
+        navigation.navigate('RegistrationUnsuccessfulScreen', { availableAttempts });
       } else {
         const resetAction = StackActions.reset({
           index: 0,
           actions: [
             NavigationActions.navigate({
-              routeName: 'RegisterationUnsuccessfulScreen',
+              routeName: 'RegistrationUnsuccessfulScreen',
               params: { availableAttempts },
             }),
           ],
@@ -126,14 +126,14 @@ class RegisterSmoothStarScreen extends Component {
       stockist,
       image,
     } = this.state;
-    const { user, registerationAttempts } = this.props;
+    const { user, registrationAttempts } = this.props;
 
-    let registeration = {
+    let registration = {
       active: true,
-      registerationSubmitDate: _c.formatDateServer(Date.now()),
+      registrationSubmitDate: _c.formatDateServer(Date.now()),
       userId: user.username,
       videoInfoReviewed: true,
-      registerationAttempts: registerationAttempts + 1,
+      registrationAttempts: registrationAttempts + 1,
       privacyPolicyReviewed: true,
       extendedPolicyReviewed: true,
       termsOfUseReviewed: true,
@@ -142,8 +142,8 @@ class RegisterSmoothStarScreen extends Component {
     if (stockist) {
       if (!this.checkStockist()) return;
 
-      registeration = {
-        ...registeration,
+      registration = {
+        ...registration,
         ...(address && { address }),
         ...(postCode && { postCode }),
         ...(region && { region }),
@@ -157,11 +157,11 @@ class RegisterSmoothStarScreen extends Component {
     } else {
       if (!this.checkWebsiteOrderNum()) return;
 
-      registeration.type = 'W';
-      registeration.orderNum = websiteOrderNum;
+      registration.type = 'W';
+      registration.orderNum = websiteOrderNum;
     }
 
-    this.props.creatSSRegisteration({ stockist, registeration });
+    this.props.createSSRegistration({ stockist, registration });
   };
 
   render() {
@@ -220,7 +220,7 @@ class RegisterSmoothStarScreen extends Component {
           <View style={[bulletsViewStyle, mdGapStyle]}>
             <NumberBullet number={3} />
             <Text numberOfLines={1} type={StyleTypes.h2} style={{ marginLeft: 10, flex: 1 }}>
-              Submit the registeration form below
+              Submit the registration form below
             </Text>
           </View>
 
@@ -233,7 +233,7 @@ class RegisterSmoothStarScreen extends Component {
           <View style={[lineStyle, lgGapStyle]} />
 
           <Text type={StyleTypes.h1} style={[lgGapStyle, introTextStyle]}>
-            REGISTERATION FORM
+            REGISTRATION FORM
           </Text>
 
           <View style={[switchViewStyle, smGapStyle]}>
@@ -411,7 +411,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   const { user } = state.auth;
-  const { loading, registerationAttempts, registerationStatus } = state.app;
+  const { loading, registrationAttempts, registrationStatus } = state.app;
 
   // console.log('IS_REGISTERED:', state.app[AppStates.REGISTER_SS]);
 
@@ -419,12 +419,12 @@ const mapStateToProps = state => {
     loading,
     user,
     isRegistered: state.app[AppStates.REGISTER_SS],
-    registerationAttempts,
-    registerationStatus,
+    registrationAttempts,
+    registrationStatus,
   };
 };
 
 export default connect(
   mapStateToProps,
-  { creatSSRegisteration, unsubState }
+  { createSSRegistration, unsubState }
 )(RegisterSmoothStarScreen);

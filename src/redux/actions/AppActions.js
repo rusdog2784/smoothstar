@@ -9,10 +9,10 @@ const {
   API_INITIATE,
   API_COMPLETED,
   FETCH_LIST_NEWS,
-  CREATE_SS_REGISTERATION,
-  UPDATE_SS_REGISTERATION,
+  CREATE_SS_REGISTRATION,
+  UPDATE_SS_REGISTRATION,
   CLEAR_ERR_MSG,
-  CHECK_SS_REGISTERATION,
+  CHECK_SS_REGISTRATION,
 } = ActionTypes;
 
 export const unsubState = state => {
@@ -37,21 +37,21 @@ export const fetchListNews = () => {
   };
 };
 
-export const checkSSRegisteration = userId => {
+export const checkSSRegistration = userId => {
   return dispatch => {
     dispatch({ type: API_INITIATE });
 
-    _searchSSRegisteration(userId)
+    _searchSSRegistration(userId)
       .then(response => {
-        const { items } = response.data.listSmoothstarRegisterations;
+        const { items } = response.data.listSmoothstarRegistrations;
 
         if (items.length !== 0) {
           dispatch({
-            type: CHECK_SS_REGISTERATION,
+            type: CHECK_SS_REGISTRATION,
             payload: {
               id: items[0].id,
-              attempts: items[0].registerationAttempts,
-              status: items[0].registerationStatus,
+              attempts: items[0].registrationAttempts,
+              status: items[0].registrationStatus,
             },
           });
         }
@@ -66,60 +66,60 @@ export const checkSSRegisteration = userId => {
   };
 };
 
-export const creatSSRegisteration = ({ stockist, registeration }) => {
+export const createSSRegistration = ({ stockist, registration }) => {
   return (dispatch, getState) => {
     dispatch({ type: API_INITIATE });
 
-    const { alreadyRegisteredId, registerationAttempts } = getState().app;
+    const { alreadyRegisteredId, registrationAttempts } = getState().app;
     const { user } = getState().auth;
-    let apiName = CREATE_SS_REGISTERATION;
-    let apiMediaName = APINames.CREATE_REGISTERATION_MEDIA;
+    let apiName = CREATE_SS_REGISTRATION;
+    let apiMediaName = APINames.CREATE_REGISTRATION_MEDIA;
 
     if (alreadyRegisteredId) {
-      apiName = UPDATE_SS_REGISTERATION;
-      apiMediaName = APINames.UPDATE_REGISTERATION_MEDIA;
-      registeration.id = alreadyRegisteredId;
-      registeration.expectedVersion = registerationAttempts;
+      apiName = UPDATE_SS_REGISTRATION;
+      apiMediaName = APINames.UPDATE_REGISTRATION_MEDIA;
+      registration.id = alreadyRegisteredId;
+      registration.expectedVersion = registrationAttempts;
     }
 
-    registeration.registerationStatus = AppConstants.RegisterationStatus.Unregistered;
+    registration.registrationStatus = AppConstants.RegistrationStatus.Unregistered;
 
     if (stockist) {
-      const image = registeration.image;
-      delete registeration.image;
+      const image = registration.image;
+      delete registration.image;
 
       // _searchOcrInfo({ smoothstarModel, purchaseDate, shopName })
       //   .then(response => {
       //     if (response.data.listOCRInfos.items.length !== 0) {
-      //       registeration.smoothstarRegisterationOcrInfoId = response.data.listOCRInfos.items[0].id;
-      //       registeration.registerationStatus = AppConstants.RegisterationStatus.Registered;
+      //       registration.smoothstarRegistrationOcrInfoId = response.data.listOCRInfos.items[0].id;
+      //       registration.registrationStatus = AppConstants.RegistrationStatus.Registered;
       //     }
-      //     // console.log('registeration:', registeration);
-      //     _createUpdateRegisteration(dispatch, apiName, registeration);
+      //     // console.log('registration:', registration);
+      //     _createUpdateRegistration(dispatch, apiName, registration);
       //   })
       //   .catch(error => {
       //     console.log('error:', error);
       //     _apiCompleted(dispatch, { error });
       //   });
 
-      _createUpdateRegisteration({
+      _createUpdateRegistration({
         dispatch,
         apiName,
-        registeration,
+        registration,
         stockist,
         media: { image, apiName: apiMediaName, user },
-        version: registerationAttempts,
+        version: registrationAttempts,
       });
     } else {
-      _searchOrderInfo(registeration.orderNum)
+      _searchOrderInfo(registration.orderNum)
         .then(response => {
           if (response.data.listOrderInfos.items.length !== 0) {
-            registeration.smoothstarRegisterationOrderInfoId =
+            registration.smoothstarRegistrationOrderInfoId =
               response.data.listOrderInfos.items[0].id;
-            registeration.registerationStatus = AppConstants.RegisterationStatus.Registered;
+            registration.registrationStatus = AppConstants.RegistrationStatus.Registered;
           }
-          // console.log('registeration:', registeration);
-          _createUpdateRegisteration({ dispatch, apiName, registeration, stockist });
+          // console.log('registration:', registration);
+          _createUpdateRegistration({ dispatch, apiName, registration, stockist });
         })
         .catch(error => {
           _apiCompleted(dispatch, { error });
@@ -164,10 +164,10 @@ const _searchOrderInfo = orderNum => {
 //     });
 // };
 
-const _createUpdateRegisteration = ({
+const _createUpdateRegistration = ({
   dispatch,
   apiName,
-  registeration,
+  registration,
   stockist,
   media,
   version,
@@ -175,33 +175,33 @@ const _createUpdateRegisteration = ({
   executeApi({
     type: MUTATION,
     name: APINames[apiName],
-    data: { input: registeration },
+    data: { input: registration },
   })
     .then(response => {
-      const registerationId = response.data[APINames[apiName]].id;
+      const registrationId = response.data[APINames[apiName]].id;
 
       dispatch({
-        type: CREATE_SS_REGISTERATION,
+        type: CREATE_SS_REGISTRATION,
         payload: {
-          status: registeration.registerationStatus === AppConstants.RegisterationStatus.Registered,
-          id: registerationId,
+          status: registration.registrationStatus === AppConstants.RegistrationStatus.Registered,
+          id: registrationId,
         },
       });
 
       if (stockist) {
-        _searchRegisteratioMedia(registerationId)
+        _searchRegisteratioMedia(registrationId)
           .then(responseMedia => {
             const inputData = {
-              registerationId,
-              registerationMediaRegisterationId: registerationId,
+              registrationId,
+              registrationMediaRegistrationId: registrationId,
             };
 
-            if (responseMedia.data.listRegisterationMedias.items.length !== 0) {
-              inputData.id = responseMedia.data.listRegisterationMedias.items[0].id;
+            if (responseMedia.data.listRegistrationMedias.items.length !== 0) {
+              inputData.id = responseMedia.data.listRegistrationMedias.items[0].id;
               inputData.expectedVersion = version;
             }
 
-            _createUpdateRegisterationMedia({ inputData, ...media })
+            _createUpdateRegistrationMedia({ inputData, ...media })
               .then(() => {
                 _apiCompleted(dispatch);
               })
@@ -221,10 +221,10 @@ const _createUpdateRegisteration = ({
     });
 };
 
-const _searchSSRegisteration = userId => {
+const _searchSSRegistration = userId => {
   return executeApi({
     type: QUERY,
-    name: APINames.SEARCH_SS_REGISTERATION,
+    name: APINames.SEARCH_SS_REGISTRATION,
     data: { filter: { userId: { eq: userId } } },
   })
     .then(response => response)
@@ -233,7 +233,7 @@ const _searchSSRegisteration = userId => {
     });
 };
 
-const _createUpdateRegisterationMedia = ({ image, apiName, user, inputData: input }) => {
+const _createUpdateRegistrationMedia = ({ image, apiName, user, inputData: input }) => {
   const { extension, uri } = image;
   const { id: identityId } = user;
 
@@ -248,12 +248,12 @@ const _createUpdateRegisterationMedia = ({ image, apiName, user, inputData: inpu
     });
 };
 
-const _searchRegisteratioMedia = registerationId => {
+const _searchRegisteratioMedia = registrationId => {
   return executeApi({
     type: QUERY,
-    name: APINames.SEARCH_REGISTERATION_MEDIA,
+    name: APINames.SEARCH_REGISTRATION_MEDIA,
     data: {
-      filter: { registerationId: { eq: registerationId } },
+      filter: { registrationId: { eq: registrationId } },
     },
   })
     .then(response => response)

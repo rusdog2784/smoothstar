@@ -1,19 +1,25 @@
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
 import NewsStack from './NavigationStacks/NewsStack';
-import RegisterationStack from './NavigationStacks/RegisterationStack';
+import RegistrationStack from './NavigationStacks/RegistrationStack';
 
 const AppNavigator = createDrawerNavigator(
   {
     NewsStack: {
       screen: NewsStack,
+      navigationOptions: {
+        title: 'News',
+      },
     },
-    RegisterationStack: {
-      screen: RegisterationStack,
+    RegistrationStack: {
+      screen: RegistrationStack,
+      navigationOptions: {
+        title: 'Registration',
+      },
     },
   },
   {
-    initialRouteName: 'NewsStack',
+    initialRouteName: 'RegistrationStack',
     backBehavior: 'none',
     unmountInactiveRoutes: true,
   }

@@ -4,7 +4,7 @@ import { SplashScreen, Asset } from 'expo';
 import { connect } from 'react-redux';
 
 import { Assets } from '~constants';
-import { setAuth, checkSSRegisteration, checkInitLaunch, setInitLaunch } from '~redux/actions';
+import { setAuth, checkSSRegistration, checkInitLaunch, setInitLaunch } from '~redux/actions';
 
 const { initial_1, initial_2, initial_3, initial_4, surfSkate, testImg } = Assets.Images;
 const INIT_IMAGES = [initial_1, initial_2, initial_3, initial_4, initial_4];
@@ -52,13 +52,13 @@ class InitScreen extends Component {
   };
 
   readyToMove = params => {
-    const { navigation, user, loading, loadingApp, ready, checkSSRegisteration } = this.props;
+    const { navigation, user, loading, loadingApp, ready, checkSSRegistration } = this.props;
 
     if (!loading && !loadingApp) {
       if (ready) {
         navigation.navigate('AppNavigator');
       } else if (user) {
-        checkSSRegisteration(user.username);
+        checkSSRegistration(user.username);
       } else {
         navigation.navigate('AuthNavigator');
       }
@@ -124,5 +124,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setAuth, checkSSRegisteration, checkInitLaunch, setInitLaunch }
+  { setAuth, checkSSRegistration, checkInitLaunch, setInitLaunch }
 )(InitScreen);

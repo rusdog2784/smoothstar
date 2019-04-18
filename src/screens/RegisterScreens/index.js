@@ -1,5 +1,5 @@
 import RegisterSmoothStarScreen from './RegisterSmoothStarScreen';
-import RegisterationSuccessScreen from './RegisterationSuccessScreen';
-import RegisterationUnsuccessfulScreen from './RegisterationUnsuccessfulScreen';
+import RegistrationSuccessScreen from './RegistrationSuccessScreen';
+import RegistrationUnsuccessfulScreen from './RegistrationUnsuccessfulScreen';
 
-export { RegisterSmoothStarScreen, RegisterationSuccessScreen, RegisterationUnsuccessfulScreen };
+export { RegisterSmoothStarScreen, RegistrationSuccessScreen, RegistrationUnsuccessfulScreen };

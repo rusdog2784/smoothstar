@@ -6,16 +6,16 @@ const {
   UNSUB_STATE,
   CLEAR_ERR_MSG,
   FETCH_LIST_NEWS,
-  CREATE_SS_REGISTERATION,
-  CHECK_SS_REGISTERATION,
+  CREATE_SS_REGISTRATION,
+  CHECK_SS_REGISTRATION,
   READY_APP,
 } = ActionTypes;
 
-const REGISTERATION_STATES = {
+const REGISTRATION_STATES = {
   [AppStates.REGISTER_SS]: false,
-  registerationAttempts: 0,
+  registrationAttempts: 0,
   alreadyRegisteredId: null,
-  registerationStatus: false,
+  registrationStatus: false,
 };
 
 const INITIAL_STATE = {
@@ -24,7 +24,7 @@ const INITIAL_STATE = {
   error: '',
   loading: false,
   newsList: [],
-  ...REGISTERATION_STATES,
+  ...REGISTRATION_STATES,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -57,20 +57,20 @@ export default (state = INITIAL_STATE, action) => {
 
     // REGISTER SMOOTHSTAR
 
-    case CREATE_SS_REGISTERATION:
+    case CREATE_SS_REGISTRATION:
       return {
         ...state,
         [AppStates.REGISTER_SS]: true,
-        registerationStatus: action.payload.status,
-        registerationAttempts: state.registerationAttempts + 1,
+        registrationStatus: action.payload.status,
+        registrationAttempts: state.registrationAttempts + 1,
         alreadyRegisteredId: action.payload.id,
       };
-    case CHECK_SS_REGISTERATION:
+    case CHECK_SS_REGISTRATION:
       return {
         ...state,
         alreadyRegisteredId: action.payload.id,
-        registerationAttempts: action.payload.attempts,
-        registerationStatus: action.payload.status,
+        registrationAttempts: action.payload.attempts,
+        registrationStatus: action.payload.status,
       };
     default:
       return state;

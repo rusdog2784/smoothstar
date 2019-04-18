@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
 
-import { authConfirmSignUp, authConfirmSignIn, checkSSRegisteration } from '~redux/actions';
+import { authConfirmSignUp, authConfirmSignIn, checkSSRegistration } from '~redux/actions';
 import { Text, Button, InputBox } from '~components/common';
 import { Assets, StyleTypes, AuthActionTypes } from '~constants';
 import { GlobalStyles } from '~styles';
@@ -21,7 +21,7 @@ class AuthVerificationScreen extends Component {
       authAction,
       loading,
       user,
-      checkSSRegisteration,
+      checkSSRegistration,
       loadingApp,
       ready,
     } = this.props;
@@ -29,7 +29,7 @@ class AuthVerificationScreen extends Component {
     if (authAction === CONFIRMED_SIGN_UP && !loading) {
       navigation.navigate('LoginScreen');
     } else if (authAction === CONFIRMED_SIGN_IN && !loading && !ready) {
-      checkSSRegisteration(user.username);
+      checkSSRegistration(user.username);
     } else if (authAction === VERIFIED_ATTR && !loading) {
       navigation.navigate('LoginScreen');
     } else if (ready && !loading && !loadingApp) {
@@ -149,5 +149,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { authConfirmSignUp, authConfirmSignIn, checkSSRegisteration }
+  { authConfirmSignUp, authConfirmSignIn, checkSSRegistration }
 )(AuthVerificationScreen);

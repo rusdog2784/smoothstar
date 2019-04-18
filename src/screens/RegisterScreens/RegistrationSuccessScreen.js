@@ -8,9 +8,9 @@ import { GlobalStyles, Colors } from '~styles';
 
 const { height } = Dimensions.get('window');
 
-class RegisterationSuccessScreen extends Component {
+class RegistrationSuccessScreen extends Component {
   static navigationOptions = {
-    headerTitle: <Text type={StyleTypes.headerTitleDark}>REGISTERATION</Text>,
+    headerTitle: <Text type={StyleTypes.headerTitleDark}>REGISTRATION</Text>,
     headerLeft: <View>{null}</View>,
     headerRight: <View>{null}</View>,
   };
@@ -25,7 +25,7 @@ class RegisterationSuccessScreen extends Component {
         <Content contentContainerStyle={styles.contentStyle} showsVerticalScrollIndicator={false}>
           <View style={[styles.textViewStyle, GlobalStyles.lgGapStyle]}>
             <Text style={[styles.headingStyle, GlobalStyles.lgGapStyle]} type={StyleTypes.h1}>
-              REGISTERATION SUCCESSFUL
+              REGISTRATION SUCCESSFUL
             </Text>
 
             <Text style={styles.textStyle} type={StyleTypes.p}>
@@ -74,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegisterationSuccessScreen;
+export default RegistrationSuccessScreen;

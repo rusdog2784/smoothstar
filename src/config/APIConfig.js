@@ -1,9 +1,9 @@
 export const FETCH_LIST_NEWS = 'listNewss';
-export const CREATE_SS_REGISTERATION = 'createSmoothstarRegisteration';
-export const UPDATE_SS_REGISTERATION = 'updateSmoothstarRegisteration';
+export const CREATE_SS_REGISTRATION = 'createSmoothstarRegistration';
+export const UPDATE_SS_REGISTRATION = 'updateSmoothstarRegistration';
 export const SEARCH_ORDER_INFO = 'listOrderInfos';
 export const SEARCH_OCR_INFO = 'listOcrInfos';
-export const SEARCH_SS_REGISTERATION = 'listSmoothstarRegisterations';
-export const CREATE_REGISTERATION_MEDIA = 'createRegisterationMedia';
-export const UPDATE_REGISTERATION_MEDIA = 'updateRegisterationMedia';
-export const SEARCH_REGISTERATION_MEDIA = 'listRegisterationMedias';
+export const SEARCH_SS_REGISTRATION = 'listSmoothstarRegistrations';
+export const CREATE_REGISTRATION_MEDIA = 'createRegistrationMedia';
+export const UPDATE_REGISTRATION_MEDIA = 'updateRegistrationMedia';
+export const SEARCH_REGISTRATION_MEDIA = 'listRegistrationMedias';
