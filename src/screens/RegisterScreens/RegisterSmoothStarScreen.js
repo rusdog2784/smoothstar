@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { ImagePicker } from 'expo';
-import { Container, Content } from 'native-base';
+import { ImagePicker, Permissions } from 'expo';
+import { Container, Content, ActionSheet } from 'native-base';
 import { connect } from 'react-redux';
 import { StackActions, NavigationActions } from 'react-navigation';
 import _ from 'lodash';
@@ -66,17 +66,47 @@ class RegisterSmoothStarScreen extends Component {
   };
 
   pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-    });
-
-    if (!result.cancelled) {
-      const { uri, type } = result;
-
-      const [, , , extension] = /([^.]+)(\.(\w+))?$/.exec(uri);
-
-      this.setState({ image: { uri, extension, type } });
+    const { statusGet } = await Permissions.getAsync(Permissions.CAMERA, Permissions.CAMERA_ROLL);
+    if (statusGet !== 'granted') {
+      console.log('Hey! You heve not enabled selected permissions');
+      const { statusAsk } = await Permissions.askAsync(Permissions.CAMERA, Permissions.CAMERA_ROLL);
+      if (statusAsk === 'granted') {
+        console.log('Permissions Granted');
+      } else {
+        console.log('Permissions Not Granted');
+      }
     }
+
+    ActionSheet.show(
+      {
+        options: ['Camera', 'Gallery', 'Cancel'],
+        cancelButtonIndex: 2,
+        title: 'Select image source',
+      },
+      async buttonIndex => {
+        if (buttonIndex === 1) {
+          let result = await ImagePicker.launchImageLibraryAsync({
+            allowsEditing: true,
+          });
+
+          if (!result.cancelled) {
+            const { uri, type } = result;
+            const [, , , extension] = /([^.]+)(\.(\w+))?$/.exec(uri);
+            this.setState({ image: { uri, extension, type } });
+          }
+        } else if (buttonIndex === 0) {
+          let result = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+          });
+
+          if (!result.cancelled) {
+            const { uri, type } = result;
+            const [, , , extension] = /([^.]+)(\.(\w+))?$/.exec(uri);
+            this.setState({ image: { uri, extension, type } });
+          }
+        }
+      }
+    );
   };
 
   formTextChange = (text, type) => {
