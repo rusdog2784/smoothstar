@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import { ImageBackground, TouchableWithoutFeedback } from 'react-native';
+import { ImageBackground, TouchableWithoutFeedback, StyleSheet, View, Image } from 'react-native';
 import { SplashScreen, Asset } from 'expo';
 import { connect } from 'react-redux';
+import Swiper from 'react-native-swiper';
 
 import { Assets } from '~constants';
+import { Colors } from '~styles';
 import { setAuth, checkSSRegistration, checkInitLaunch, setInitLaunch } from '~redux/actions';
 
 const { initial_1, initial_2, initial_3, initial_4, surfSkate, testImg } = Assets.Images;
-const INIT_IMAGES = [initial_1, initial_2, initial_3, initial_4, initial_4];
 
 class InitScreen extends Component {
   state = {
     readyResources: false,
-    initImageIndex: -1,
   };
 
   componentDidMount = () => {
@@ -25,17 +25,10 @@ class InitScreen extends Component {
 
   componentDidUpdate = () => {
     const { isInitLaunch } = this.props;
-    const { readyResources, initImageIndex } = this.state;
+    const { readyResources } = this.state;
 
     if (readyResources && isInitLaunch) {
-      if (initImageIndex > 3) {
-        clearInterval();
-        this.readyToMove();
-      } else if (initImageIndex === -1) {
-        this.incrementImage();
-        this.setImageIntervals();
-        SplashScreen.hide();
-      }
+      SplashScreen.hide();
     } else if (readyResources && !isInitLaunch) {
       this.readyToMove();
     }
@@ -44,9 +37,7 @@ class InitScreen extends Component {
   componentWillUnmount = () => {
     const { isInitLaunch } = this.props;
 
-    if (isInitLaunch) {
-      this.props.setInitLaunch();
-    } else {
+    if (!isInitLaunch) {
       SplashScreen.hide();
     }
   };
@@ -71,43 +62,65 @@ class InitScreen extends Component {
     return Promise.all(cacheImages);
   };
 
-  setImageIntervals = params => {
-    clearInterval();
-    setInterval(() => {
-      if (this.state.initImageIndex < 4) {
-        this.incrementImage();
-      }
-    }, 5000);
-  };
-
-  incrementImage = () => this.setState({ initImageIndex: this.state.initImageIndex + 1 });
-
-  onImagePress = () => {
-    if (this.state.initImageIndex < 3) {
-      this.incrementImage();
-      this.setImageIntervals();
+  _swiperIndexChanged = index => {
+    if (index === 3) {
+      setTimeout(this.props.setInitLaunch, 2500);
     }
   };
 
   render() {
-    const { isInitLaunch } = this.props;
-
-    return this.state.initImageIndex !== -1 && isInitLaunch ? (
-      <TouchableBackground
-        onPress={this.onImagePress}
-        source={INIT_IMAGES[this.state.initImageIndex]}
-      />
-    ) : null;
+    return (
+      <View style={styles.carouselViewStyle}>
+        <Swiper
+          loop={false}
+          autoplay
+          dotColor="#bbb"
+          activeDotColor="#fff"
+          onIndexChanged={this._swiperIndexChanged}
+          showsPagination={false}
+          style={styles.carouselStyle}>
+          <View style={styles.slideStyle}>
+            <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.initial_1} />
+          </View>
+          <View style={styles.slideStyle}>
+            <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.initial_2} />
+          </View>
+          <View style={styles.slideStyle}>
+            <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.initial_3} />
+          </View>
+          <View style={styles.slideStyle}>
+            <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.initial_4} />
+          </View>
+        </Swiper>
+      </View>
+    );
   }
 }
 
-const TouchableBackground = ({ source, onPress }) => {
-  return (
-    <TouchableWithoutFeedback onPress={onPress} style={{ flex: 1 }}>
-      <ImageBackground source={source} style={{ flex: 1, backgroundColor: '#000000' }} />
-    </TouchableWithoutFeedback>
-  );
-};
+const styles = StyleSheet.create({
+  carouselViewStyle: {
+    flex: 1,
+    width: '100%',
+  },
+  carouselTextStyle: {
+    textAlign: 'center',
+  },
+  imageStyle: {
+    height: null,
+    width: '100%',
+    flex: 1,
+    backgroundColor: Colors.imageBackgroundColor,
+  },
+  carouselStyle: {
+    flex: 1,
+  },
+  slideStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ddd',
+  },
+});
 
 const mapStateToProps = state => {
   const { loading, user, isInitLaunch } = state.auth;
