@@ -79,8 +79,7 @@ class RegisterSmoothStarScreen extends Component {
 
     ActionSheet.show(
       {
-        options: ['Camera', 'Gallery', 'Cancel'],
-        cancelButtonIndex: 2,
+        options: ['Camera', 'Gallery'],
         title: 'Select image source',
       },
       async buttonIndex => {
