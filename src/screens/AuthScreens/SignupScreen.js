@@ -12,11 +12,17 @@ import countries from '~constants/countries.json';
 const { SIGNED_UP, SIGNED_IN } = AuthActionTypes;
 
 const countriesList = Object.keys(countries).map(name => ({ label: name, value: name }));
+const countriesDialCodesList = Object.keys(countries).map(name => ({
+  label: `${countries[name]} - ${name}`,
+  value: countries[name],
+  key: countries[name],
+}));
 
 class SignupScreen extends Component {
   state = {
     email: '',
     password: '',
+    phone_code: '',
     phone_number: '',
     first_name: '',
     last_name: '',
@@ -67,11 +73,13 @@ class SignupScreen extends Component {
     user.locale = 'en_US';
     user.given_name = user.first_name;
     user.family_name = user.last_name;
+    user.phone_number = user.phone_code + user.phone_number;
     delete user.country;
     delete user.city;
     delete user.first_name;
     delete user.last_name;
     delete user.emailSub;
+    delete user.phone_code;
 
     this.props.authSignUp({ user, verifyEmail: this.state.emailSub });
   };
@@ -146,12 +154,26 @@ class SignupScreen extends Component {
             placeholder="Password"
             secureTextEntry
           />
-          <InputBox
-            onChangeText={text => this.formTextChange(text, 'phone_number')}
-            value={this.state.phone_number}
-            style={smGapStyle}
-            placeholder="+923332222222"
-          />
+          <View style={{ flexDirection: 'row' }}>
+            <Dropdown
+              style={[smGapStyle, { flex: 0.2 }]}
+              selectedValue={this.state.phone_code}
+              placeholderLabel="Code"
+              onValueChange={value => this.formTextChange(value, 'phone_code')}
+              items={countriesDialCodesList}
+            />
+            <InputBox
+              onChangeText={text => this.formTextChange(text, 'phone_number')}
+              value={this.state.phone_number}
+              style={[smGapStyle, { flex: 0.8, marginLeft: 5 }]}
+              placeholder="Phone"
+              iconType="MaterialIcons"
+              keyboardType="numeric"
+              iconRight="info"
+              tooltipIconText="Smoothstar requires phone verification. We will send you a code via SMS. Carrier rates may apply."
+              tooltipHeight={90}
+            />
+          </View>
           <InputBox
             onChangeText={text => this.formTextChange(text, 'first_name')}
             value={this.state.first_name}

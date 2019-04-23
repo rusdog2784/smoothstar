@@ -6,7 +6,14 @@ import { Colors, GlobalStyles } from '~styles';
 
 const { inputTextStyle, textStyle } = GlobalStyles;
 
-export const Dropdown = ({ onValueChange, selectedValue, style, items, placeholderLabel }) => {
+export const Dropdown = ({
+  onValueChange,
+  selectedValue,
+  style,
+  items,
+  placeholderLabel,
+  Icon,
+}) => {
   return (
     <View style={[styles.normalInputStyle, style]}>
       <RNPickerSelect
@@ -21,6 +28,8 @@ export const Dropdown = ({ onValueChange, selectedValue, style, items, placehold
             color: Colors.inputBoxColor,
           },
         }}
+        Icon={Icon}
+        textInputProps={{ value: selectedValue || placeholderLabel }}
       />
     </View>
   );
@@ -33,7 +42,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Colors.inputBoxColor,
     borderRadius: GlobalStyles.borderRadius,
-    padding: 10,
   },
 });
 
@@ -41,9 +49,11 @@ const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     ...inputTextStyle,
     ...textStyle,
+    padding: 10,
   },
   inputAndroid: {
     ...inputTextStyle,
     ...textStyle,
+    padding: 10,
   },
 });

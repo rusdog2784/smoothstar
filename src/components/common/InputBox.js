@@ -20,6 +20,7 @@ export const InputBox = props => {
     iconType,
     tooltipIconText,
     disable,
+    tooltipHeight = 40,
   } = props;
 
   if (iconRight && tooltipIconText) {
@@ -47,6 +48,7 @@ export const InputBox = props => {
           name={iconRight}
           type={iconType}
           tooltipText={tooltipIconText}
+          tooltipHeight={tooltipHeight}
         />
       </View>
     );
@@ -74,10 +76,11 @@ export const InputBox = props => {
   );
 };
 
-const ToolTipIcon = ({ type, name, tooltipText, disable }) => (
+const ToolTipIcon = ({ tooltipHeight, type, name, tooltipText, disable }) => (
   <Tooltip
     popover={<Text style={{ color: Colors.tooltipTextColor }}>{tooltipText}</Text>}
     tooltipWidth={200}
+    height={tooltipHeight}
     withOverlay={false}
     toggleOnPress={!disable}
     highlightColor={Colors.tooltipTextColor}
