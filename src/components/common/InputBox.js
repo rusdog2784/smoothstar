@@ -21,6 +21,7 @@ export const InputBox = props => {
     tooltipIconText,
     disable,
     tooltipHeight = 40,
+    maxLength,
   } = props;
 
   if (iconRight && tooltipIconText) {
@@ -42,6 +43,7 @@ export const InputBox = props => {
           autoCapitalize="none"
           multiline={multiline}
           editable={!disable}
+          maxLength={maxLength}
         />
         <ToolTipIcon
           disable={disable}
@@ -72,6 +74,7 @@ export const InputBox = props => {
       autoCapitalize="none"
       multiline={multiline}
       editable={!disable}
+      maxLength={maxLength}
     />
   );
 };

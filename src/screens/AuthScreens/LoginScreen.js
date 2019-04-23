@@ -79,11 +79,7 @@ class LoginScreen extends Component {
             <Text type={StyleTypes.small}>Forgotten Your Password?</Text>
           </TouchableOpacity>
 
-          <View
-            style={[
-              smGapStyle,
-              { justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row' },
-            ]}>
+          <View style={[{ justifyContent: 'center', flexWrap: 'wrap', flexDirection: 'row' }]}>
             <Text type={StyleTypes.small}>By logging in, you agree to SmoothStar's </Text>
             <TouchableOpacity>
               <Text type={StyleTypes.small} style={underlineTextStyle}>
@@ -97,6 +93,11 @@ class LoginScreen extends Component {
               </Text>
             </TouchableOpacity>
           </View>
+
+          <Text type={StyleTypes.small} style={[smGapStyle, { textAlign: 'center' }]}>
+            *Smoothstar requires Multi-Factor Authentication. We will send you a code via SMS.
+            Carrier rates may apply.
+          </Text>
 
           <Button onPress={this.handleSignIn} style={xlgGapStyle}>
             LOGIN

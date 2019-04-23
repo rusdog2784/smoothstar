@@ -168,7 +168,7 @@ class SignupScreen extends Component {
               style={[smGapStyle, { flex: 0.8, marginLeft: 5 }]}
               placeholder="Phone"
               iconType="MaterialIcons"
-              keyboardType="numeric"
+              keyboardType="number-pad"
               iconRight="info"
               tooltipIconText="Smoothstar requires phone verification. We will send you a code via SMS. Carrier rates may apply."
               tooltipHeight={90}

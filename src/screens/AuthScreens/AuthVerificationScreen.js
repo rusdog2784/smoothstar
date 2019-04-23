@@ -54,11 +54,12 @@ class AuthVerificationScreen extends Component {
 
   render() {
     const { screenContainerStyle, underlineTextStyle } = GlobalStyles;
+    const { type } = this.props.navigation.state.params;
     const {
       contentStyle,
       logoStyle,
       introTextStyle,
-      forgotViewStyle,
+      // forgotViewStyle,
       lgGapStyle,
       mdGapStyle,
       smGapStyle,
@@ -69,8 +70,14 @@ class AuthVerificationScreen extends Component {
         <Content contentContainerStyle={contentStyle} showsVerticalScrollIndicator={false}>
           <Image source={Assets.Images.logoDark} style={[mdGapStyle, logoStyle]} />
 
-          <Text type={StyleTypes.h1} style={[mdGapStyle, introTextStyle]}>
-            YOUR ACCOUNT{'\n'}FOR SMOOTHSTAR
+          <Text type={StyleTypes.h1} style={[lgGapStyle, introTextStyle]}>
+            {type === 'ConfirmSignUp' ? 'Phone Verification' : 'Multi-Factor Authentication'}
+          </Text>
+
+          <Text type={StyleTypes.p} style={[mdGapStyle, introTextStyle]}>
+            {type === 'ConfirmSignUp'
+              ? 'Please type the verification code received via SMS'
+              : 'Please type the MFA verification code received via SMS'}
           </Text>
 
           <InputBox
@@ -78,11 +85,12 @@ class AuthVerificationScreen extends Component {
             style={smGapStyle}
             placeholder="Verfication Code"
             keyboardType="number-pad"
+            maxLength={6}
           />
 
-          <TouchableOpacity style={[forgotViewStyle, lgGapStyle]}>
+          {/* <TouchableOpacity style={[forgotViewStyle, lgGapStyle]}>
             <Text type={StyleTypes.small}>Resend?</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
           <Button onPress={this.handleVerificationCode} style={lgGapStyle}>
             VERIFY
