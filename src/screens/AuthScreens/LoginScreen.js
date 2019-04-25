@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
 import { connect } from 'react-redux';
+import { SplashScreen } from 'expo';
 
 import { authSignIn, authLoginFacebook, authLoginGoogle } from '~redux/actions';
 import { Text, Button, InputBox } from '~components/common';
@@ -14,6 +15,10 @@ class LoginScreen extends Component {
   state = {
     username: this.props.username,
     password: '',
+  };
+
+  componentDidMount = () => {
+    SplashScreen.hide();
   };
 
   componentDidUpdate = () => {

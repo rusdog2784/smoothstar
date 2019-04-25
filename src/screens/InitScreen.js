@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ImageBackground, TouchableWithoutFeedback, StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image } from 'react-native';
 import { SplashScreen, Asset } from 'expo';
 import { connect } from 'react-redux';
 import Swiper from 'react-native-swiper';
@@ -34,13 +34,13 @@ class InitScreen extends Component {
     }
   };
 
-  componentWillUnmount = () => {
-    const { isInitLaunch } = this.props;
+  // componentWillUnmount = () => {
+  //   const { isInitLaunch } = this.props;
 
-    if (!isInitLaunch) {
-      SplashScreen.hide();
-    }
-  };
+  //   if (!isInitLaunch) {
+  //     SplashScreen.hide();
+  //   }
+  // };
 
   readyToMove = params => {
     const { navigation, user, loading, loadingApp, ready, checkSSRegistration } = this.props;

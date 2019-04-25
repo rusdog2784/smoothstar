@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import { ImagePicker, Permissions } from 'expo';
+import { ImagePicker, Permissions, SplashScreen } from 'expo';
 import { Container, Content, ActionSheet } from 'native-base';
 import { connect } from 'react-redux';
 import { StackActions, NavigationActions } from 'react-navigation';
@@ -24,6 +24,10 @@ class RegisterSmoothStarScreen extends Component {
     shopName: '',
     stockist: true,
     image: null,
+  };
+
+  componentDidMount = () => {
+    SplashScreen.hide();
   };
 
   componentDidUpdate = () => {
