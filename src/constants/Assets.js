@@ -2,6 +2,7 @@ export const Assets = {
   Images: {
     testImg: require('~assets/images/testImg.jpg'),
     logoDark: require('~assets/images/logoDark.png'),
+    logoLight: require('~assets/images/logoLight.png'),
     surfSkate: require('~assets/images/surfskate.jpg'),
     initial_1: require('~assets/images/initial_1.jpg'),
     initial_2: require('~assets/images/initial_2.jpg'),
