@@ -1,8 +1,9 @@
 import React from 'react';
 import { TouchableOpacity, Image } from 'react-native';
+import { Icon } from 'native-base';
 
 import { Assets } from '~constants';
-import { GlobalStyles } from '~styles';
+import { GlobalStyles, Colors } from '~styles';
 // import { Colors } from '../../styles/Theme';
 
 export const CustomIcon = ({
@@ -13,20 +14,37 @@ export const CustomIcon = ({
   size,
   button,
   hide = false,
-  dark = false,
+  light = false,
+  custom = false,
+  type,
   // shadow,
 }) => {
-  let cStyle = dark ? { ...GlobalStyles.customIconStyleDark } : { ...GlobalStyles.customIconStyle };
+  let cStyle = {};
 
-  if (size) {
-    cStyle.width = size;
-    cStyle.height = size;
+  if (light) {
+    cStyle.color = Colors.iconColorLight;
   }
 
   if (color) {
     cStyle.color = color;
   }
 
+  if (size) {
+    cStyle.fontSize = size;
+  }
+
+  if (custom) {
+    cStyle = light ? { ...GlobalStyles.customIconStyle } : { ...GlobalStyles.customIconStyleDark };
+
+    if (size) {
+      cStyle.width = size;
+      cStyle.height = size;
+    }
+
+    if (color) {
+      cStyle.tintColor = color;
+    }
+  }
   // if (shadow) {
   //   const shadowWidth = cStyle.width / -14;
   //   const shadowHeight = cStyle.height / 11.2;
@@ -43,7 +61,11 @@ export const CustomIcon = ({
 
   return !hide ? (
     <TouchableOpacity onPress={onPress} disabled={!button} style={style}>
-      <Image style={cStyle} source={Assets.Icons[name]} resizeMode="contain" />
+      {custom ? (
+        <Image style={cStyle} source={Assets.Icons[name]} resizeMode="contain" />
+      ) : (
+        <Icon style={cStyle} type={type} name={name} />
+      )}
     </TouchableOpacity>
   ) : null;
 };

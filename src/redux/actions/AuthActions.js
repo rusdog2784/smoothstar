@@ -142,7 +142,11 @@ export const authLoginFacebook = () => {
     loginFacebook()
       .then(response => {
         if (response) {
-          dispatch({ type: CONFIRM_SIGNIN, payload: response });
+          const user = {
+            ...response.attributes,
+            username: response.username,
+          };
+          dispatch({ type: CONFIRM_SIGNIN, payload: user });
           NavigationService.navigate('AppNavigator');
         }
       })
@@ -182,8 +186,8 @@ export const authSignOut = () => {
     signOut({ provider })
       .then(response => {
         console.log('signOut:', response);
-        dispatch({ type: CLEAR_AUTH });
         NavigationService.navigate('AuthNavigator');
+        dispatch({ type: CLEAR_AUTH });
       })
       .catch(error => {
         console.log(error);

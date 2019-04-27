@@ -28,6 +28,8 @@ class NewsListScreen extends Component {
         onPress={navigation.toggleDrawer}
         style={GlobalStyles.headerLeftStyle}
         name="menu"
+        type="MaterialIcons"
+        color={Colors.iconColorLight}
       />
     ),
   });

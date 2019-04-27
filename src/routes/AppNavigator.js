@@ -1,5 +1,6 @@
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
+import { Drawer } from '~components';
 import NewsStack from './NavigationStacks/NewsStack';
 import RegistrationStack from './NavigationStacks/RegistrationStack';
 
@@ -22,6 +23,7 @@ const AppNavigator = createDrawerNavigator(
     initialRouteName: 'RegistrationStack',
     backBehavior: 'none',
     unmountInactiveRoutes: true,
+    contentComponent: Drawer,
   }
 );
 

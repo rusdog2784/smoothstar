@@ -53,16 +53,19 @@ class AuthVerificationScreen extends Component {
   };
 
   render() {
-    const { screenContainerStyle, underlineTextStyle } = GlobalStyles;
+    const {
+      screenContainerStyle,
+      underlineTextStyle,
+      lgGapStyle,
+      mdGapStyle,
+      smGapStyle,
+    } = GlobalStyles;
     const { type } = this.props.navigation.state.params;
     const {
       contentStyle,
       logoStyle,
       introTextStyle,
       // forgotViewStyle,
-      lgGapStyle,
-      mdGapStyle,
-      smGapStyle,
     } = styles;
 
     return (
@@ -130,15 +133,6 @@ const styles = StyleSheet.create({
   },
   introTextStyle: {
     textAlign: 'center',
-  },
-  lgGapStyle: {
-    marginBottom: 35,
-  },
-  mdGapStyle: {
-    marginBottom: 25,
-  },
-  smGapStyle: {
-    marginBottom: 10,
   },
 });
 

@@ -69,7 +69,9 @@ class InitScreen extends Component {
   };
 
   render() {
-    return (
+    const { isInitLaunch } = this.props;
+
+    return isInitLaunch ? (
       <View style={styles.carouselViewStyle}>
         <Swiper
           loop={false}
@@ -93,7 +95,7 @@ class InitScreen extends Component {
           </View>
         </Swiper>
       </View>
-    );
+    ) : null;
   }
 }
 

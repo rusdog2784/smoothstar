@@ -27,7 +27,9 @@ export const Colors = {
   switchGripColor: '#fff',
   tooltipColor: '#000',
   tooltipTextColor: '#fff',
-  iconColor: '#fff',
+  iconColorLight: '#fff',
   iconColorDark: '#000',
   iconShadowColor: '#4d4c4c',
+  drawerBackgroundColor: '#202022',
+  drawerBottomColor: '#19191a',
 };

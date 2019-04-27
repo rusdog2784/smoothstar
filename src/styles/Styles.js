@@ -33,6 +33,10 @@ export const GlobalStyles = StyleSheet.create({
     fontWeight: 'bold',
     color: Colors.primaryTextColor,
   },
+  h3Style: {
+    fontSize: 14,
+    color: Colors.primaryTextColor,
+  },
   pStyle: {
     fontSize: 12,
     color: Colors.primaryTextColor,
@@ -42,6 +46,7 @@ export const GlobalStyles = StyleSheet.create({
     color: Colors.primaryTextColor,
   },
   normalTextStyle: {
+    fontSize: 12,
     color: Colors.primaryTextColor,
   },
   textShadowStyle: {
@@ -54,6 +59,9 @@ export const GlobalStyles = StyleSheet.create({
   },
   screenContainerStyle: {
     backgroundColor: Colors.backgroundColor,
+  },
+  drawerContainerStyle: {
+    backgroundColor: Colors.drawerBackgroundColor,
   },
   screenType1ContentStyle: {
     marginHorizontal: 30,
@@ -80,7 +88,7 @@ export const GlobalStyles = StyleSheet.create({
   customIconStyle: {
     height: 20,
     width: 20,
-    tintColor: Colors.iconColor,
+    tintColor: Colors.iconColorLight,
   },
   customIconStyleDark: {
     height: 20,
