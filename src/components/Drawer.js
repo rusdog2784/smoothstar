@@ -52,7 +52,11 @@ class Drawer extends Component {
             <SelectableItem iconType="MaterialIcons" iconName="play-circle-outline">
               Surf Training Series
             </SelectableItem>
-            <SelectableItem iconName="ios-pin">Events</SelectableItem>
+            <SelectableItem
+              iconName="ios-pin"
+              onPress={() => NavigationService.navigate('EventStack')}>
+              Events
+            </SelectableItem>
             <SelectableItem
               iconType="MaterialCommunityIcons"
               iconName="newspaper"

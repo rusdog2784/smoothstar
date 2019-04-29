@@ -6,6 +6,7 @@ const {
   UNSUB_STATE,
   CLEAR_ERR_MSG,
   FETCH_LIST_NEWS,
+  FETCH_LIST_EVENTS,
   CREATE_SS_REGISTRATION,
   CHECK_SS_REGISTRATION,
   READY_APP,
@@ -24,6 +25,7 @@ const INITIAL_STATE = {
   error: '',
   loading: false,
   newsList: [],
+  eventsList: [],
   ...REGISTRATION_STATES,
 };
 
@@ -54,6 +56,11 @@ export default (state = INITIAL_STATE, action) => {
 
     case FETCH_LIST_NEWS:
       return { ...state, newsList: action.payload };
+
+    //EVENTS
+
+    case FETCH_LIST_EVENTS:
+      return { ...state, eventsList: action.payload };
 
     // REGISTER SMOOTHSTAR
 

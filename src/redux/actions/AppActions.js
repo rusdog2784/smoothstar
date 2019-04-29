@@ -9,6 +9,7 @@ const {
   API_INITIATE,
   API_COMPLETED,
   FETCH_LIST_NEWS,
+  FETCH_LIST_EVENTS,
   CREATE_SS_REGISTRATION,
   UPDATE_SS_REGISTRATION,
   CLEAR_ERR_MSG,
@@ -29,6 +30,21 @@ export const fetchListNews = () => {
     executeApi({ type: QUERY, name: APINames[FETCH_LIST_NEWS] })
       .then(response => {
         dispatch({ type: FETCH_LIST_NEWS, payload: response.data.listNewss.items });
+        _apiCompleted(dispatch);
+      })
+      .catch(error => {
+        _apiCompleted(dispatch, { error });
+      });
+  };
+};
+
+export const fetchListEvents = () => {
+  return dispatch => {
+    dispatch({ type: API_INITIATE });
+
+    executeApi({ type: QUERY, name: APINames[FETCH_LIST_EVENTS] })
+      .then(response => {
+        dispatch({ type: FETCH_LIST_EVENTS, payload: response.data.listEvents.items });
         _apiCompleted(dispatch);
       })
       .catch(error => {
@@ -128,7 +144,8 @@ export const createSSRegistration = ({ stockist, registration }) => {
   };
 };
 
-// HELPER METHODS
+// HELPER METHODS-------------------------------------------------------------------------->
+
 const _apiCompleted = (dispatch, payload = null) => {
   dispatch({ type: API_COMPLETED, payload });
   setTimeout(() => dispatch({ type: CLEAR_ERR_MSG }), 2000);

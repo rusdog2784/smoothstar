@@ -1,4 +1,5 @@
 export const FETCH_LIST_NEWS = 'listNewss';
+export const FETCH_LIST_EVENTS = 'listEvents';
 export const CREATE_SS_REGISTRATION = 'createSmoothstarRegistration';
 export const UPDATE_SS_REGISTRATION = 'updateSmoothstarRegistration';
 export const SEARCH_ORDER_INFO = 'listOrderInfos';
