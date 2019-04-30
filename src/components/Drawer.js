@@ -71,6 +71,11 @@ class Drawer extends Component {
               onPress={() => NavigationService.navigate('RegistrationStack')}>
               Register
             </SelectableItem>
+            <SelectableItem
+              iconName="md-settings"
+              onPress={() => NavigationService.navigate('SettingsStack')}>
+              Settings
+            </SelectableItem>
             <SelectableItem iconType="MaterialIcons" iconName="sms">
               Messages
             </SelectableItem>

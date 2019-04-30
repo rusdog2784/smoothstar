@@ -4,6 +4,7 @@ import { Drawer } from '~components';
 import NewsStack from './NavigationStacks/NewsStack';
 import RegistrationStack from './NavigationStacks/RegistrationStack';
 import EventsStack from './NavigationStacks/EventsStack';
+import SettingsStack from './NavigationStacks/SettingsStack';
 
 const AppNavigator = createDrawerNavigator(
   {
@@ -25,9 +26,15 @@ const AppNavigator = createDrawerNavigator(
         title: 'Registration',
       },
     },
+    SettingsStack: {
+      screen: SettingsStack,
+      navigationOptions: {
+        title: 'Registration',
+      },
+    },
   },
   {
-    initialRouteName: 'EventsStack',
+    initialRouteName: 'SettingsStack',
     backBehavior: 'none',
     unmountInactiveRoutes: true,
     contentComponent: Drawer,
