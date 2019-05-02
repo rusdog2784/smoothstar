@@ -19,21 +19,22 @@ export const createNews = `mutation CreateNews($input: CreateNewsInput!) {
       key
     }
     paragraphs {
-      items {
-        id
-        content
-        active
-        sortOrder
-        version
-      }
-      nextToken
+      id
+      content
+      active
+      sortOrder
+      version
     }
     images {
-      items {
-        id
-        version
+      id
+      file {
+        bucket
+        region
+        key
       }
-      nextToken
+      active
+      sortOrder
+      version
     }
     tags
     version
@@ -58,21 +59,22 @@ export const updateNews = `mutation UpdateNews($input: UpdateNewsInput!) {
       key
     }
     paragraphs {
-      items {
-        id
-        content
-        active
-        sortOrder
-        version
-      }
-      nextToken
+      id
+      content
+      active
+      sortOrder
+      version
     }
     images {
-      items {
-        id
-        version
+      id
+      file {
+        bucket
+        region
+        key
       }
-      nextToken
+      active
+      sortOrder
+      version
     }
     tags
     version
@@ -97,21 +99,142 @@ export const deleteNews = `mutation DeleteNews($input: DeleteNewsInput!) {
       key
     }
     paragraphs {
-      items {
-        id
-        content
-        active
-        sortOrder
-        version
-      }
-      nextToken
+      id
+      content
+      active
+      sortOrder
+      version
     }
     images {
-      items {
-        id
-        version
+      id
+      file {
+        bucket
+        region
+        key
       }
-      nextToken
+      active
+      sortOrder
+      version
+    }
+    tags
+    version
+  }
+}
+`;
+export const createEvent = `mutation CreateEvent($input: CreateEventInput!) {
+  createEvent(input: $input) {
+    id
+    publishedOn
+    active
+    title
+    rawContent
+    imgTitle {
+      bucket
+      region
+      key
+    }
+    imgThumbnail {
+      bucket
+      region
+      key
+    }
+    paragraphs {
+      id
+      content
+      active
+      sortOrder
+      version
+    }
+    images {
+      id
+      file {
+        bucket
+        region
+        key
+      }
+      active
+      sortOrder
+      version
+    }
+    tags
+    version
+  }
+}
+`;
+export const updateEvent = `mutation UpdateEvent($input: UpdateEventInput!) {
+  updateEvent(input: $input) {
+    id
+    publishedOn
+    active
+    title
+    rawContent
+    imgTitle {
+      bucket
+      region
+      key
+    }
+    imgThumbnail {
+      bucket
+      region
+      key
+    }
+    paragraphs {
+      id
+      content
+      active
+      sortOrder
+      version
+    }
+    images {
+      id
+      file {
+        bucket
+        region
+        key
+      }
+      active
+      sortOrder
+      version
+    }
+    tags
+    version
+  }
+}
+`;
+export const deleteEvent = `mutation DeleteEvent($input: DeleteEventInput!) {
+  deleteEvent(input: $input) {
+    id
+    publishedOn
+    active
+    title
+    rawContent
+    imgTitle {
+      bucket
+      region
+      key
+    }
+    imgThumbnail {
+      bucket
+      region
+      key
+    }
+    paragraphs {
+      id
+      content
+      active
+      sortOrder
+      version
+    }
+    images {
+      id
+      file {
+        bucket
+        region
+        key
+      }
+      active
+      sortOrder
+      version
     }
     tags
     version
@@ -124,31 +247,6 @@ export const createParagraph = `mutation CreateParagraph($input: CreateParagraph
     content
     active
     sortOrder
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
     version
   }
 }
@@ -159,31 +257,6 @@ export const updateParagraph = `mutation UpdateParagraph($input: UpdateParagraph
     content
     active
     sortOrder
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
     version
   }
 }
@@ -194,31 +267,6 @@ export const deleteParagraph = `mutation DeleteParagraph($input: DeleteParagraph
     content
     active
     sortOrder
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
     version
   }
 }
@@ -231,31 +279,8 @@ export const createMedia = `mutation CreateMedia($input: CreateMediaInput!) {
       region
       key
     }
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
+    active
+    sortOrder
     version
   }
 }
@@ -268,31 +293,8 @@ export const updateMedia = `mutation UpdateMedia($input: UpdateMediaInput!) {
       region
       key
     }
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
+    active
+    sortOrder
     version
   }
 }
@@ -305,31 +307,8 @@ export const deleteMedia = `mutation DeleteMedia($input: DeleteMediaInput!) {
       region
       key
     }
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
+    active
+    sortOrder
     version
   }
 }

@@ -19,21 +19,22 @@ export const onCreateNews = `subscription OnCreateNews {
       key
     }
     paragraphs {
-      items {
-        id
-        content
-        active
-        sortOrder
-        version
-      }
-      nextToken
+      id
+      content
+      active
+      sortOrder
+      version
     }
     images {
-      items {
-        id
-        version
+      id
+      file {
+        bucket
+        region
+        key
       }
-      nextToken
+      active
+      sortOrder
+      version
     }
     tags
     version
@@ -58,21 +59,22 @@ export const onUpdateNews = `subscription OnUpdateNews {
       key
     }
     paragraphs {
-      items {
-        id
-        content
-        active
-        sortOrder
-        version
-      }
-      nextToken
+      id
+      content
+      active
+      sortOrder
+      version
     }
     images {
-      items {
-        id
-        version
+      id
+      file {
+        bucket
+        region
+        key
       }
-      nextToken
+      active
+      sortOrder
+      version
     }
     tags
     version
@@ -97,21 +99,142 @@ export const onDeleteNews = `subscription OnDeleteNews {
       key
     }
     paragraphs {
-      items {
-        id
-        content
-        active
-        sortOrder
-        version
-      }
-      nextToken
+      id
+      content
+      active
+      sortOrder
+      version
     }
     images {
-      items {
-        id
-        version
+      id
+      file {
+        bucket
+        region
+        key
       }
-      nextToken
+      active
+      sortOrder
+      version
+    }
+    tags
+    version
+  }
+}
+`;
+export const onCreateEvent = `subscription OnCreateEvent {
+  onCreateEvent {
+    id
+    publishedOn
+    active
+    title
+    rawContent
+    imgTitle {
+      bucket
+      region
+      key
+    }
+    imgThumbnail {
+      bucket
+      region
+      key
+    }
+    paragraphs {
+      id
+      content
+      active
+      sortOrder
+      version
+    }
+    images {
+      id
+      file {
+        bucket
+        region
+        key
+      }
+      active
+      sortOrder
+      version
+    }
+    tags
+    version
+  }
+}
+`;
+export const onUpdateEvent = `subscription OnUpdateEvent {
+  onUpdateEvent {
+    id
+    publishedOn
+    active
+    title
+    rawContent
+    imgTitle {
+      bucket
+      region
+      key
+    }
+    imgThumbnail {
+      bucket
+      region
+      key
+    }
+    paragraphs {
+      id
+      content
+      active
+      sortOrder
+      version
+    }
+    images {
+      id
+      file {
+        bucket
+        region
+        key
+      }
+      active
+      sortOrder
+      version
+    }
+    tags
+    version
+  }
+}
+`;
+export const onDeleteEvent = `subscription OnDeleteEvent {
+  onDeleteEvent {
+    id
+    publishedOn
+    active
+    title
+    rawContent
+    imgTitle {
+      bucket
+      region
+      key
+    }
+    imgThumbnail {
+      bucket
+      region
+      key
+    }
+    paragraphs {
+      id
+      content
+      active
+      sortOrder
+      version
+    }
+    images {
+      id
+      file {
+        bucket
+        region
+        key
+      }
+      active
+      sortOrder
+      version
     }
     tags
     version
@@ -124,31 +247,6 @@ export const onCreateParagraph = `subscription OnCreateParagraph {
     content
     active
     sortOrder
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
     version
   }
 }
@@ -159,31 +257,6 @@ export const onUpdateParagraph = `subscription OnUpdateParagraph {
     content
     active
     sortOrder
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
     version
   }
 }
@@ -194,31 +267,6 @@ export const onDeleteParagraph = `subscription OnDeleteParagraph {
     content
     active
     sortOrder
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
     version
   }
 }
@@ -231,31 +279,8 @@ export const onCreateMedia = `subscription OnCreateMedia {
       region
       key
     }
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
+    active
+    sortOrder
     version
   }
 }
@@ -268,31 +293,8 @@ export const onUpdateMedia = `subscription OnUpdateMedia {
       region
       key
     }
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
+    active
+    sortOrder
     version
   }
 }
@@ -305,31 +307,8 @@ export const onDeleteMedia = `subscription OnDeleteMedia {
       region
       key
     }
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
+    active
+    sortOrder
     version
   }
 }

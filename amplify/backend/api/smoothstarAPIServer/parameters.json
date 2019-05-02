@@ -1,8 +1,10 @@
 {
-  "AppSyncApiName": "smoothstarAPIServer",
-  "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "APIKeyExpirationEpoch": "-1",
-  "AuthCognitoUserPoolId": {
-    "Fn::GetAtt": ["authsmoothstarcognito", "Outputs.UserPoolId"]
-  }
+    "AppSyncApiName": "smoothstarApiServer",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authsmoothstarcognito",
+            "Outputs.UserPoolId"
+        ]
+    }
 }

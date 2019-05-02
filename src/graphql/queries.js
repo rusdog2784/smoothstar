@@ -19,21 +19,22 @@ export const getNews = `query GetNews($id: ID!) {
       key
     }
     paragraphs {
-      items {
-        id
-        content
-        active
-        sortOrder
-        version
-      }
-      nextToken
+      id
+      content
+      active
+      sortOrder
+      version
     }
     images {
-      items {
-        id
-        version
+      id
+      file {
+        bucket
+        region
+        key
       }
-      nextToken
+      active
+      sortOrder
+      version
     }
     tags
     version
@@ -63,20 +64,17 @@ export const listNewss = `query ListNewss(
         key
       }
       paragraphs {
-        items {
-          id
-          content
-        }
+        id
+        content
+        active
+        sortOrder
+        version
       }
       images {
-        items {
-          id
-          file {
-            bucket
-            key
-            region
-          }
-        }
+        id
+        active
+        sortOrder
+        version
       }
       tags
       version
@@ -85,13 +83,53 @@ export const listNewss = `query ListNewss(
   }
 }
 `;
-export const getParagraph = `query GetParagraph($id: ID!) {
-  getParagraph(id: $id) {
+export const getEvent = `query GetEvent($id: ID!) {
+  getEvent(id: $id) {
     id
-    content
+    publishedOn
     active
-    sortOrder
-    news {
+    title
+    rawContent
+    imgTitle {
+      bucket
+      region
+      key
+    }
+    imgThumbnail {
+      bucket
+      region
+      key
+    }
+    paragraphs {
+      id
+      content
+      active
+      sortOrder
+      version
+    }
+    images {
+      id
+      file {
+        bucket
+        region
+        key
+      }
+      active
+      sortOrder
+      version
+    }
+    tags
+    version
+  }
+}
+`;
+export const listEvents = `query ListEvents(
+  $filter: ModelEventFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
       id
       publishedOn
       active
@@ -108,14 +146,31 @@ export const getParagraph = `query GetParagraph($id: ID!) {
         key
       }
       paragraphs {
-        nextToken
+        id
+        content
+        active
+        sortOrder
+        version
       }
       images {
-        nextToken
+        id
+        active
+        sortOrder
+        version
       }
       tags
       version
     }
+    nextToken
+  }
+}
+`;
+export const getParagraph = `query GetParagraph($id: ID!) {
+  getParagraph(id: $id) {
+    id
+    content
+    active
+    sortOrder
     version
   }
 }
@@ -131,15 +186,6 @@ export const listParagraphs = `query ListParagraphs(
       content
       active
       sortOrder
-      news {
-        id
-        publishedOn
-        active
-        title
-        rawContent
-        tags
-        version
-      }
       version
     }
     nextToken
@@ -154,31 +200,8 @@ export const getMedia = `query GetMedia($id: ID!) {
       region
       key
     }
-    news {
-      id
-      publishedOn
-      active
-      title
-      rawContent
-      imgTitle {
-        bucket
-        region
-        key
-      }
-      imgThumbnail {
-        bucket
-        region
-        key
-      }
-      paragraphs {
-        nextToken
-      }
-      images {
-        nextToken
-      }
-      tags
-      version
-    }
+    active
+    sortOrder
     version
   }
 }
@@ -196,15 +219,8 @@ export const listMedias = `query ListMedias(
         region
         key
       }
-      news {
-        id
-        publishedOn
-        active
-        title
-        rawContent
-        tags
-        version
-      }
+      active
+      sortOrder
       version
     }
     nextToken
