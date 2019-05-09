@@ -5,7 +5,6 @@ const {
   AUTH_INITIATE,
   AUTH_COMPLETED,
   SET_AUTH_ACTION_COMPLETED,
-  SET_AUTH,
   CONFIRM_SIGNUP,
   CONFIRM_SIGNIN,
   SET_INIT_LAUNCH,
@@ -35,8 +34,6 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, isInitLaunch: action.payload };
     case SET_AUTH_ACTION_COMPLETED:
       return { ...state, authAction: action.payload.type, authActionData: action.payload.data };
-    case SET_AUTH:
-      return { ...state, user: action.payload };
     case CONFIRM_SIGNUP:
       return { ...state, username: action.payload };
     case CONFIRM_SIGNIN:

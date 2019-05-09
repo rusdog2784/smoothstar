@@ -20,17 +20,17 @@ const countriesDialCodesList = Object.keys(countries).map(name => ({
 
 class SignupScreen extends Component {
   state = {
-    email: '',
-    password: '',
-    phone_code: '',
-    phone_number: '',
-    first_name: '',
-    last_name: '',
-    birthdate: '',
-    gender: '',
-    country: '',
-    city: '',
-    emailSub: false,
+    email: 'tester2@test.com',
+    password: 'Tester@1234',
+    phone_code: '+92',
+    phone_number: '3331431852',
+    first_name: 'Tester',
+    last_name: 'Testing',
+    birthdate: '2019-04-13',
+    gender: 'M',
+    country: 'Pakistan',
+    city: 'Lahore',
+    emailSub: true,
   };
 
   componentDidUpdate = () => {
@@ -78,7 +78,6 @@ class SignupScreen extends Component {
     delete user.city;
     delete user.first_name;
     delete user.last_name;
-    delete user.emailSub;
     delete user.phone_code;
 
     this.props.authSignUp({ user, verifyEmail: this.state.emailSub });

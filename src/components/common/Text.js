@@ -5,7 +5,7 @@ import { GlobalStyles, Colors } from '~styles';
 import { StyleTypes } from '~constants';
 
 export const Text = props => {
-  const { children, type, style, shadow, dark, light } = props;
+  const { children, type, style, shadow, dark, light, grey } = props;
 
   const {
     textStyle,
@@ -62,6 +62,8 @@ export const Text = props => {
   dark && (typeStyle.color = Colors.tertiaryTextColor);
 
   light && (typeStyle.color = Colors.secondaryTextColor);
+
+  grey && (typeStyle.color = Colors.lightGreyTextColor);
 
   let newProps = { ...props };
   newProps.style = [textStyle, typeStyle];

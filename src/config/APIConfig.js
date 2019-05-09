@@ -8,3 +8,5 @@ export const SEARCH_SS_REGISTRATION = 'listSmoothstarRegistrations';
 export const CREATE_REGISTRATION_MEDIA = 'createRegistrationMedia';
 export const UPDATE_REGISTRATION_MEDIA = 'updateRegistrationMedia';
 export const SEARCH_REGISTRATION_MEDIA = 'listRegistrationMedias';
+export const CREATE_USER_INFO = 'createUserInfo';
+export const UPDATE_USER_INFO = 'updateUserInfo';

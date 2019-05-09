@@ -6,6 +6,7 @@ export const Colors = {
   secondaryTextColor: '#fff',
   tertiaryTextColor: '#000',
   greyTextColor: '#aaa',
+  lightGreyTextColor: '#c2c4ca',
   textShadowColor: '#4d4c4c',
   inputBoxColor: '#aaa',
   inputBoxTextColor: '#000',
