@@ -10,10 +10,34 @@ type News @model @versioned {
   imgTitle: S3Object
   imgThumbnail: S3Object
 
-  paragraphs: [Paragraph!]!
-  images: [Media!]!
+  newsParagraphs: [NewsParagraph!]!
+    @connection(name: "NewsParagraphs", keyField: "id", sortField: "sortOrder")
+  newsImages: [NewsMedium!]!
+    @connection(name: "NewsMedia", keyField: "id", sortField: "sortOrder")
 
   tags: [String!]
+}
+
+type NewsParagraph @model @versioned {
+  id: ID!
+  content: String!
+
+  active: Boolean!
+  sortOrder: Int!
+
+  news: News!
+    @connection(name: "NewsParagraphs", keyField: "id", sortField: "sortOrder")
+}
+
+type NewsMedium @model @versioned {
+  id: ID!
+  file: S3Object!
+
+  active: Boolean!
+  sortOrder: Int!
+
+  news: News!
+    @connection(name: "NewsMedia", keyField: "id", sortField: "sortOrder")
 }
 
 type Event @model @versioned {
@@ -28,26 +52,34 @@ type Event @model @versioned {
   imgTitle: S3Object
   imgThumbnail: S3Object
 
-  paragraphs: [Paragraph!]!
-  images: [Media!]!
+  eventParagraphs: [EventParagraph!]!
+    @connection(name: "EventParagraphs", keyField: "id", sortField: "sortOrder")
+  eventImages: [EventMedium!]!
+    @connection(name: "EventMedia", keyField: "id", sortField: "sortOrder")
 
   tags: [String!]
 }
 
-type Paragraph @model @versioned {
+type EventParagraph @model @versioned {
   id: ID!
   content: String!
 
   active: Boolean!
   sortOrder: Int!
+
+  event: Event!
+    @connection(name: "EventParagraphs", keyField: "id", sortField: "sortOrder")
 }
 
-type Media @model @versioned {
+type EventMedium @model @versioned {
   id: ID!
   file: S3Object!
 
   active: Boolean!
   sortOrder: Int!
+
+  event: Event!
+    @connection(name: "EventMedia", keyField: "id", sortField: "sortOrder")
 }
 
 type S3Object {
@@ -64,15 +96,16 @@ type UserInfo @model @versioned {
   active: Boolean!
 
   email: String!
-  phone: String!
-  emailVerified: Boolean!
-  phoneVerified: Boolean!
+  phone_number: String!
+  email_verified: Boolean!
+  phone_number_verified: Boolean!
   promoEmailPreference: Boolean!
   type: String!
-  givenName: String!
-  familyName: String!
+  given_name: String!
+  family_name: String!
+  gender: String!
   locale: String!
-  dateOfBirth: String
+  birthdate: String
   city: String
   country: String
 }

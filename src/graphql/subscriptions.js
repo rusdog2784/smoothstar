@@ -18,23 +18,24 @@ export const onCreateNews = `subscription OnCreateNews {
       region
       key
     }
-    paragraphs {
-      id
-      content
-      active
-      sortOrder
-      version
-    }
-    images {
-      id
-      file {
-        bucket
-        region
-        key
+    newsParagraphs {
+      items {
+        id
+        content
+        active
+        sortOrder
+        version
       }
-      active
-      sortOrder
-      version
+      nextToken
+    }
+    newsImages {
+      items {
+        id
+        active
+        sortOrder
+        version
+      }
+      nextToken
     }
     tags
     version
@@ -58,23 +59,24 @@ export const onUpdateNews = `subscription OnUpdateNews {
       region
       key
     }
-    paragraphs {
-      id
-      content
-      active
-      sortOrder
-      version
-    }
-    images {
-      id
-      file {
-        bucket
-        region
-        key
+    newsParagraphs {
+      items {
+        id
+        content
+        active
+        sortOrder
+        version
       }
-      active
-      sortOrder
-      version
+      nextToken
+    }
+    newsImages {
+      items {
+        id
+        active
+        sortOrder
+        version
+      }
+      nextToken
     }
     tags
     version
@@ -98,25 +100,248 @@ export const onDeleteNews = `subscription OnDeleteNews {
       region
       key
     }
-    paragraphs {
-      id
-      content
-      active
-      sortOrder
-      version
+    newsParagraphs {
+      items {
+        id
+        content
+        active
+        sortOrder
+        version
+      }
+      nextToken
     }
-    images {
+    newsImages {
+      items {
+        id
+        active
+        sortOrder
+        version
+      }
+      nextToken
+    }
+    tags
+    version
+  }
+}
+`;
+export const onCreateNewsParagraph = `subscription OnCreateNewsParagraph {
+  onCreateNewsParagraph {
+    id
+    content
+    active
+    sortOrder
+    news {
       id
-      file {
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
         bucket
         region
         key
       }
-      active
-      sortOrder
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      newsParagraphs {
+        nextToken
+      }
+      newsImages {
+        nextToken
+      }
+      tags
       version
     }
-    tags
+    version
+  }
+}
+`;
+export const onUpdateNewsParagraph = `subscription OnUpdateNewsParagraph {
+  onUpdateNewsParagraph {
+    id
+    content
+    active
+    sortOrder
+    news {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      newsParagraphs {
+        nextToken
+      }
+      newsImages {
+        nextToken
+      }
+      tags
+      version
+    }
+    version
+  }
+}
+`;
+export const onDeleteNewsParagraph = `subscription OnDeleteNewsParagraph {
+  onDeleteNewsParagraph {
+    id
+    content
+    active
+    sortOrder
+    news {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      newsParagraphs {
+        nextToken
+      }
+      newsImages {
+        nextToken
+      }
+      tags
+      version
+    }
+    version
+  }
+}
+`;
+export const onCreateNewsMedium = `subscription OnCreateNewsMedium {
+  onCreateNewsMedium {
+    id
+    file {
+      bucket
+      region
+      key
+    }
+    active
+    sortOrder
+    news {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      newsParagraphs {
+        nextToken
+      }
+      newsImages {
+        nextToken
+      }
+      tags
+      version
+    }
+    version
+  }
+}
+`;
+export const onUpdateNewsMedium = `subscription OnUpdateNewsMedium {
+  onUpdateNewsMedium {
+    id
+    file {
+      bucket
+      region
+      key
+    }
+    active
+    sortOrder
+    news {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      newsParagraphs {
+        nextToken
+      }
+      newsImages {
+        nextToken
+      }
+      tags
+      version
+    }
+    version
+  }
+}
+`;
+export const onDeleteNewsMedium = `subscription OnDeleteNewsMedium {
+  onDeleteNewsMedium {
+    id
+    file {
+      bucket
+      region
+      key
+    }
+    active
+    sortOrder
+    news {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      newsParagraphs {
+        nextToken
+      }
+      newsImages {
+        nextToken
+      }
+      tags
+      version
+    }
     version
   }
 }
@@ -138,23 +363,24 @@ export const onCreateEvent = `subscription OnCreateEvent {
       region
       key
     }
-    paragraphs {
-      id
-      content
-      active
-      sortOrder
-      version
-    }
-    images {
-      id
-      file {
-        bucket
-        region
-        key
+    eventParagraphs {
+      items {
+        id
+        content
+        active
+        sortOrder
+        version
       }
-      active
-      sortOrder
-      version
+      nextToken
+    }
+    eventImages {
+      items {
+        id
+        active
+        sortOrder
+        version
+      }
+      nextToken
     }
     tags
     version
@@ -178,23 +404,24 @@ export const onUpdateEvent = `subscription OnUpdateEvent {
       region
       key
     }
-    paragraphs {
-      id
-      content
-      active
-      sortOrder
-      version
-    }
-    images {
-      id
-      file {
-        bucket
-        region
-        key
+    eventParagraphs {
+      items {
+        id
+        content
+        active
+        sortOrder
+        version
       }
-      active
-      sortOrder
-      version
+      nextToken
+    }
+    eventImages {
+      items {
+        id
+        active
+        sortOrder
+        version
+      }
+      nextToken
     }
     tags
     version
@@ -218,61 +445,137 @@ export const onDeleteEvent = `subscription OnDeleteEvent {
       region
       key
     }
-    paragraphs {
-      id
-      content
-      active
-      sortOrder
-      version
-    }
-    images {
-      id
-      file {
-        bucket
-        region
-        key
+    eventParagraphs {
+      items {
+        id
+        content
+        active
+        sortOrder
+        version
       }
-      active
-      sortOrder
-      version
+      nextToken
+    }
+    eventImages {
+      items {
+        id
+        active
+        sortOrder
+        version
+      }
+      nextToken
     }
     tags
     version
   }
 }
 `;
-export const onCreateParagraph = `subscription OnCreateParagraph {
-  onCreateParagraph {
+export const onCreateEventParagraph = `subscription OnCreateEventParagraph {
+  onCreateEventParagraph {
     id
     content
     active
     sortOrder
+    event {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      eventParagraphs {
+        nextToken
+      }
+      eventImages {
+        nextToken
+      }
+      tags
+      version
+    }
     version
   }
 }
 `;
-export const onUpdateParagraph = `subscription OnUpdateParagraph {
-  onUpdateParagraph {
+export const onUpdateEventParagraph = `subscription OnUpdateEventParagraph {
+  onUpdateEventParagraph {
     id
     content
     active
     sortOrder
+    event {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      eventParagraphs {
+        nextToken
+      }
+      eventImages {
+        nextToken
+      }
+      tags
+      version
+    }
     version
   }
 }
 `;
-export const onDeleteParagraph = `subscription OnDeleteParagraph {
-  onDeleteParagraph {
+export const onDeleteEventParagraph = `subscription OnDeleteEventParagraph {
+  onDeleteEventParagraph {
     id
     content
     active
     sortOrder
+    event {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      eventParagraphs {
+        nextToken
+      }
+      eventImages {
+        nextToken
+      }
+      tags
+      version
+    }
     version
   }
 }
 `;
-export const onCreateMedia = `subscription OnCreateMedia {
-  onCreateMedia {
+export const onCreateEventMedium = `subscription OnCreateEventMedium {
+  onCreateEventMedium {
     id
     file {
       bucket
@@ -281,12 +584,37 @@ export const onCreateMedia = `subscription OnCreateMedia {
     }
     active
     sortOrder
+    event {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      eventParagraphs {
+        nextToken
+      }
+      eventImages {
+        nextToken
+      }
+      tags
+      version
+    }
     version
   }
 }
 `;
-export const onUpdateMedia = `subscription OnUpdateMedia {
-  onUpdateMedia {
+export const onUpdateEventMedium = `subscription OnUpdateEventMedium {
+  onUpdateEventMedium {
     id
     file {
       bucket
@@ -295,12 +623,37 @@ export const onUpdateMedia = `subscription OnUpdateMedia {
     }
     active
     sortOrder
+    event {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      eventParagraphs {
+        nextToken
+      }
+      eventImages {
+        nextToken
+      }
+      tags
+      version
+    }
     version
   }
 }
 `;
-export const onDeleteMedia = `subscription OnDeleteMedia {
-  onDeleteMedia {
+export const onDeleteEventMedium = `subscription OnDeleteEventMedium {
+  onDeleteEventMedium {
     id
     file {
       bucket
@@ -309,6 +662,31 @@ export const onDeleteMedia = `subscription OnDeleteMedia {
     }
     active
     sortOrder
+    event {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      eventParagraphs {
+        nextToken
+      }
+      eventImages {
+        nextToken
+      }
+      tags
+      version
+    }
     version
   }
 }
@@ -320,15 +698,16 @@ export const onCreateUserInfo = `subscription OnCreateUserInfo {
     lastSigninOn
     active
     email
-    phone
-    emailVerified
-    phoneVerified
+    phone_number
+    email_verified
+    phone_number_verified
     promoEmailPreference
     type
-    givenName
-    familyName
+    given_name
+    family_name
+    gender
     locale
-    dateOfBirth
+    birthdate
     city
     country
     version
@@ -342,15 +721,16 @@ export const onUpdateUserInfo = `subscription OnUpdateUserInfo {
     lastSigninOn
     active
     email
-    phone
-    emailVerified
-    phoneVerified
+    phone_number
+    email_verified
+    phone_number_verified
     promoEmailPreference
     type
-    givenName
-    familyName
+    given_name
+    family_name
+    gender
     locale
-    dateOfBirth
+    birthdate
     city
     country
     version
@@ -364,15 +744,16 @@ export const onDeleteUserInfo = `subscription OnDeleteUserInfo {
     lastSigninOn
     active
     email
-    phone
-    emailVerified
-    phoneVerified
+    phone_number
+    email_verified
+    phone_number_verified
     promoEmailPreference
     type
-    givenName
-    familyName
+    given_name
+    family_name
+    gender
     locale
-    dateOfBirth
+    birthdate
     city
     country
     version

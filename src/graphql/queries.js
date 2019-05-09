@@ -18,23 +18,24 @@ export const getNews = `query GetNews($id: ID!) {
       region
       key
     }
-    paragraphs {
-      id
-      content
-      active
-      sortOrder
-      version
-    }
-    images {
-      id
-      file {
-        bucket
-        region
-        key
+    newsParagraphs {
+      items {
+        id
+        content
+        active
+        sortOrder
+        version
       }
-      active
-      sortOrder
-      version
+      nextToken
+    }
+    newsImages {
+      items {
+        id
+        active
+        sortOrder
+        version
+      }
+      nextToken
     }
     tags
     version
@@ -63,20 +64,143 @@ export const listNewss = `query ListNewss(
         region
         key
       }
-      paragraphs {
-        id
-        content
-        active
-        sortOrder
-        version
+      newsParagraphs {
+        nextToken
       }
-      images {
-        id
-        active
-        sortOrder
-        version
+      newsImages {
+        nextToken
       }
       tags
+      version
+    }
+    nextToken
+  }
+}
+`;
+export const getNewsParagraph = `query GetNewsParagraph($id: ID!) {
+  getNewsParagraph(id: $id) {
+    id
+    content
+    active
+    sortOrder
+    news {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      newsParagraphs {
+        nextToken
+      }
+      newsImages {
+        nextToken
+      }
+      tags
+      version
+    }
+    version
+  }
+}
+`;
+export const listNewsParagraphs = `query ListNewsParagraphs(
+  $filter: ModelNewsParagraphFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listNewsParagraphs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      content
+      active
+      sortOrder
+      news {
+        id
+        publishedOn
+        active
+        title
+        rawContent
+        tags
+        version
+      }
+      version
+    }
+    nextToken
+  }
+}
+`;
+export const getNewsMedium = `query GetNewsMedium($id: ID!) {
+  getNewsMedium(id: $id) {
+    id
+    file {
+      bucket
+      region
+      key
+    }
+    active
+    sortOrder
+    news {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      newsParagraphs {
+        nextToken
+      }
+      newsImages {
+        nextToken
+      }
+      tags
+      version
+    }
+    version
+  }
+}
+`;
+export const listNewsMediums = `query ListNewsMediums(
+  $filter: ModelNewsMediumFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listNewsMediums(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      file {
+        bucket
+        region
+        key
+      }
+      active
+      sortOrder
+      news {
+        id
+        publishedOn
+        active
+        title
+        rawContent
+        tags
+        version
+      }
       version
     }
     nextToken
@@ -100,23 +224,24 @@ export const getEvent = `query GetEvent($id: ID!) {
       region
       key
     }
-    paragraphs {
-      id
-      content
-      active
-      sortOrder
-      version
-    }
-    images {
-      id
-      file {
-        bucket
-        region
-        key
+    eventParagraphs {
+      items {
+        id
+        content
+        active
+        sortOrder
+        version
       }
-      active
-      sortOrder
-      version
+      nextToken
+    }
+    eventImages {
+      items {
+        id
+        active
+        sortOrder
+        version
+      }
+      nextToken
     }
     tags
     version
@@ -145,18 +270,11 @@ export const listEvents = `query ListEvents(
         region
         key
       }
-      paragraphs {
-        id
-        content
-        active
-        sortOrder
-        version
+      eventParagraphs {
+        nextToken
       }
-      images {
-        id
-        active
-        sortOrder
-        version
+      eventImages {
+        nextToken
       }
       tags
       version
@@ -165,35 +283,69 @@ export const listEvents = `query ListEvents(
   }
 }
 `;
-export const getParagraph = `query GetParagraph($id: ID!) {
-  getParagraph(id: $id) {
+export const getEventParagraph = `query GetEventParagraph($id: ID!) {
+  getEventParagraph(id: $id) {
     id
     content
     active
     sortOrder
+    event {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      eventParagraphs {
+        nextToken
+      }
+      eventImages {
+        nextToken
+      }
+      tags
+      version
+    }
     version
   }
 }
 `;
-export const listParagraphs = `query ListParagraphs(
-  $filter: ModelParagraphFilterInput
+export const listEventParagraphs = `query ListEventParagraphs(
+  $filter: ModelEventParagraphFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listParagraphs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listEventParagraphs(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       content
       active
       sortOrder
+      event {
+        id
+        publishedOn
+        active
+        title
+        rawContent
+        tags
+        version
+      }
       version
     }
     nextToken
   }
 }
 `;
-export const getMedia = `query GetMedia($id: ID!) {
-  getMedia(id: $id) {
+export const getEventMedium = `query GetEventMedium($id: ID!) {
+  getEventMedium(id: $id) {
     id
     file {
       bucket
@@ -202,16 +354,41 @@ export const getMedia = `query GetMedia($id: ID!) {
     }
     active
     sortOrder
+    event {
+      id
+      publishedOn
+      active
+      title
+      rawContent
+      imgTitle {
+        bucket
+        region
+        key
+      }
+      imgThumbnail {
+        bucket
+        region
+        key
+      }
+      eventParagraphs {
+        nextToken
+      }
+      eventImages {
+        nextToken
+      }
+      tags
+      version
+    }
     version
   }
 }
 `;
-export const listMedias = `query ListMedias(
-  $filter: ModelMediaFilterInput
+export const listEventMediums = `query ListEventMediums(
+  $filter: ModelEventMediumFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listMedias(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listEventMediums(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
       file {
@@ -221,6 +398,15 @@ export const listMedias = `query ListMedias(
       }
       active
       sortOrder
+      event {
+        id
+        publishedOn
+        active
+        title
+        rawContent
+        tags
+        version
+      }
       version
     }
     nextToken
@@ -234,15 +420,16 @@ export const getUserInfo = `query GetUserInfo($id: ID!) {
     lastSigninOn
     active
     email
-    phone
-    emailVerified
-    phoneVerified
+    phone_number
+    email_verified
+    phone_number_verified
     promoEmailPreference
     type
-    givenName
-    familyName
+    given_name
+    family_name
+    gender
     locale
-    dateOfBirth
+    birthdate
     city
     country
     version
@@ -261,15 +448,16 @@ export const listUserInfos = `query ListUserInfos(
       lastSigninOn
       active
       email
-      phone
-      emailVerified
-      phoneVerified
+      phone_number
+      email_verified
+      phone_number_verified
       promoEmailPreference
       type
-      givenName
-      familyName
+      given_name
+      family_name
+      gender
       locale
-      dateOfBirth
+      birthdate
       city
       country
       version
