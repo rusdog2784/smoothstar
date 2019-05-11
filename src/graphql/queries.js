@@ -423,7 +423,7 @@ export const getUserInfo = `query GetUserInfo($id: ID!) {
     phone_number
     email_verified
     phone_number_verified
-    promoEmailPreference
+    promo_email_preference
     type
     given_name
     family_name
@@ -451,7 +451,7 @@ export const listUserInfos = `query ListUserInfos(
       phone_number
       email_verified
       phone_number_verified
-      promoEmailPreference
+      promo_email_preference
       type
       given_name
       family_name

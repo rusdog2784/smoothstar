@@ -701,7 +701,7 @@ export const createUserInfo = `mutation CreateUserInfo($input: CreateUserInfoInp
     phone_number
     email_verified
     phone_number_verified
-    promoEmailPreference
+    promo_email_preference
     type
     given_name
     family_name
@@ -724,7 +724,7 @@ export const updateUserInfo = `mutation UpdateUserInfo($input: UpdateUserInfoInp
     phone_number
     email_verified
     phone_number_verified
-    promoEmailPreference
+    promo_email_preference
     type
     given_name
     family_name
@@ -747,7 +747,7 @@ export const deleteUserInfo = `mutation DeleteUserInfo($input: DeleteUserInfoInp
     phone_number
     email_verified
     phone_number_verified
-    promoEmailPreference
+    promo_email_preference
     type
     given_name
     family_name

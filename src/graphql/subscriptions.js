@@ -701,7 +701,7 @@ export const onCreateUserInfo = `subscription OnCreateUserInfo {
     phone_number
     email_verified
     phone_number_verified
-    promoEmailPreference
+    promo_email_preference
     type
     given_name
     family_name
@@ -724,7 +724,7 @@ export const onUpdateUserInfo = `subscription OnUpdateUserInfo {
     phone_number
     email_verified
     phone_number_verified
-    promoEmailPreference
+    promo_email_preference
     type
     given_name
     family_name
@@ -747,7 +747,7 @@ export const onDeleteUserInfo = `subscription OnDeleteUserInfo {
     phone_number
     email_verified
     phone_number_verified
-    promoEmailPreference
+    promo_email_preference
     type
     given_name
     family_name

@@ -10,10 +10,8 @@ type News @model @versioned {
   imgTitle: S3Object
   imgThumbnail: S3Object
 
-  newsParagraphs: [NewsParagraph!]!
-    @connection(name: "NewsParagraphs", keyField: "id", sortField: "sortOrder")
-  newsImages: [NewsMedium!]!
-    @connection(name: "NewsMedia", keyField: "id", sortField: "sortOrder")
+  newsParagraphs: [NewsParagraph!]! @connection(name: "NewsParagraphs")
+  newsImages: [NewsMedium!]! @connection(name: "NewsMedia")
 
   tags: [String!]
 }
@@ -25,8 +23,7 @@ type NewsParagraph @model @versioned {
   active: Boolean!
   sortOrder: Int!
 
-  news: News!
-    @connection(name: "NewsParagraphs", keyField: "id", sortField: "sortOrder")
+  news: News! @connection(name: "NewsParagraphs")
 }
 
 type NewsMedium @model @versioned {
@@ -36,8 +33,7 @@ type NewsMedium @model @versioned {
   active: Boolean!
   sortOrder: Int!
 
-  news: News!
-    @connection(name: "NewsMedia", keyField: "id", sortField: "sortOrder")
+  news: News! @connection(name: "NewsMedia")
 }
 
 type Event @model @versioned {
@@ -52,10 +48,8 @@ type Event @model @versioned {
   imgTitle: S3Object
   imgThumbnail: S3Object
 
-  eventParagraphs: [EventParagraph!]!
-    @connection(name: "EventParagraphs", keyField: "id", sortField: "sortOrder")
-  eventImages: [EventMedium!]!
-    @connection(name: "EventMedia", keyField: "id", sortField: "sortOrder")
+  eventParagraphs: [EventParagraph!]! @connection(name: "EventParagraphs")
+  eventImages: [EventMedium!]! @connection(name: "EventMedia")
 
   tags: [String!]
 }
@@ -67,8 +61,7 @@ type EventParagraph @model @versioned {
   active: Boolean!
   sortOrder: Int!
 
-  event: Event!
-    @connection(name: "EventParagraphs", keyField: "id", sortField: "sortOrder")
+  event: Event! @connection(name: "EventParagraphs")
 }
 
 type EventMedium @model @versioned {
@@ -78,8 +71,7 @@ type EventMedium @model @versioned {
   active: Boolean!
   sortOrder: Int!
 
-  event: Event!
-    @connection(name: "EventMedia", keyField: "id", sortField: "sortOrder")
+  event: Event! @connection(name: "EventMedia")
 }
 
 type S3Object {
@@ -99,7 +91,7 @@ type UserInfo @model @versioned {
   phone_number: String!
   email_verified: Boolean!
   phone_number_verified: Boolean!
-  promoEmailPreference: Boolean!
+  promo_email_preference: Boolean!
   type: String!
   given_name: String!
   family_name: String!
