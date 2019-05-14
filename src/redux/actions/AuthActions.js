@@ -1,6 +1,6 @@
-import { ActionTypes, AuthActionTypes, ApiTypes } from '~constants';
-// import * as APINames from '~config/APIConfig';
-import { executeApi } from '~utils/API';
+import { ActionTypes, AuthActionTypes } from '~constants';
+import * as APINames from '~config/APIConfig';
+import { addUserInfo, checkUserInfo } from './AppActions';
 import { _c } from '~utils';
 import NavigationService from '~utils/NavigationService';
 import {
@@ -36,8 +36,6 @@ const {
   SET_INIT_LAUNCH,
 } = ActionTypes;
 
-const { MUTATION } = ApiTypes;
-
 export const setAuth = (standalone = true) => {
   return dispatch => {
     if (standalone) {
@@ -45,10 +43,9 @@ export const setAuth = (standalone = true) => {
     }
 
     return checkAuth()
-      .then(response => {
+      .then(async response => {
         const user = { username: response.username, ...response.attributes };
-        dispatch({ type: CONFIRM_SIGNIN, payload: user });
-        return user;
+        await dispatch({ type: CONFIRM_SIGNIN, payload: user });
       })
       .catch(error => {
         console.log(error);
@@ -71,27 +68,6 @@ export const authSignUp = ({ user }) => {
 
     signUp(user)
       .then(async response => {
-        // let userInfo = {
-        //   ...user,
-        //   city: user.address.split('-')[0],
-        //   country: user.address.split('-')[1],
-        //   email_verified: false,
-        //   phone_number_verified: false,
-        //   promoEmailPreference: emailSub,
-        //   type: 'Unknown',
-        //   lastModifiedOn: '2019-05-07',
-        //   lastSigninOn: '2019-15-07',
-        //   active: true,
-        // };
-
-        // delete userInfo.address;
-
-        // console.log('userInfo: ', userInfo);
-
-        // const res = await addUserInfo(userInfo, APINames.CREATE_USER_INFO);
-
-        // console.log('res', res);
-
         dispatch({
           type: SET_AUTH_ACTION_COMPLETED,
           payload: { type: SIGNED_UP, data: user.email },
@@ -103,15 +79,6 @@ export const authSignUp = ({ user }) => {
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };
-};
-
-export const addUserInfo = async (user, apiName) => {
-  console.log('add info');
-  return executeApi({
-    type: MUTATION,
-    name: apiName,
-    data: { input: user },
-  });
 };
 
 export const authConfirmSignUp = ({ username, code }) => {
@@ -153,13 +120,44 @@ export const authSignIn = user => {
 };
 
 export const authConfirmSignIn = data => {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch({ type: AUTH_INITIATE });
 
     confirmSignIn(data)
       .then(async res => {
         if (res.username) {
+          const prevUserInfo = await checkUserInfo(res.username);
+
           await dispatch(setAuth(false));
+
+          const userData = getState().auth.user;
+
+          if (!prevUserInfo) {
+            const userInfo = {
+              ...userData,
+              city: userData.address.split('-')[0],
+              country: userData.address.split('-')[1],
+              email_verified: false,
+              phone_number_verified: false,
+              promo_email_preference: true,
+              type: 'Unknown',
+              lastModifiedOn: _c.formatDateServer(Date.now()),
+              lastSigninOn: _c.formatDateServer(Date.now()),
+              active: true,
+            };
+            delete userInfo.address;
+            delete userInfo.username;
+            delete userInfo.sub;
+
+            addUserInfo(userInfo, APINames.CREATE_USER_INFO);
+          } else {
+            const userInfo = {
+              id: prevUserInfo.id,
+              expectedVersion: prevUserInfo.version,
+              lastSigninOn: _c.formatDateServer(Date.now()),
+            };
+            addUserInfo(userInfo, APINames.UPDATE_USER_INFO);
+          }
 
           dispatch({
             type: SET_AUTH_ACTION_COMPLETED,

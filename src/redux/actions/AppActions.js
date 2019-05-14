@@ -278,3 +278,27 @@ const _searchRegisteratioMedia = registrationId => {
       throw error;
     });
 };
+
+export const addUserInfo = async (user, apiName) => {
+  return executeApi({
+    type: MUTATION,
+    name: apiName,
+    data: { input: user },
+  });
+};
+
+export const getUserInfo = async username => {
+  return executeApi({
+    type: QUERY,
+    name: APINames.SEARCH_USER_INFO,
+    data: {
+      filter: { email: { eq: username } },
+    },
+  });
+};
+
+export const checkUserInfo = async username => {
+  const user = await getUserInfo(username);
+  const items = user.data[APINames.SEARCH_USER_INFO].items;
+  return items.length ? { id: items[0].id, version: items[0].version } : null;
+};

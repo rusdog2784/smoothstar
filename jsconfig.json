@@ -6,6 +6,9 @@
     // "noImplicitAny": false,
     "paths": {
       "~*": ["*", "./src/*"]
+    },
+    "diagnostics": {
+      "exclude": [80006]
     }
   },
   "exclude": ["node_modules"]

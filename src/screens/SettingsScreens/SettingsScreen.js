@@ -323,7 +323,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   const { user } = state.auth;
-  console.log('user', user);
+  // console.log('user', user);
   return {
     user,
   };

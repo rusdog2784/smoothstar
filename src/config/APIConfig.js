@@ -10,3 +10,4 @@ export const UPDATE_REGISTRATION_MEDIA = 'updateRegistrationMedia';
 export const SEARCH_REGISTRATION_MEDIA = 'listRegistrationMedias';
 export const CREATE_USER_INFO = 'createUserInfo';
 export const UPDATE_USER_INFO = 'updateUserInfo';
+export const SEARCH_USER_INFO = 'listUserInfos';
