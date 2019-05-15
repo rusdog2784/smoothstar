@@ -54,7 +54,7 @@ class Drawer extends Component {
             </SelectableItem>
             <SelectableItem
               iconName="ios-pin"
-              onPress={() => NavigationService.navigate('EventStack')}>
+              onPress={() => NavigationService.navigate('EventsStack')}>
               Events
             </SelectableItem>
             <SelectableItem

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Image, Dimensions, StyleSheet } from 'react-native';
 import { Container, Content } from 'native-base';
 import Swiper from 'react-native-swiper';
+import _ from 'lodash';
 
 import { Text } from '~components/common';
 import { StyleTypes, AppConstants } from '~constants';
@@ -21,7 +22,10 @@ class NewsDetailScreen extends Component {
 
   renderParagraphs = () => {
     const { paragraphs } = this.props.navigation.state.params;
-    return paragraphs.map(item => (
+
+    const sortedParagraphs = _.sortBy(paragraphs, ['sortOrder']);
+
+    return sortedParagraphs.map(item => (
       <Text key={item.id} style={GlobalStyles.smGapStyle} type={StyleTypes.p}>
         {item.content}
       </Text>
@@ -30,7 +34,10 @@ class NewsDetailScreen extends Component {
 
   renderImages = () => {
     const { images } = this.props.navigation.state.params;
-    return images.map(item => {
+
+    const sortedImages = _.sortBy(images, ['sortOrder']);
+
+    return sortedImages.map(item => {
       const image = { uri: `${AppConstants.S3ImageURL}${item.file.key}` };
 
       return (

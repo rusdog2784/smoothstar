@@ -41,16 +41,18 @@ class EventsListScreen extends Component {
   }
 
   _renderItem = ({ item }) => {
-    const { title, publishedOn, rawContent, paragraphs, images } = item;
+    const {
+      title,
+      publishedOn,
+      rawContent,
+      eventParagraphs: paragraphs,
+      eventImages: images,
+    } = item;
     return (
       <CardLI
         style={styles.listItemStyle}
         onPress={() =>
           this.props.navigation.navigate('EventDetailScreen', {
-            imageSource: {
-              uri:
-                'https://chile.travel/wp-content/uploads/bfi_thumb/Surf-pichilemu-ACT158-mpo3ti23d6dwe815ue248fxju4t66nm4vbb5pzf06o.jpg',
-            },
             heading: title,
             description: rawContent,
             paragraphs: paragraphs.items,
@@ -60,7 +62,8 @@ class EventsListScreen extends Component {
         heading={title}
         date={Moment(publishedOn).format('DD/MM/YYYY')}
         imageSource={{
-          uri: 'https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-26808.jpg',
+          uri:
+            'https://chile.travel/wp-content/uploads/bfi_thumb/Surf-pichilemu-ACT158-mpo3ti23d6dwe815ue248fxju4t66nm4vbb5pzf06o.jpg',
         }}
         description={rawContent}
       />
@@ -82,34 +85,34 @@ class EventsListScreen extends Component {
                 <Image
                   style={styles.imageStyle}
                   resizeMode="cover"
-                  source={Assets.Images.testImg}
+                  source={Assets.Images.testImg2}
                 />
               </View>
               <View style={styles.slideStyle}>
                 <Image
                   style={styles.imageStyle}
                   resizeMode="cover"
-                  source={Assets.Images.testImg}
+                  source={Assets.Images.testImg2}
                 />
               </View>
               <View style={styles.slideStyle}>
                 <Image
                   style={styles.imageStyle}
                   resizeMode="cover"
-                  source={Assets.Images.testImg}
+                  source={Assets.Images.testImg2}
                 />
               </View>
             </Swiper>
           </View>
           <View style={styles.carouselTextViewStyle}>
             <Text numberOfLines={2} shadow type={StyleTypes.title} style={styles.carouselTextStyle}>
-              {StaticData.NewsListTitle}
+              {StaticData.EventsListTitle}
             </Text>
           </View>
-          {this.props.newsList.length ? (
+          {this.props.eventsList.length ? (
             <FlatList
               style={styles.listViewStyle}
-              data={this.props.newsList}
+              data={this.props.eventsList}
               keyExtractor={item => item.id}
               renderItem={this._renderItem}
             />
@@ -164,10 +167,10 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { newsList } = state.app;
+  const { eventsList } = state.app;
 
   return {
-    newsList,
+    eventsList,
   };
 };
 

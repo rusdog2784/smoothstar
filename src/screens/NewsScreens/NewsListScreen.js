@@ -39,16 +39,12 @@ class NewsListScreen extends Component {
   }
 
   _renderItem = ({ item }) => {
-    const { title, publishedOn, rawContent, paragraphs, images } = item;
+    const { title, publishedOn, rawContent, newsParagraphs: paragraphs, newsImages: images } = item;
     return (
       <CardLI
         style={styles.listItemStyle}
         onPress={() =>
           this.props.navigation.navigate('NewsDetailScreen', {
-            imageSource: {
-              uri:
-                'https://chile.travel/wp-content/uploads/bfi_thumb/Surf-pichilemu-ACT158-mpo3ti23d6dwe815ue248fxju4t66nm4vbb5pzf06o.jpg',
-            },
             heading: title,
             description: rawContent,
             paragraphs: paragraphs.items,
