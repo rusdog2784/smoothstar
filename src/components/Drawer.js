@@ -9,15 +9,15 @@ import { GlobalStyles, Colors } from '~styles';
 import { Assets, StyleTypes } from '~constants';
 
 const { drawerContainerStyle } = GlobalStyles;
-const { h3, h1 } = StyleTypes;
+const { p, h2 } = StyleTypes;
 
 const SelectableItem = ({ children, iconName, iconType, customIcon, onPress }) => {
   return (
     <TouchableOpacity style={styles.selectableItemStyle} onPress={onPress}>
-      <View style={{ width: 30 }}>
-        <CustomIcon custom={customIcon} name={iconName} type={iconType} light />
+      <View style={{ width: 23, alignItems: 'center' }}>
+        <CustomIcon custom={customIcon} size={20} name={iconName} type={iconType} light />
       </View>
-      <Text type={h1} style={{ fontWeight: '200', marginLeft: 5 }} light>
+      <Text type={p} style={{ fontWeight: '200', marginLeft: 5 }} light>
         {children}
       </Text>
     </TouchableOpacity>
@@ -88,14 +88,14 @@ class Drawer extends Component {
           </Content>
         </View>
         <View style={bottomViewStyle}>
-          <Thumbnail style={thumbnailStyle} source={Assets.Images.testImg} />
+          <Thumbnail style={thumbnailStyle} source={Assets.Images.testImg3} />
           <View style={{ marginLeft: 10 }}>
             {name ? (
-              <Text light type={h1}>
+              <Text light type={h2}>
                 {name}
               </Text>
             ) : null}
-            {address ? <Text type={h3}>{address}</Text> : null}
+            {address ? <Text type={p}>{address}</Text> : null}
           </View>
         </View>
       </Container>
