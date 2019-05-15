@@ -18,6 +18,16 @@ export const checkAuth = async () => {
     });
 };
 
+export const updateUserAttributes = async attr => {
+  try {
+    let user = await Auth.currentAuthenticatedUser();
+
+    return await Auth.updateUserAttributes(user, attr);
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const signUp = async user => {
   const username = user.email;
   const password = user.password;
@@ -189,4 +199,5 @@ const googleSignOut = async () => {
     throw error;
   }
 };
+
 export const loginGoogle = loginGoogleStandAlone;

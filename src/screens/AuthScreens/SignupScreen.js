@@ -20,14 +20,14 @@ const countriesDialCodesList = Object.keys(countries).map(name => ({
 
 class SignupScreen extends Component {
   state = {
-    email: 'tester2@test.com',
+    email: 'tester@test.com',
     password: 'Tester@1234',
     phone_code: '+92',
     phone_number: '3331431852',
     first_name: 'Tester',
     last_name: 'Testing',
     birthdate: '2019-04-13',
-    gender: 'M',
+    gender: 'Male',
     country: 'Pakistan',
     city: 'Lahore',
     emailSub: true,
@@ -196,7 +196,7 @@ class SignupScreen extends Component {
             selectedValue={this.state.gender}
             onValueChange={value => this.formTextChange(value, 'gender')}
             placeholderLabel="Select Gender"
-            items={[{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }]}
+            items={[{ label: 'Male', value: 'Male' }, { label: 'Female', value: 'Female' }]}
           />
           <Dropdown
             style={smGapStyle}

@@ -14,6 +14,7 @@ import {
   loginGoogle,
   verifyAttribute,
   verifyAttributeSubmit,
+  updateUserAttributes,
 } from '~utils/AuthController';
 import { AppConstants } from '../../constants/General';
 
@@ -138,7 +139,7 @@ export const authConfirmSignIn = data => {
               city: userData.address.split('-')[0],
               country: userData.address.split('-')[1],
               email_verified: false,
-              phone_number_verified: false,
+              phone_number_verified: true,
               promo_email_preference: true,
               type: 'Unknown',
               lastModifiedOn: _c.formatDateServer(Date.now()),

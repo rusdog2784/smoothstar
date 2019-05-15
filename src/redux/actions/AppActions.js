@@ -1,6 +1,8 @@
 import { ActionTypes, ApiTypes, AppConstants } from '~constants';
 import * as APINames from '~config/APIConfig';
 import { executeApi, executeApiWithMedia } from '~utils/API';
+import { updateUserAttributes, checkAuth } from '~utils/AuthController';
+import { _c } from '~utils';
 
 const { QUERY, MUTATION } = ApiTypes;
 const {
@@ -14,6 +16,7 @@ const {
   UPDATE_SS_REGISTRATION,
   CLEAR_ERR_MSG,
   CHECK_SS_REGISTRATION,
+  UPDATE_ATTRIBUTES,
 } = ActionTypes;
 
 export const unsubState = state => {
@@ -50,6 +53,47 @@ export const fetchListEvents = () => {
       .catch(error => {
         _apiCompleted(dispatch, { error });
       });
+  };
+};
+
+export const updateUserInfo = ({ user, username }) => {
+  return async dispatch => {
+    dispatch({ type: API_INITIATE });
+
+    try {
+      //COGNITO UPDATE
+      const userAttr = {
+        ...user,
+        address: `${user.city}-${user.country}`,
+      };
+      delete userAttr.city;
+      delete userAttr.country;
+
+      let result = await updateUserAttributes(userAttr);
+      console.log('result:', result);
+
+      let res = await checkAuth();
+
+      const userData = { username: res.username, ...res.attributes };
+
+      //CUSTOM TABLE (UserInfo) UPDATE
+      const prevUserInfo = await checkUserInfo(username);
+
+      const userInfo = {
+        id: prevUserInfo.id,
+        expectedVersion: prevUserInfo.version,
+        lastModifiedOn: _c.formatDateServer(Date.now()),
+        ...user,
+      };
+
+      await addUserInfo(userInfo, APINames.UPDATE_USER_INFO);
+
+      dispatch({ type: UPDATE_ATTRIBUTES, payload: userData });
+
+      _apiCompleted(dispatch);
+    } catch (error) {
+      _apiCompleted(dispatch, { error });
+    }
   };
 };
 
@@ -298,7 +342,12 @@ export const getUserInfo = async username => {
 };
 
 export const checkUserInfo = async username => {
-  const user = await getUserInfo(username);
-  const items = user.data[APINames.SEARCH_USER_INFO].items;
-  return items.length ? { id: items[0].id, version: items[0].version } : null;
+  try {
+    const user = await getUserInfo(username);
+    const items = user.data[APINames.SEARCH_USER_INFO].items;
+
+    return items.length ? { id: items[0].id, version: items[0].version } : null;
+  } catch (error) {
+    throw error;
+  }
 };

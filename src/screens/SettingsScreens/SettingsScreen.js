@@ -4,7 +4,7 @@ import { Container, Content, Thumbnail } from 'native-base';
 import { connect } from 'react-redux';
 import { SplashScreen } from 'expo';
 
-import {} from '~redux/actions';
+import { updateUserInfo } from '~redux/actions';
 import { Text, Switch, Button, InputBox, DatePicker, Dropdown } from '~components/common';
 import { Assets, StyleTypes } from '~constants';
 import { GlobalStyles } from '~styles';
@@ -17,9 +17,12 @@ const countriesDialCodesList = Object.keys(countries).map(name => ({
   key: countries[name],
 }));
 
+let PREV_STATE = {};
+
 class SettingsScreen extends Component {
   state = {
     alteration: false,
+    update: false,
     videoNotify: true,
     eventNotify: true,
     productNotify: true,
@@ -28,43 +31,104 @@ class SettingsScreen extends Component {
     family_name: this.props.user.family_name,
     email: this.props.user.email,
     phone_number: this.props.user.phone_number,
+    phone_code: '',
     birthdate: this.props.user.birthdate,
     gender: this.props.user.gender,
-    country: this.props.user.address && this.props.user.address.split('-')[1],
-    city: this.props.user.address && this.props.user.address.split('-')[0],
+    country: this.props.user.address ? this.props.user.address.split('-')[1] : null,
+    city: this.props.user.address ? this.props.user.address.split('-')[0] : null,
   };
 
   componentDidMount() {
+    this.addPrevState();
     SplashScreen.hide();
   }
 
-  toggleEditMode = () => this.setState({ alteration: !this.state.alteration });
+  componentDidUpdate() {
+    this.checkUpdateFinished();
+  }
+
+  checkUpdateFinished = () => {
+    const { loading } = this.props;
+    const { update } = this.state;
+
+    if (!loading && update) {
+      this.scroll.props.scrollToPosition(0, 0);
+      setTimeout(() => this.setState({ update: false, alteration: false }), 300);
+    }
+  };
+
+  addPrevState = () => {
+    PREV_STATE = { ...this.state };
+    delete PREV_STATE.alteration;
+  };
+
+  toggleEditMode = () => {
+    if (this.state.alteration) {
+      this.state = { ...PREV_STATE, alteration: !this.state.alteration };
+    } else {
+      this.addPrevState();
+      this.state.alteration = !this.state.alteration;
+    }
+    this.setState(this.state);
+  };
 
   toggleVideoNotify = () => this.setState({ videoNotify: !this.state.videoNotify });
   toggleEventNotify = () => this.setState({ eventNotify: !this.state.eventNotify });
   toggleProductNotify = () => this.setState({ productNotify: !this.state.productNotify });
   toggleMsgNotify = () => this.setState({ msgNotify: !this.state.msgNotify });
 
+  firstNameChanged = text => this.setState({ given_name: text });
+  lastNameChanged = text => this.setState({ family_name: text });
+  birthdateChanged = date => this.setState({ birthdate: date });
+  genderChanged = value => this.setState({ gender: value });
+  phoneCodeChanged = code => this.setState({ phone_code: code });
+  phoneNumberChanged = text => this.setState({ phone_number: text });
+  cityChanged = text => this.setState({ city: text });
+  countryChanged = text => this.setState({ country: text });
+
+  handleUpdate = () => {
+    const userInfo = { ...this.state };
+
+    delete userInfo.email;
+    delete userInfo.alteration;
+    delete userInfo.update;
+    delete userInfo.phone_code;
+    delete userInfo.videoNotify;
+    delete userInfo.eventNotify;
+    delete userInfo.productNotify;
+    delete userInfo.msgNotify;
+
+    userInfo.phone_number = this.state.phone_code + this.state.phone_number;
+
+    this.setState({ update: true });
+    this.props.updateUserInfo({ user: userInfo, username: this.state.email });
+  };
+
   render() {
     const { screenContainerStyle, lgGapStyle, mdGapStyle, smGapStyle, xlgGapStyle } = GlobalStyles;
     const { contentStyle, logoStyle, introTextStyle, thumbnailStyle, switchViewStyle } = styles;
 
     const {
+      alteration,
       given_name,
       family_name,
       email,
       phone_number,
+      phone_code,
       country,
       city,
       birthdate,
       gender,
-    } = this.props.user;
-
-    const { alteration } = this.state;
+    } = this.state;
 
     return (
       <Container style={screenContainerStyle}>
-        <Content contentContainerStyle={contentStyle} showsVerticalScrollIndicator={false}>
+        <Content
+          innerRef={ref => {
+            this.scroll = ref;
+          }}
+          contentContainerStyle={contentStyle}
+          showsVerticalScrollIndicator={false}>
           <Image source={Assets.Images.logoDark} style={[mdGapStyle, logoStyle]} />
 
           <Text dark type={StyleTypes.h1} style={[lgGapStyle, introTextStyle]}>
@@ -85,8 +149,8 @@ class SettingsScreen extends Component {
             </Text>
             {alteration ? (
               <InputBox
-                // onChangeText={text => this.formTextChange(text, 'first_name')}
-                value={this.state.given_name}
+                onChangeText={this.firstNameChanged}
+                value={given_name}
                 style={smGapStyle}
                 placeholder="First Name"
               />
@@ -103,8 +167,8 @@ class SettingsScreen extends Component {
             </Text>
             {alteration ? (
               <InputBox
-                // onChangeText={text => this.formTextChange(text, 'first_name')}
-                value={this.state.family_name}
+                onChangeText={this.lastNameChanged}
+                value={family_name}
                 style={smGapStyle}
                 placeholder="Last Name"
               />
@@ -115,14 +179,16 @@ class SettingsScreen extends Component {
             )}
           </View>
 
-          <View style={[lgGapStyle]}>
-            <Text type="p" grey style={[smGapStyle]}>
-              EMAIL
-            </Text>
-            <Text type="h3" dark>
-              {email}
-            </Text>
-          </View>
+          {!alteration ? (
+            <View style={[lgGapStyle]}>
+              <Text type="p" grey style={[smGapStyle]}>
+                EMAIL
+              </Text>
+              <Text type="h3" dark>
+                {email}
+              </Text>
+            </View>
+          ) : null}
 
           {birthdate ? (
             <View style={[lgGapStyle]}>
@@ -131,8 +197,8 @@ class SettingsScreen extends Component {
               </Text>
               {alteration ? (
                 <DatePicker
-                  // onDateChange={text => this.formTextChange(text, 'birthdate')}
-                  date={this.state.birthdate}
+                  onDateChange={this.birthdateChanged}
+                  date={birthdate}
                   style={smGapStyle}
                   placeholder="Birthdate"
                 />
@@ -152,14 +218,14 @@ class SettingsScreen extends Component {
               {alteration ? (
                 <Dropdown
                   style={smGapStyle}
-                  selectedValue={this.state.gender}
-                  // onValueChange={value => this.formTextChange(value, 'gender')}
+                  selectedValue={gender}
+                  onValueChange={this.genderChanged}
                   placeholderLabel="Select Gender"
-                  items={[{ label: 'Male', value: 'M' }, { label: 'Female', value: 'F' }]}
+                  items={[{ label: 'Male', value: 'Male' }, { label: 'Female', value: 'Female' }]}
                 />
               ) : (
                 <Text type="h3" dark>
-                  {gender === 'M' ? 'Male' : 'Female'}
+                  {gender === 'Male' ? 'Male' : 'Female'}
                 </Text>
               )}
             </View>
@@ -174,14 +240,14 @@ class SettingsScreen extends Component {
                 <View style={{ flexDirection: 'row' }}>
                   <Dropdown
                     style={[smGapStyle, { flex: 0.2 }]}
-                    selectedValue={this.state.phone_code}
+                    selectedValue={phone_code}
                     placeholderLabel="Code"
-                    onValueChange={value => this.formTextChange(value, 'phone_code')}
+                    onValueChange={this.phoneCodeChanged}
                     items={countriesDialCodesList}
                   />
                   <InputBox
-                    onChangeText={text => this.formTextChange(text, 'phone_number')}
-                    value={this.state.phone_number}
+                    onChangeText={this.phoneNumberChanged}
+                    value={phone_number}
                     style={[smGapStyle, { flex: 0.8, marginLeft: 5 }]}
                     placeholder="Phone"
                     iconType="MaterialIcons"
@@ -207,9 +273,9 @@ class SettingsScreen extends Component {
               {alteration ? (
                 <Dropdown
                   style={smGapStyle}
-                  selectedValue={this.state.country}
+                  selectedValue={country}
                   placeholderLabel="Select Country"
-                  // onValueChange={value => this.formTextChange(value, 'country')}
+                  onValueChange={this.countryChanged}
                   items={countriesList}
                 />
               ) : (
@@ -227,8 +293,8 @@ class SettingsScreen extends Component {
               </Text>
               {alteration ? (
                 <InputBox
-                  // onChangeText={text => this.formTextChange(text, 'first_name')}
-                  value={this.state.city}
+                  onChangeText={this.cityChanged}
+                  value={city}
                   style={smGapStyle}
                   placeholder="City"
                 />
@@ -285,7 +351,7 @@ class SettingsScreen extends Component {
           </View>
 
           {this.state.alteration ? (
-            <Button onPress={this.handleSignUp} style={mdGapStyle}>
+            <Button onPress={this.handleUpdate} style={mdGapStyle}>
               UPDATE ACCOUNT
             </Button>
           ) : null}
@@ -323,13 +389,15 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   const { user } = state.auth;
+  const { loading } = state.app;
   // console.log('user', user);
   return {
     user,
+    loading,
   };
 };
 
 export default connect(
   mapStateToProps,
-  {}
+  { updateUserInfo }
 )(SettingsScreen);
