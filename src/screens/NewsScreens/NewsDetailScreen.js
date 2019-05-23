@@ -54,12 +54,7 @@ class NewsDetailScreen extends Component {
       <Container>
         <Content showsVerticalScrollIndicator={false}>
           <View style={styles.carouselViewStyle}>
-            <Swiper
-              loop={false}
-              dotColor="#bbb"
-              activeDotColor="#fff"
-              paginationStyle={styles.carouselPaginationStyle}
-              style={styles.carouselStyle}>
+            <Swiper loop={false} dotColor="#bbb" activeDotColor="#fff">
               {this.renderImages()}
             </Swiper>
           </View>

@@ -20,16 +20,16 @@ const countriesDialCodesList = Object.keys(countries).map(name => ({
 
 class SignupScreen extends Component {
   state = {
-    email: 'tester@test.com',
-    password: 'Tester@1234',
-    phone_code: '+92',
-    phone_number: '3331431852',
-    first_name: 'Tester',
-    last_name: 'Testing',
-    birthdate: '2019-04-13',
-    gender: 'Male',
-    country: 'Pakistan',
-    city: 'Lahore',
+    email: '',
+    password: '',
+    phone_code: '',
+    phone_number: '',
+    first_name: '',
+    last_name: '',
+    birthdate: '',
+    gender: '',
+    country: '',
+    city: '',
     emailSub: true,
   };
 
