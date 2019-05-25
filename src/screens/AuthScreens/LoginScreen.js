@@ -6,10 +6,8 @@ import { SplashScreen } from 'expo';
 
 import { authSignIn, authLoginFacebook, authLoginGoogle } from '~redux/actions';
 import { Text, Button, InputBox } from '~components/common';
-import { Assets, StyleTypes, AuthActionTypes } from '~constants';
+import { Assets, StyleTypes } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
-
-const { SIGNED_IN } = AuthActionTypes;
 
 class LoginScreen extends Component {
   state = {
@@ -19,17 +17,6 @@ class LoginScreen extends Component {
 
   componentDidMount = () => {
     SplashScreen.hide();
-  };
-
-  componentDidUpdate = () => {
-    const { navigation, authAction, loading, authActionData } = this.props;
-
-    if (authAction === SIGNED_IN && !loading) {
-      navigation.navigate('AuthVerificationScreen', {
-        type: 'ConfirmSignIn',
-        user: authActionData,
-      });
-    }
   };
 
   onUsernameChange = text => {
@@ -164,13 +151,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { username, loading, authAction, authActionData } = state.auth;
+  const { username, loading } = state.auth;
 
   return {
     username,
     loading,
-    authAction,
-    authActionData,
   };
 };
 

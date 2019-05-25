@@ -5,11 +5,9 @@ import { connect } from 'react-redux';
 
 import { authSignUp, authLoginFacebook, authLoginGoogle } from '~redux/actions';
 import { Text, Button, InputBox, CheckBox, DatePicker, Dropdown } from '~components/common';
-import { Assets, StaticData, StyleTypes, AuthActionTypes } from '~constants';
+import { Assets, StaticData, StyleTypes } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
 import countries from '~constants/countries.json';
-
-const { SIGNED_UP, SIGNED_IN } = AuthActionTypes;
 
 const countriesList = Object.keys(countries).map(name => ({ label: name, value: name }));
 const countriesDialCodesList = Object.keys(countries).map(name => ({
@@ -31,22 +29,6 @@ class SignupScreen extends Component {
     country: '',
     city: '',
     emailSub: true,
-  };
-
-  componentDidUpdate = () => {
-    const { navigation, authAction, loading, authActionData } = this.props;
-
-    if (authAction === SIGNED_UP && !loading) {
-      navigation.navigate('AuthVerificationScreen', {
-        username: authActionData,
-        type: 'ConfirmSignUp',
-      });
-    } else if (authAction === SIGNED_IN && !loading) {
-      navigation.navigate('AuthVerificationScreen', {
-        type: 'ConfirmSignIn',
-        user: authActionData,
-      });
-    }
   };
 
   formTextChange = (text, type) => {
@@ -294,13 +276,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  const { loading, user, authAction, authActionData } = state.auth;
+  const { loading, user } = state.auth;
 
   return {
     loading,
     user,
-    authAction,
-    authActionData,
   };
 };
 

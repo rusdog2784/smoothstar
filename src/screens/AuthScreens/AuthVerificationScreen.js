@@ -5,36 +5,12 @@ import { connect } from 'react-redux';
 
 import { authConfirmSignUp, authConfirmSignIn, checkSSRegistration } from '~redux/actions';
 import { Text, Button, InputBox } from '~components/common';
-import { Assets, StyleTypes, AuthActionTypes } from '~constants';
+import { Assets, StyleTypes } from '~constants';
 import { GlobalStyles } from '~styles';
-
-const { CONFIRMED_SIGN_UP, CONFIRMED_SIGN_IN, VERIFIED_ATTR } = AuthActionTypes;
 
 class AuthVerificationScreen extends Component {
   state = {
     code: '',
-  };
-
-  componentDidUpdate = () => {
-    const {
-      navigation,
-      authAction,
-      loading,
-      user,
-      checkSSRegistration,
-      loadingApp,
-      ready,
-    } = this.props;
-
-    if (authAction === CONFIRMED_SIGN_UP && !loading) {
-      navigation.navigate('LoginScreen');
-    } else if (authAction === CONFIRMED_SIGN_IN && !loading && !ready) {
-      checkSSRegistration(user.username);
-    } else if (authAction === VERIFIED_ATTR && !loading) {
-      navigation.navigate('LoginScreen');
-    } else if (ready && !loading && !loadingApp) {
-      navigation.navigate('AppNavigator');
-    }
   };
 
   handleVerificationCode = () => {
@@ -138,10 +114,9 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   const { loading, authAction, user } = state.auth;
-  const { loadingApp, ready } = state.app;
+  const { loadingApp } = state.app;
 
   return {
-    ready,
     user,
     loading,
     loadingApp,

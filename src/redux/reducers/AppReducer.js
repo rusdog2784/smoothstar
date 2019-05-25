@@ -9,7 +9,6 @@ const {
   FETCH_LIST_EVENTS,
   CREATE_SS_REGISTRATION,
   CHECK_SS_REGISTRATION,
-  READY_APP,
 } = ActionTypes;
 
 const REGISTRATION_STATES = {
@@ -20,7 +19,6 @@ const REGISTRATION_STATES = {
 };
 
 const INITIAL_STATE = {
-  ready: false,
   message: '',
   error: '',
   loading: false,
@@ -31,8 +29,6 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case READY_APP:
-      return { ...state, ready: true };
     case API_INITIATE:
       return { ...state, loading: true, message: '', error: '' };
     case API_COMPLETED: {

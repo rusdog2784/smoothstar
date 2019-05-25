@@ -43,12 +43,10 @@ class InitScreen extends Component {
   // };
 
   readyToMove = params => {
-    const { navigation, user, loading, loadingApp, ready, checkSSRegistration } = this.props;
+    const { navigation, user, loading, loadingApp, checkSSRegistration } = this.props;
 
     if (!loading && !loadingApp) {
-      if (ready) {
-        navigation.navigate('AppNavigator');
-      } else if (user) {
+      if (user) {
         checkSSRegistration(user.username);
       } else {
         navigation.navigate('AuthNavigator');
@@ -126,13 +124,12 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   const { loading, user, isInitLaunch } = state.auth;
-  const { loadingApp, ready } = state.app;
+  const { loadingApp } = state.app;
 
   return {
     loading,
     user,
     loadingApp,
-    ready,
     isInitLaunch,
   };
 };

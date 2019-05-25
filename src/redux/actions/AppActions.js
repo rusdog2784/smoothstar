@@ -3,11 +3,11 @@ import * as APINames from '~config/APIConfig';
 import { executeApi, executeApiWithMedia } from '~utils/API';
 import { updateUserAttributes, checkAuth } from '~utils/AuthController';
 import { _c } from '~utils';
+import NavigationService from '~utils/NavigationService';
 
 const { QUERY, MUTATION } = ApiTypes;
 const {
   UNSUB_STATE,
-  READY_APP,
   API_INITIATE,
   API_COMPLETED,
   FETCH_LIST_NEWS,
@@ -116,7 +116,7 @@ export const checkSSRegistration = userId => {
           });
         }
 
-        dispatch({ type: READY_APP });
+        NavigationService.navigate('AppNavigator');
 
         _apiCompleted(dispatch);
       })

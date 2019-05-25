@@ -1,6 +1,6 @@
-import { ActionTypes, AuthActionTypes } from '~constants';
+import { ActionTypes } from '~constants';
 import * as APINames from '~config/APIConfig';
-import { addUserInfo, checkUserInfo } from './AppActions';
+import { addUserInfo, checkUserInfo, checkSSRegistration } from './AppActions';
 import { _c } from '~utils';
 import NavigationService from '~utils/NavigationService';
 import {
@@ -12,20 +12,8 @@ import {
   loginFacebook,
   signOut,
   loginGoogle,
-  verifyAttribute,
-  verifyAttributeSubmit,
-  updateUserAttributes,
 } from '~utils/AuthController';
 import { AppConstants } from '../../constants/General';
-
-const {
-  SIGNED_UP,
-  SIGNED_IN,
-  CONFIRMED_SIGN_UP,
-  CONFIRMED_SIGN_IN,
-  VERIFY_ATTR_CALLED,
-  VERIFIED_ATTR,
-} = AuthActionTypes;
 
 const {
   AUTH_INITIATE,
@@ -33,7 +21,6 @@ const {
   CLEAR_AUTH,
   CONFIRM_SIGNUP,
   CONFIRM_SIGNIN,
-  SET_AUTH_ACTION_COMPLETED,
   SET_INIT_LAUNCH,
 } = ActionTypes;
 
@@ -69,9 +56,9 @@ export const authSignUp = ({ user }) => {
 
     signUp(user)
       .then(async response => {
-        dispatch({
-          type: SET_AUTH_ACTION_COMPLETED,
-          payload: { type: SIGNED_UP, data: user.email },
+        NavigationService.navigate('AuthVerificationScreen', {
+          username: user.email,
+          type: 'ConfirmSignUp',
         });
       })
       .catch(error => {
@@ -90,10 +77,7 @@ export const authConfirmSignUp = ({ username, code }) => {
       .then(response => {
         if (response === 'SUCCESS') {
           dispatch({ type: CONFIRM_SIGNUP, payload: username });
-          dispatch({
-            type: SET_AUTH_ACTION_COMPLETED,
-            payload: { type: CONFIRMED_SIGN_UP, data: null },
-          });
+          NavigationService.navigate('LoginScreen');
         }
       })
       .catch(error => {
@@ -110,7 +94,10 @@ export const authSignIn = user => {
 
     signIn(user)
       .then(response => {
-        dispatch({ type: SET_AUTH_ACTION_COMPLETED, payload: { type: SIGNED_IN, data: response } });
+        NavigationService.navigate('AuthVerificationScreen', {
+          type: 'ConfirmSignIn',
+          user: response,
+        });
       })
       .catch(error => {
         console.log(error);
@@ -160,10 +147,7 @@ export const authConfirmSignIn = data => {
             addUserInfo(userInfo, APINames.UPDATE_USER_INFO);
           }
 
-          dispatch({
-            type: SET_AUTH_ACTION_COMPLETED,
-            payload: { type: CONFIRMED_SIGN_IN, data: null },
-          });
+          dispatch(checkSSRegistration(data.user.username));
         }
       })
       .catch(error => {
@@ -230,48 +214,6 @@ export const authSignOut = () => {
       })
       .catch(error => {
         console.log(error);
-      })
-      .finally(() => dispatch({ type: AUTH_COMPLETED }));
-  };
-};
-
-export const authVerifyAttribute = attr => {
-  return dispatch => {
-    dispatch({ type: AUTH_INITIATE });
-
-    verifyAttribute(attr)
-      .then(response => {
-        if (response === 'SUCCESS') {
-          dispatch({
-            type: SET_AUTH_ACTION_COMPLETED,
-            payload: { type: VERIFY_ATTR_CALLED, data: response },
-          });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        dispatch({ type: CLEAR_AUTH, error });
-      })
-      .finally(() => dispatch({ type: AUTH_COMPLETED }));
-  };
-};
-
-export const authVerifyAttributeSubmit = (attr, code) => {
-  return dispatch => {
-    dispatch({ type: AUTH_INITIATE });
-
-    verifyAttributeSubmit(attr, code)
-      .then(response => {
-        if (response === 'SUCCESS') {
-          dispatch({
-            type: SET_AUTH_ACTION_COMPLETED,
-            payload: { type: VERIFIED_ATTR, data: response },
-          });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        dispatch({ type: CLEAR_AUTH, error });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };

@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   imageStyle: {
     height: 250,
     width: '100%',
-    backgroundColor: Colors.imageBackgroundColor,
+    backgroundColor: '#fff',
     marginBottom: 20,
   },
   slideStyle: {
