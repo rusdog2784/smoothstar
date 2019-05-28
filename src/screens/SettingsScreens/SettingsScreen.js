@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content, Thumbnail } from 'native-base';
 import { connect } from 'react-redux';
-import { SplashScreen } from 'expo';
 
 import { updateUserInfo } from '~redux/actions';
 import { Text, Switch, Button, InputBox, DatePicker, Dropdown } from '~components/common';
@@ -40,7 +39,6 @@ class SettingsScreen extends Component {
 
   componentDidMount() {
     this.addPrevState();
-    SplashScreen.hide();
   }
 
   componentDidUpdate() {

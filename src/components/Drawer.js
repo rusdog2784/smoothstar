@@ -45,7 +45,9 @@ class Drawer extends Component {
         </View>
         <View style={contentViewStyle}>
           <Content showsVerticalScrollIndicator={false}>
-            <SelectableItem iconName="home">Home</SelectableItem>
+            <SelectableItem onPress={() => NavigationService.navigate('HomeStack')} iconName="home">
+              Home
+            </SelectableItem>
             <SelectableItem iconType="MaterialIcons" iconName="info">
               Getting Started
             </SelectableItem>

@@ -34,4 +34,5 @@ export const Colors = {
   iconShadowColor: '#4d4c4c',
   drawerBackgroundColor: '#202022',
   drawerBottomColor: '#19191a',
+  cardRISubTextColor: '#0691ce',
 };
