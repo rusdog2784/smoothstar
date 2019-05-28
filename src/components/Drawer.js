@@ -81,7 +81,10 @@ class Drawer extends Component {
             <SelectableItem iconType="MaterialIcons" iconName="sms">
               Messages
             </SelectableItem>
-            <SelectableItem iconType="SimpleLineIcons" iconName="question">
+            <SelectableItem
+              iconType="SimpleLineIcons"
+              iconName="question"
+              onPress={() => NavigationService.navigate('FAQStack')}>
               FAQ
             </SelectableItem>
             <SelectableItem iconType="MaterialIcons" iconName="shopping-cart">

@@ -6,6 +6,7 @@ import RegistrationStack from './NavigationStacks/RegistrationStack';
 import EventsStack from './NavigationStacks/EventsStack';
 import SettingsStack from './NavigationStacks/SettingsStack';
 import HomeStack from './NavigationStacks/HomeStack';
+import FAQStack from './NavigationStacks/FAQStack';
 
 const AppNavigator = createDrawerNavigator(
   {
@@ -23,6 +24,9 @@ const AppNavigator = createDrawerNavigator(
     },
     SettingsStack: {
       screen: SettingsStack,
+    },
+    FAQStack: {
+      screen: FAQStack,
     },
   },
   {
