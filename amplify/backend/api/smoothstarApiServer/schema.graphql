@@ -100,6 +100,19 @@ type UserInfo @model @versioned {
   birthdate: String
   city: String
   country: String
+
+  tokens: [DevicePushToken] @connection(name: "UserDeviceTokens")
+}
+
+type DevicePushToken @model @versioned {
+  id: ID!
+
+  active: Boolean!
+
+  pushToken: String!
+  deviceType: String!
+
+  user: UserInfo! @connection(name: "UserDeviceTokens")
 }
 
 type SmoothstarRegistration @model @versioned {

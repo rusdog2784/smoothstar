@@ -456,6 +456,16 @@ export const getUserInfo = `query GetUserInfo($id: ID!) {
     birthdate
     city
     country
+    tokens {
+      items {
+        id
+        active
+        pushToken
+        deviceType
+        version
+      }
+      nextToken
+    }
     version
   }
 }
@@ -484,6 +494,79 @@ export const listUserInfos = `query ListUserInfos(
       birthdate
       city
       country
+      tokens {
+        nextToken
+      }
+      version
+    }
+    nextToken
+  }
+}
+`;
+export const getDevicePushToken = `query GetDevicePushToken($id: ID!) {
+  getDevicePushToken(id: $id) {
+    id
+    active
+    pushToken
+    deviceType
+    user {
+      id
+      lastModifiedOn
+      lastSigninOn
+      active
+      email
+      phone_number
+      email_verified
+      phone_number_verified
+      promo_email_preference
+      type
+      given_name
+      family_name
+      gender
+      locale
+      birthdate
+      city
+      country
+      tokens {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const listDevicePushTokens = `query ListDevicePushTokens(
+  $filter: ModelDevicePushTokenFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDevicePushTokens(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      active
+      pushToken
+      deviceType
+      user {
+        id
+        lastModifiedOn
+        lastSigninOn
+        active
+        email
+        phone_number
+        email_verified
+        phone_number_verified
+        promo_email_preference
+        type
+        given_name
+        family_name
+        gender
+        locale
+        birthdate
+        city
+        country
+        version
+      }
       version
     }
     nextToken

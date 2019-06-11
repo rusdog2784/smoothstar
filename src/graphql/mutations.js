@@ -710,6 +710,16 @@ export const createUserInfo = `mutation CreateUserInfo($input: CreateUserInfoInp
     birthdate
     city
     country
+    tokens {
+      items {
+        id
+        active
+        pushToken
+        deviceType
+        version
+      }
+      nextToken
+    }
     version
   }
 }
@@ -733,6 +743,16 @@ export const updateUserInfo = `mutation UpdateUserInfo($input: UpdateUserInfoInp
     birthdate
     city
     country
+    tokens {
+      items {
+        id
+        active
+        pushToken
+        deviceType
+        version
+      }
+      nextToken
+    }
     version
   }
 }
@@ -756,6 +776,115 @@ export const deleteUserInfo = `mutation DeleteUserInfo($input: DeleteUserInfoInp
     birthdate
     city
     country
+    tokens {
+      items {
+        id
+        active
+        pushToken
+        deviceType
+        version
+      }
+      nextToken
+    }
+    version
+  }
+}
+`;
+export const createDevicePushToken = `mutation CreateDevicePushToken($input: CreateDevicePushTokenInput!) {
+  createDevicePushToken(input: $input) {
+    id
+    active
+    pushToken
+    deviceType
+    user {
+      id
+      lastModifiedOn
+      lastSigninOn
+      active
+      email
+      phone_number
+      email_verified
+      phone_number_verified
+      promo_email_preference
+      type
+      given_name
+      family_name
+      gender
+      locale
+      birthdate
+      city
+      country
+      tokens {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const updateDevicePushToken = `mutation UpdateDevicePushToken($input: UpdateDevicePushTokenInput!) {
+  updateDevicePushToken(input: $input) {
+    id
+    active
+    pushToken
+    deviceType
+    user {
+      id
+      lastModifiedOn
+      lastSigninOn
+      active
+      email
+      phone_number
+      email_verified
+      phone_number_verified
+      promo_email_preference
+      type
+      given_name
+      family_name
+      gender
+      locale
+      birthdate
+      city
+      country
+      tokens {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const deleteDevicePushToken = `mutation DeleteDevicePushToken($input: DeleteDevicePushTokenInput!) {
+  deleteDevicePushToken(input: $input) {
+    id
+    active
+    pushToken
+    deviceType
+    user {
+      id
+      lastModifiedOn
+      lastSigninOn
+      active
+      email
+      phone_number
+      email_verified
+      phone_number_verified
+      promo_email_preference
+      type
+      given_name
+      family_name
+      gender
+      locale
+      birthdate
+      city
+      country
+      tokens {
+        nextToken
+      }
+      version
+    }
     version
   }
 }

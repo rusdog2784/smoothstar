@@ -1,5 +1,5 @@
 projects:
-  smoothstartApiServer:
+  smoothstarApiServer:
     schemaPath: src\graphql\schema.json
     includes:
       - src\graphql\**\*.js
@@ -10,7 +10,7 @@ projects:
         codeGenTarget: javascript
         generatedFileName: ''
         docsFilePath: src\graphql
-        graphQLApiId: uy5djrvpefh5tjj7pj4a7noe2u
+        graphQLApiId: lwigpshjwre2fd5grk4jf34wke
       endpoints:
         prod: >-
-          https://kcl7glzwyjbrtcbvhsbbpunk6q.appsync-api.eu-west-1.amazonaws.com/graphql
+          https://7tpfqzbzc5ez7hnaa32agvj2xe.appsync-api.eu-west-1.amazonaws.com/graphql

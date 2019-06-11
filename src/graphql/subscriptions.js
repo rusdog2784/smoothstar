@@ -710,6 +710,16 @@ export const onCreateUserInfo = `subscription OnCreateUserInfo {
     birthdate
     city
     country
+    tokens {
+      items {
+        id
+        active
+        pushToken
+        deviceType
+        version
+      }
+      nextToken
+    }
     version
   }
 }
@@ -733,6 +743,16 @@ export const onUpdateUserInfo = `subscription OnUpdateUserInfo {
     birthdate
     city
     country
+    tokens {
+      items {
+        id
+        active
+        pushToken
+        deviceType
+        version
+      }
+      nextToken
+    }
     version
   }
 }
@@ -756,6 +776,115 @@ export const onDeleteUserInfo = `subscription OnDeleteUserInfo {
     birthdate
     city
     country
+    tokens {
+      items {
+        id
+        active
+        pushToken
+        deviceType
+        version
+      }
+      nextToken
+    }
+    version
+  }
+}
+`;
+export const onCreateDevicePushToken = `subscription OnCreateDevicePushToken {
+  onCreateDevicePushToken {
+    id
+    active
+    pushToken
+    deviceType
+    user {
+      id
+      lastModifiedOn
+      lastSigninOn
+      active
+      email
+      phone_number
+      email_verified
+      phone_number_verified
+      promo_email_preference
+      type
+      given_name
+      family_name
+      gender
+      locale
+      birthdate
+      city
+      country
+      tokens {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const onUpdateDevicePushToken = `subscription OnUpdateDevicePushToken {
+  onUpdateDevicePushToken {
+    id
+    active
+    pushToken
+    deviceType
+    user {
+      id
+      lastModifiedOn
+      lastSigninOn
+      active
+      email
+      phone_number
+      email_verified
+      phone_number_verified
+      promo_email_preference
+      type
+      given_name
+      family_name
+      gender
+      locale
+      birthdate
+      city
+      country
+      tokens {
+        nextToken
+      }
+      version
+    }
+    version
+  }
+}
+`;
+export const onDeleteDevicePushToken = `subscription OnDeleteDevicePushToken {
+  onDeleteDevicePushToken {
+    id
+    active
+    pushToken
+    deviceType
+    user {
+      id
+      lastModifiedOn
+      lastSigninOn
+      active
+      email
+      phone_number
+      email_verified
+      phone_number_verified
+      promo_email_preference
+      type
+      given_name
+      family_name
+      gender
+      locale
+      birthdate
+      city
+      country
+      tokens {
+        nextToken
+      }
+      version
+    }
     version
   }
 }
