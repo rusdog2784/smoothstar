@@ -1,6 +1,6 @@
 import { ActionTypes } from '~constants';
 import * as APINames from '~config/APIConfig';
-import { addUserInfo, checkUserInfo, checkSSRegistration } from './AppActions';
+import { addUserInfo, checkUserInfo, loginChecks } from './AppActions';
 import { _c } from '~utils';
 import NavigationService from '~utils/NavigationService';
 import {
@@ -10,7 +10,6 @@ import {
   signIn,
   confirmSignIn,
   loginFacebook,
-  signOut,
   loginGoogle,
 } from '~utils/AuthController';
 import { AppConstants } from '../../constants/General';
@@ -120,6 +119,8 @@ export const authConfirmSignIn = data => {
 
           const userData = getState().auth.user;
 
+          let userInfoId = prevUserInfo.id;
+
           if (!prevUserInfo) {
             const userInfo = {
               ...userData,
@@ -137,21 +138,23 @@ export const authConfirmSignIn = data => {
             delete userInfo.username;
             delete userInfo.sub;
 
-            addUserInfo(userInfo, APINames.CREATE_USER_INFO);
+            const resUserInfoAdd = await addUserInfo(userInfo, APINames.CREATE_USER_INFO);
+            userInfoId = resUserInfoAdd.data[APINames.CREATE_USER_INFO].id;
           } else {
             const userInfo = {
               id: prevUserInfo.id,
               expectedVersion: prevUserInfo.version,
               lastSigninOn: _c.formatDateServer(Date.now()),
             };
-            addUserInfo(userInfo, APINames.UPDATE_USER_INFO);
+
+            const resUserInfoAdd = await addUserInfo(userInfo, APINames.UPDATE_USER_INFO);
+            userInfoId = resUserInfoAdd.data[APINames.UPDATE_USER_INFO].id;
           }
 
-          dispatch(checkSSRegistration(data.user.username));
+          dispatch(loginChecks({ username: data.user.username, userId: userInfoId }));
         }
       })
       .catch(error => {
-        console.log(error);
         dispatch({ type: CLEAR_AUTH, error });
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
@@ -195,25 +198,6 @@ export const authLoginGoogle = () => {
       .catch(error => {
         console.log(error);
         dispatch({ type: CLEAR_AUTH, error });
-      })
-      .finally(() => dispatch({ type: AUTH_COMPLETED }));
-  };
-};
-
-export const authSignOut = () => {
-  return (dispatch, getState) => {
-    dispatch({ type: AUTH_INITIATE });
-
-    const { provider } = getState().auth.user;
-
-    signOut({ provider })
-      .then(response => {
-        console.log('signOut:', response);
-        NavigationService.navigate('AuthNavigator');
-        dispatch({ type: CLEAR_AUTH });
-      })
-      .catch(error => {
-        console.log(error);
       })
       .finally(() => dispatch({ type: AUTH_COMPLETED }));
   };

@@ -6,7 +6,7 @@ import Swiper from 'react-native-swiper';
 
 import { Assets } from '~constants';
 import { Colors } from '~styles';
-import { setAuth, checkSSRegistration, checkInitLaunch, setInitLaunch } from '~redux/actions';
+import { setAuth, loginChecks, checkInitLaunch, setInitLaunch } from '~redux/actions';
 
 const { initial_1, initial_2, initial_3, initial_4, surfSkate, testImg } = Assets.Images;
 
@@ -43,11 +43,11 @@ class InitScreen extends Component {
   // };
 
   readyToMove = params => {
-    const { navigation, user, loading, loadingApp, checkSSRegistration } = this.props;
+    const { navigation, user, loading, loadingApp, loginChecks } = this.props;
 
     if (!loading && !loadingApp) {
       if (user) {
-        checkSSRegistration(user.username);
+        loginChecks({ username: user.username });
       } else {
         navigation.navigate('AuthNavigator');
       }
@@ -136,5 +136,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { setAuth, checkSSRegistration, checkInitLaunch, setInitLaunch }
+  { setAuth, loginChecks, checkInitLaunch, setInitLaunch }
 )(InitScreen);

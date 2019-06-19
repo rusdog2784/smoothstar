@@ -1,9 +1,10 @@
 import { ActionTypes, ApiTypes, AppConstants } from '~constants';
 import * as APINames from '~config/APIConfig';
 import { executeApi, executeApiWithMedia } from '~utils/API';
-import { updateUserAttributes, checkAuth } from '~utils/AuthController';
+import { updateUserAttributes, checkAuth, signOut } from '~utils/AuthController';
 import { _c } from '~utils';
 import NavigationService from '~utils/NavigationService';
+import { registerForPushNotificationsAsync } from '~utils/PushTokenController';
 
 const { QUERY, MUTATION } = ApiTypes;
 const {
@@ -17,6 +18,9 @@ const {
   CLEAR_ERR_MSG,
   CHECK_SS_REGISTRATION,
   UPDATE_ATTRIBUTES,
+  AUTH_INITIATE,
+  CLEAR_AUTH,
+  AUTH_COMPLETED,
 } = ActionTypes;
 
 export const unsubState = state => {
@@ -97,33 +101,48 @@ export const updateUserInfo = ({ user, username }) => {
   };
 };
 
-export const checkSSRegistration = userId => {
-  return dispatch => {
-    dispatch({ type: API_INITIATE });
+export const loginChecks = ({ username, userId }) => {
+  return async dispatch => {
+    try {
+      dispatch({ type: API_INITIATE });
 
-    _searchSSRegistration(userId)
-      .then(response => {
-        const { items } = response.data.listSmoothstarRegistrations;
+      if (userId) {
+        await (checkSSRegistration(dispatch, username) &&
+          registerForPushNotificationsAsync(userId));
+      } else {
+        await checkSSRegistration(dispatch, username);
+      }
 
-        if (items.length !== 0) {
-          dispatch({
-            type: CHECK_SS_REGISTRATION,
-            payload: {
-              id: items[0].id,
-              attempts: items[0].registrationAttempts,
-              status: items[0].registrationStatus,
-            },
-          });
-        }
-
-        NavigationService.navigate('AppNavigator');
-
-        _apiCompleted(dispatch);
-      })
-      .catch(error => {
-        _apiCompleted(dispatch, { error });
-      });
+      NavigationService.navigate('AppNavigator');
+      _apiCompleted(dispatch);
+    } catch (error) {
+      _apiCompleted(dispatch, { error });
+      dispatch(authSignOut());
+    }
   };
+};
+
+const checkSSRegistration = (dispatch, username) => {
+  return _searchSSRegistration(username)
+    .then(response => {
+      const { items } = response.data.listSmoothstarRegistrations;
+
+      if (items.length !== 0) {
+        dispatch({
+          type: CHECK_SS_REGISTRATION,
+          payload: {
+            id: items[0].id,
+            attempts: items[0].registrationAttempts,
+            status: items[0].registrationStatus,
+          },
+        });
+      }
+
+      return true;
+    })
+    .catch(error => {
+      throw error;
+    });
 };
 
 export const createSSRegistration = ({ stockist, registration }) => {
@@ -324,7 +343,7 @@ const _searchRegisteratioMedia = registrationId => {
 };
 
 export const addUserInfo = async (user, apiName) => {
-  return executeApi({
+  return await executeApi({
     type: MUTATION,
     name: apiName,
     data: { input: user },
@@ -350,4 +369,23 @@ export const checkUserInfo = async username => {
   } catch (error) {
     throw error;
   }
+};
+
+export const authSignOut = () => {
+  return (dispatch, getState) => {
+    dispatch({ type: AUTH_INITIATE });
+
+    const { provider } = getState().auth.user;
+
+    signOut({ provider })
+      .then(response => {
+        console.log('signOut:', response);
+        NavigationService.navigate('AuthNavigator');
+        dispatch({ type: CLEAR_AUTH });
+      })
+      .catch(error => {
+        dispatch({ type: CLEAR_AUTH, error });
+      })
+      .finally(() => dispatch({ type: AUTH_COMPLETED }));
+  };
 };

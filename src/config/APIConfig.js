@@ -11,3 +11,5 @@ export const SEARCH_REGISTRATION_MEDIA = 'listRegistrationMedias';
 export const CREATE_USER_INFO = 'createUserInfo';
 export const UPDATE_USER_INFO = 'updateUserInfo';
 export const SEARCH_USER_INFO = 'listUserInfos';
+export const LIST_PUSH_TOKEN = 'listDevicePushTokens';
+export const CREATE_PUSH_TOKEN = 'createDevicePushToken';
