@@ -65,22 +65,10 @@ export const listNewss = `query ListNewss(
         key
       }
       newsParagraphs {
-        items {
-          id
-          sortOrder
-          content
-        }
+        nextToken
       }
       newsImages {
-        items {
-          id
-          sortOrder
-          file {
-            bucket
-            key
-            region
-          }
-        }
+        nextToken
       }
       tags
       version
@@ -283,22 +271,10 @@ export const listEvents = `query ListEvents(
         key
       }
       eventParagraphs {
-        items {
-          id
-          sortOrder
-          content
-        }
+        nextToken
       }
       eventImages {
-        items {
-          id
-          sortOrder
-          file {
-            bucket
-            key
-            region
-          }
-        }
+        nextToken
       }
       tags
       version
@@ -586,16 +562,24 @@ export const getSmoothstarRegistration = `query GetSmoothstarRegistration($id: I
     registrationStatus
     orderNum
     orderInfo {
-      id
       active
-      type
-      orderNum
-      customerId
+      siteWithOrderId
+      siteId
+      orderNumber
+      customerName
       customerEmail
-      customerPhone
-      dateOfPurchase
-      cityDelivered
-      countryDelivered
+      productName
+      shippingAddress
+      orderDate
+      totalAmount
+      paymentMethod
+      completed
+      completedDate
+      refunded
+      refundedDate
+      refundedAmount
+      cancelled
+      cancelledDate
       registration {
         id
         active
@@ -712,16 +696,24 @@ export const listSmoothstarRegistrations = `query ListSmoothstarRegistrations(
       registrationStatus
       orderNum
       orderInfo {
-        id
         active
-        type
-        orderNum
-        customerId
+        siteWithOrderId
+        siteId
+        orderNumber
+        customerName
         customerEmail
-        customerPhone
-        dateOfPurchase
-        cityDelivered
-        countryDelivered
+        productName
+        shippingAddress
+        orderDate
+        totalAmount
+        paymentMethod
+        completed
+        completedDate
+        refunded
+        refundedDate
+        refundedAmount
+        cancelled
+        cancelledDate
         version
       }
       address
@@ -782,16 +774,24 @@ export const getRegistrationMedia = `query GetRegistrationMedia($id: ID!) {
       registrationStatus
       orderNum
       orderInfo {
-        id
         active
-        type
-        orderNum
-        customerId
+        siteWithOrderId
+        siteId
+        orderNumber
+        customerName
         customerEmail
-        customerPhone
-        dateOfPurchase
-        cityDelivered
-        countryDelivered
+        productName
+        shippingAddress
+        orderDate
+        totalAmount
+        paymentMethod
+        completed
+        completedDate
+        refunded
+        refundedDate
+        refundedAmount
+        cancelled
+        cancelledDate
         version
       }
       address
@@ -880,18 +880,26 @@ export const listRegistrationMedias = `query ListRegistrationMedias(
   }
 }
 `;
-export const getOrderInfo = `query GetOrderInfo($id: ID!) {
-  getOrderInfo(id: $id) {
-    id
+export const getOrderInfo = `query GetOrderInfo($siteId: String!, $orderNumber: String!) {
+  getOrderInfo(siteId: $siteId, orderNumber: $orderNumber) {
     active
-    type
-    orderNum
-    customerId
+    siteWithOrderId
+    siteId
+    orderNumber
+    customerName
     customerEmail
-    customerPhone
-    dateOfPurchase
-    cityDelivered
-    countryDelivered
+    productName
+    shippingAddress
+    orderDate
+    totalAmount
+    paymentMethod
+    completed
+    completedDate
+    refunded
+    refundedDate
+    refundedAmount
+    cancelled
+    cancelledDate
     registration {
       id
       active
@@ -904,16 +912,24 @@ export const getOrderInfo = `query GetOrderInfo($id: ID!) {
       registrationStatus
       orderNum
       orderInfo {
-        id
         active
-        type
-        orderNum
-        customerId
+        siteWithOrderId
+        siteId
+        orderNumber
+        customerName
         customerEmail
-        customerPhone
-        dateOfPurchase
-        cityDelivered
-        countryDelivered
+        productName
+        shippingAddress
+        orderDate
+        totalAmount
+        paymentMethod
+        completed
+        completedDate
+        refunded
+        refundedDate
+        refundedAmount
+        cancelled
+        cancelledDate
         version
       }
       address
@@ -955,22 +971,38 @@ export const getOrderInfo = `query GetOrderInfo($id: ID!) {
 }
 `;
 export const listOrderInfos = `query ListOrderInfos(
+  $siteId: String
+  $orderNumber: ModelStringKeyConditionInput
   $filter: ModelOrderInfoFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listOrderInfos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listOrderInfos(
+    siteId: $siteId
+    orderNumber: $orderNumber
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
     items {
-      id
       active
-      type
-      orderNum
-      customerId
+      siteWithOrderId
+      siteId
+      orderNumber
+      customerName
       customerEmail
-      customerPhone
-      dateOfPurchase
-      cityDelivered
-      countryDelivered
+      productName
+      shippingAddress
+      orderDate
+      totalAmount
+      paymentMethod
+      completed
+      completedDate
+      refunded
+      refundedDate
+      refundedAmount
+      cancelled
+      cancelledDate
       registration {
         id
         active
@@ -1035,16 +1067,24 @@ export const getOcrInfo = `query GetOcrInfo($id: ID!) {
       registrationStatus
       orderNum
       orderInfo {
-        id
         active
-        type
-        orderNum
-        customerId
+        siteWithOrderId
+        siteId
+        orderNumber
+        customerName
         customerEmail
-        customerPhone
-        dateOfPurchase
-        cityDelivered
-        countryDelivered
+        productName
+        shippingAddress
+        orderDate
+        totalAmount
+        paymentMethod
+        completed
+        completedDate
+        refunded
+        refundedDate
+        refundedAmount
+        cancelled
+        cancelledDate
         version
       }
       address
