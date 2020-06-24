@@ -65,10 +65,22 @@ export const listNewss = `query ListNewss(
         key
       }
       newsParagraphs {
-        nextToken
+        items {
+          id
+          sortOrder
+          content
+        }
       }
       newsImages {
-        nextToken
+        items {
+          id
+          sortOrder
+          file {
+            bucket
+            key
+            region
+          }
+        }
       }
       tags
       version
