@@ -283,10 +283,22 @@ export const listEvents = `query ListEvents(
         key
       }
       eventParagraphs {
-        nextToken
+        items {
+          id
+          sortOrder
+          content
+        }
       }
       eventImages {
-        nextToken
+        items {
+          id
+          sortOrder
+          file {
+            bucket
+            key
+            region
+          }
+        }
       }
       tags
       version
