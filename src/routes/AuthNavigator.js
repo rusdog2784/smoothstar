@@ -1,19 +1,16 @@
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
+import { createSwitchNavigator, createAppContainer } from "react-navigation";
 
-import {
-  LoginScreen,
-  SignupScreen,
-  AuthVerificationScreen,
-  WelcomeScreen,
-} from '~screens/AuthScreens';
+import { AuthVerificationScreen, WelcomeScreen } from "~screens/AuthScreens";
+import LoginStack from "./NavigationStacks/LoginStack";
+import SignupStack from "./NavigationStacks/SignupStack";
 
 const AuthNavigator = createSwitchNavigator(
   {
     LoginScreen: {
-      screen: LoginScreen,
+      screen: LoginStack,
     },
     SignupScreen: {
-      screen: SignupScreen,
+      screen: SignupStack,
     },
     AuthVerificationScreen: {
       screen: AuthVerificationScreen,
@@ -23,8 +20,8 @@ const AuthNavigator = createSwitchNavigator(
     },
   },
   {
-    initialRouteName: 'WelcomeScreen',
-    headerMode: 'none',
+    initialRouteName: "WelcomeScreen",
+    headerMode: "none",
   }
 );
 
