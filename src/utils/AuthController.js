@@ -103,16 +103,14 @@ export const verifyAttributeSubmit = async (attr, code) => {
 
 export const loginFacebook = async () => {
   try {
-    const { type, token, expires } = Facebook.initializeAsync(FacebookAppId)
-      .then(async (response) => {
-        console.log("fb init", response);
-        await Facebook.logInWithReadPermissionsAsync(FacebookAppId, {
-          permissions: ["public_profile", "email"],
-        });
-      })
-      .catch((error) => {
-        console.log("fb init error", error);
-      });
+    const fbInit = await Facebook.initializeAsync(FacebookAppId);
+    const {
+      type,
+      token,
+      expires,
+    } = await Facebook.logInWithReadPermissionsAsync(FacebookAppId, {
+      permissions: ["public_profile", "email"],
+    });
 
     const fieldsRequired = "id,first_name,last_name,email";
 

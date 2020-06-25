@@ -1,21 +1,24 @@
-import { Permissions, Notifications } from 'expo';
-import { Platform } from 'react-native';
+import { Notifications } from "expo";
+import * as Permissions from "expo-permissions";
+import { Platform } from "react-native";
 
-import { LIST_PUSH_TOKEN, CREATE_PUSH_TOKEN } from '~config/APIConfig';
-import { ApiTypes } from '~constants';
-import { executeApi } from '~utils/API';
+import { LIST_PUSH_TOKEN, CREATE_PUSH_TOKEN } from "~config/APIConfig";
+import { ApiTypes } from "~constants";
+import { executeApi } from "~utils/API";
 
 const { QUERY, MUTATION } = ApiTypes;
 
-export const registerForPushNotificationsAsync = async userId => {
-  console.log('in Push Token');
+export const registerForPushNotificationsAsync = async (userId) => {
+  console.log("in Push Token");
   try {
-    const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+    const { status: existingStatus } = await Permissions.getAsync(
+      Permissions.NOTIFICATIONS
+    );
     let finalStatus = existingStatus;
 
     // only ask if permissions have not already been determined, because
     // iOS won't necessarily prompt the user a second time.
-    if (existingStatus !== 'granted') {
+    if (existingStatus !== "granted") {
       // Android remote notification permissions are granted during the app
       // install, so this will only ask on iOS
       const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
@@ -23,7 +26,7 @@ export const registerForPushNotificationsAsync = async userId => {
     }
 
     // Stop here if the user did not grant permissions
-    if (finalStatus !== 'granted') {
+    if (finalStatus !== "granted") {
       return;
     }
 
@@ -40,7 +43,7 @@ export const registerForPushNotificationsAsync = async userId => {
   }
 };
 
-const isPushTokenNotExist = async token => {
+const isPushTokenNotExist = async (token) => {
   const listRes = await executeApi({
     type: QUERY,
     name: LIST_PUSH_TOKEN,
@@ -63,12 +66,12 @@ const addPushToken = (userId, token) => {
       },
     },
   })
-    .then(response => {
+    .then((response) => {
       if (response.data) {
         return true;
       }
     })
-    .catch(error => {
+    .catch((error) => {
       throw error;
     });
 };

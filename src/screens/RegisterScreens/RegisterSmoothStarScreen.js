@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { ImagePicker, SplashScreen } from "expo";
+import { SplashScreen } from "expo";
+import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import { Container, Content, ActionSheet } from "native-base";
 import { connect } from "react-redux";
@@ -437,7 +438,11 @@ class RegisterSmoothStarScreen extends Component {
             <Text type={StyleTypes.small}>
               By submitting extended warranty, you agree to SmoothStar’s{" "}
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() =>
+                this.props.navigation.navigate("PrivacyPolicyScreen")
+              }
+            >
               <Text type={StyleTypes.small} style={underlineTextStyle}>
                 Privacy Policy
               </Text>
@@ -449,7 +454,9 @@ class RegisterSmoothStarScreen extends Component {
               </Text>
             </TouchableOpacity>
             <Text type={StyleTypes.small}> and </Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.navigate("TermsScreen")}
+            >
               <Text type={StyleTypes.small} style={underlineTextStyle}>
                 Terms of Use
               </Text>
