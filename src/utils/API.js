@@ -1,24 +1,25 @@
-import { API, graphqlOperation, Storage } from 'aws-amplify';
-import uuidv1 from 'uuid/v1';
+import { API, graphqlOperation, Storage } from "aws-amplify";
+import uuidv1 from "uuid/v1";
 
-import { ApiTypes } from '~constants';
-import * as queries from '~graphql/queries';
-import * as mutations from '~graphql/mutations';
-import aws_config from '~config/aws-exports';
+import { ApiTypes } from "~constants";
+import * as queries from "~graphql/queries";
+import * as mutations from "~graphql/mutations";
+import aws_config from "~config/aws-exports";
 
 const { QUERY, MUTATION } = ApiTypes;
 
 export const executeApi = async ({ type, name, data = null }) => {
-  const operation = type === QUERY ? queries[name] : type === MUTATION ? mutations[name] : null;
+  const operation =
+    type === QUERY ? queries[name] : type === MUTATION ? mutations[name] : null;
   // console.log('operation:', operation);
   // console.log('data:', data);
   return API.graphql(graphqlOperation(operation, data))
-    .then(response => {
+    .then((response) => {
       console.log(`API (${name}) Response => `, response);
       return response;
     })
-    .catch(error => {
-      console.log('error => :', error);
+    .catch((error) => {
+      console.log("error => :", error);
       throw error;
     });
 };
@@ -28,9 +29,9 @@ export const executeApiWithMedia = async ({ name, data }) => {
 
   const bucket = aws_config.aws_user_files_s3_bucket;
   const region = aws_config.aws_user_files_s3_bucket_region;
-  const visibility = 'private';
+  const visibility = "private";
 
-  const key = `${identityId}/${uuidv1()}${extension && '.'}${extension}`;
+  const key = `${identityId}/${uuidv1()}${extension && "."}${extension}`;
 
   const blob = await new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
@@ -38,10 +39,10 @@ export const executeApiWithMedia = async ({ name, data }) => {
       resolve(xhr.response);
     };
     xhr.onerror = function() {
-      reject(new TypeError('Network request failed'));
+      reject(new TypeError("Network request failed"));
     };
-    xhr.responseType = 'blob';
-    xhr.open('GET', uri, true);
+    xhr.responseType = "blob";
+    xhr.open("GET", uri, true);
     xhr.send(null);
   });
 
@@ -49,7 +50,7 @@ export const executeApiWithMedia = async ({ name, data }) => {
     level: visibility,
     contentType: `image/${extension}`,
   })
-    .then(result => {
+    .then((result) => {
       const file = {
         bucket,
         region,
@@ -60,7 +61,7 @@ export const executeApiWithMedia = async ({ name, data }) => {
 
       return executeApi({ type: MUTATION, name, data: { input } });
     })
-    .catch(error => {
+    .catch((error) => {
       throw error;
     });
 };
