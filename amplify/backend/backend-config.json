@@ -1,6 +1,6 @@
 {
 	"api": {
-		"smoothstarApiServer": {
+		"SmoothStarApiServer": {
 			"service": "AppSync",
 			"providerPlugin": "awscloudformation",
 			"output": {
