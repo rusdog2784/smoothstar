@@ -158,26 +158,19 @@ type RegistrationMedia @model @versioned {
   registrationId: String!
 }
 
-type OrderInfo @model @versioned @key(fields: ["siteId", "orderNumber"]) {
+type OrderInfo @model @versioned {
+  id: ID!
+
   active: Boolean!
 
-  siteWithOrderId: String!
-  siteId: String!
-  orderNumber: String!
-  customerName: String!
-  customerEmail: String!
-  productName: String!
-  shippingAddress: String!
-  orderDate: String!
-  totalAmount: Float!
-  paymentMethod: String!
-  completed: Boolean!
-  completedDate: String!
-  refunded: Boolean!
-  refundedDate: String!
-  refundedAmount: Float!
-  cancelled: Boolean!
-  cancelledDate: String!
+  type: String!
+  orderNum: String!
+  customerId: String!
+  customerEmail: String
+  customerPhone: String
+  dateOfPurchase: String!
+  cityDelivered: String
+  countryDelivered: String!
 
   registration: SmoothstarRegistration
     @connection(name: "SmoothstarRegistrationOrder")
