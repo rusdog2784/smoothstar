@@ -27,7 +27,8 @@
             "DeploymentBucketName": "smoothstar-20190411173118-deployment",
             "UnauthRoleName": "smoothstar-20190411173118-unauthRole",
             "StackName": "smoothstar-20190411173118",
-            "StackId": "arn:aws:cloudformation:eu-west-1:818583220383:stack/smoothstar-20190411173118/b7306b10-5c55-11e9-9928-0219aca93f38"
+            "StackId": "arn:aws:cloudformation:eu-west-1:818583220383:stack/smoothstar-20190411173118/b7306b10-5c55-11e9-9928-0219aca93f38",
+            "AmplifyAppId": "d2skyeqok8faan"
         },
         "categories": {
             "auth": {

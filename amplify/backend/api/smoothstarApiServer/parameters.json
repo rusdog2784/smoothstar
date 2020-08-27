@@ -1,5 +1,5 @@
 {
-    "AppSyncApiName": "smoothstarApiServer",
+    "AppSyncApiName": "SmoothStarApiServer",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "AuthCognitoUserPoolId": {
         "Fn::GetAtt": [
