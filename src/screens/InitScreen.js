@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Text } from "react-native";
 import { SplashScreen } from "expo";
 import { Asset } from "expo-asset";
 import { connect } from "react-redux";
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.imageBackgroundColor,
   },
   carouselStyle: {
-    flex: 1,
+    // flex: 1,
   },
   slideStyle: {
     flex: 1,
