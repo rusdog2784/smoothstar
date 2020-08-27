@@ -902,24 +902,16 @@ export const onCreateSmoothstarRegistration = `subscription OnCreateSmoothstarRe
     registrationStatus
     orderNum
     orderInfo {
+      id
       active
-      siteWithOrderId
-      siteId
-      orderNumber
-      customerName
+      type
+      orderNum
+      customerId
       customerEmail
-      productName
-      shippingAddress
-      orderDate
-      totalAmount
-      paymentMethod
-      completed
-      completedDate
-      refunded
-      refundedDate
-      refundedAmount
-      cancelled
-      cancelledDate
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
       registration {
         id
         active
@@ -1027,24 +1019,16 @@ export const onUpdateSmoothstarRegistration = `subscription OnUpdateSmoothstarRe
     registrationStatus
     orderNum
     orderInfo {
+      id
       active
-      siteWithOrderId
-      siteId
-      orderNumber
-      customerName
+      type
+      orderNum
+      customerId
       customerEmail
-      productName
-      shippingAddress
-      orderDate
-      totalAmount
-      paymentMethod
-      completed
-      completedDate
-      refunded
-      refundedDate
-      refundedAmount
-      cancelled
-      cancelledDate
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
       registration {
         id
         active
@@ -1152,24 +1136,16 @@ export const onDeleteSmoothstarRegistration = `subscription OnDeleteSmoothstarRe
     registrationStatus
     orderNum
     orderInfo {
+      id
       active
-      siteWithOrderId
-      siteId
-      orderNumber
-      customerName
+      type
+      orderNum
+      customerId
       customerEmail
-      productName
-      shippingAddress
-      orderDate
-      totalAmount
-      paymentMethod
-      completed
-      completedDate
-      refunded
-      refundedDate
-      refundedAmount
-      cancelled
-      cancelledDate
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
       registration {
         id
         active
@@ -1284,24 +1260,16 @@ export const onCreateRegistrationMedia = `subscription OnCreateRegistrationMedia
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1363,24 +1331,16 @@ export const onUpdateRegistrationMedia = `subscription OnUpdateRegistrationMedia
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1442,24 +1402,16 @@ export const onDeleteRegistrationMedia = `subscription OnDeleteRegistrationMedia
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1503,24 +1455,16 @@ export const onDeleteRegistrationMedia = `subscription OnDeleteRegistrationMedia
 `;
 export const onCreateOrderInfo = `subscription OnCreateOrderInfo {
   onCreateOrderInfo {
+    id
     active
-    siteWithOrderId
-    siteId
-    orderNumber
-    customerName
+    type
+    orderNum
+    customerId
     customerEmail
-    productName
-    shippingAddress
-    orderDate
-    totalAmount
-    paymentMethod
-    completed
-    completedDate
-    refunded
-    refundedDate
-    refundedAmount
-    cancelled
-    cancelledDate
+    customerPhone
+    dateOfPurchase
+    cityDelivered
+    countryDelivered
     registration {
       id
       active
@@ -1533,24 +1477,16 @@ export const onCreateOrderInfo = `subscription OnCreateOrderInfo {
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1593,24 +1529,16 @@ export const onCreateOrderInfo = `subscription OnCreateOrderInfo {
 `;
 export const onUpdateOrderInfo = `subscription OnUpdateOrderInfo {
   onUpdateOrderInfo {
+    id
     active
-    siteWithOrderId
-    siteId
-    orderNumber
-    customerName
+    type
+    orderNum
+    customerId
     customerEmail
-    productName
-    shippingAddress
-    orderDate
-    totalAmount
-    paymentMethod
-    completed
-    completedDate
-    refunded
-    refundedDate
-    refundedAmount
-    cancelled
-    cancelledDate
+    customerPhone
+    dateOfPurchase
+    cityDelivered
+    countryDelivered
     registration {
       id
       active
@@ -1623,24 +1551,16 @@ export const onUpdateOrderInfo = `subscription OnUpdateOrderInfo {
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1683,24 +1603,16 @@ export const onUpdateOrderInfo = `subscription OnUpdateOrderInfo {
 `;
 export const onDeleteOrderInfo = `subscription OnDeleteOrderInfo {
   onDeleteOrderInfo {
+    id
     active
-    siteWithOrderId
-    siteId
-    orderNumber
-    customerName
+    type
+    orderNum
+    customerId
     customerEmail
-    productName
-    shippingAddress
-    orderDate
-    totalAmount
-    paymentMethod
-    completed
-    completedDate
-    refunded
-    refundedDate
-    refundedAmount
-    cancelled
-    cancelledDate
+    customerPhone
+    dateOfPurchase
+    cityDelivered
+    countryDelivered
     registration {
       id
       active
@@ -1713,24 +1625,16 @@ export const onDeleteOrderInfo = `subscription OnDeleteOrderInfo {
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1806,24 +1710,16 @@ export const onCreateOcrInfo = `subscription OnCreateOcrInfo {
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1899,24 +1795,16 @@ export const onUpdateOcrInfo = `subscription OnUpdateOcrInfo {
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1992,24 +1880,16 @@ export const onDeleteOcrInfo = `subscription OnDeleteOcrInfo {
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address

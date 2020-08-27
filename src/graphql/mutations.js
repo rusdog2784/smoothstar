@@ -904,24 +904,16 @@ export const createSmoothstarRegistration = `mutation CreateSmoothstarRegistrati
     registrationStatus
     orderNum
     orderInfo {
+      id
       active
-      siteWithOrderId
-      siteId
-      orderNumber
-      customerName
+      type
+      orderNum
+      customerId
       customerEmail
-      productName
-      shippingAddress
-      orderDate
-      totalAmount
-      paymentMethod
-      completed
-      completedDate
-      refunded
-      refundedDate
-      refundedAmount
-      cancelled
-      cancelledDate
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
       registration {
         id
         active
@@ -1031,24 +1023,16 @@ export const updateSmoothstarRegistration = `mutation UpdateSmoothstarRegistrati
     registrationStatus
     orderNum
     orderInfo {
+      id
       active
-      siteWithOrderId
-      siteId
-      orderNumber
-      customerName
+      type
+      orderNum
+      customerId
       customerEmail
-      productName
-      shippingAddress
-      orderDate
-      totalAmount
-      paymentMethod
-      completed
-      completedDate
-      refunded
-      refundedDate
-      refundedAmount
-      cancelled
-      cancelledDate
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
       registration {
         id
         active
@@ -1158,24 +1142,16 @@ export const deleteSmoothstarRegistration = `mutation DeleteSmoothstarRegistrati
     registrationStatus
     orderNum
     orderInfo {
+      id
       active
-      siteWithOrderId
-      siteId
-      orderNumber
-      customerName
+      type
+      orderNum
+      customerId
       customerEmail
-      productName
-      shippingAddress
-      orderDate
-      totalAmount
-      paymentMethod
-      completed
-      completedDate
-      refunded
-      refundedDate
-      refundedAmount
-      cancelled
-      cancelledDate
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
       registration {
         id
         active
@@ -1290,24 +1266,16 @@ export const createRegistrationMedia = `mutation CreateRegistrationMedia($input:
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1369,24 +1337,16 @@ export const updateRegistrationMedia = `mutation UpdateRegistrationMedia($input:
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1448,24 +1408,16 @@ export const deleteRegistrationMedia = `mutation DeleteRegistrationMedia($input:
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1509,24 +1461,16 @@ export const deleteRegistrationMedia = `mutation DeleteRegistrationMedia($input:
 `;
 export const createOrderInfo = `mutation CreateOrderInfo($input: CreateOrderInfoInput!) {
   createOrderInfo(input: $input) {
+    id
     active
-    siteWithOrderId
-    siteId
-    orderNumber
-    customerName
+    type
+    orderNum
+    customerId
     customerEmail
-    productName
-    shippingAddress
-    orderDate
-    totalAmount
-    paymentMethod
-    completed
-    completedDate
-    refunded
-    refundedDate
-    refundedAmount
-    cancelled
-    cancelledDate
+    customerPhone
+    dateOfPurchase
+    cityDelivered
+    countryDelivered
     registration {
       id
       active
@@ -1539,24 +1483,16 @@ export const createOrderInfo = `mutation CreateOrderInfo($input: CreateOrderInfo
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1599,24 +1535,16 @@ export const createOrderInfo = `mutation CreateOrderInfo($input: CreateOrderInfo
 `;
 export const updateOrderInfo = `mutation UpdateOrderInfo($input: UpdateOrderInfoInput!) {
   updateOrderInfo(input: $input) {
+    id
     active
-    siteWithOrderId
-    siteId
-    orderNumber
-    customerName
+    type
+    orderNum
+    customerId
     customerEmail
-    productName
-    shippingAddress
-    orderDate
-    totalAmount
-    paymentMethod
-    completed
-    completedDate
-    refunded
-    refundedDate
-    refundedAmount
-    cancelled
-    cancelledDate
+    customerPhone
+    dateOfPurchase
+    cityDelivered
+    countryDelivered
     registration {
       id
       active
@@ -1629,24 +1557,16 @@ export const updateOrderInfo = `mutation UpdateOrderInfo($input: UpdateOrderInfo
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1689,24 +1609,16 @@ export const updateOrderInfo = `mutation UpdateOrderInfo($input: UpdateOrderInfo
 `;
 export const deleteOrderInfo = `mutation DeleteOrderInfo($input: DeleteOrderInfoInput!) {
   deleteOrderInfo(input: $input) {
+    id
     active
-    siteWithOrderId
-    siteId
-    orderNumber
-    customerName
+    type
+    orderNum
+    customerId
     customerEmail
-    productName
-    shippingAddress
-    orderDate
-    totalAmount
-    paymentMethod
-    completed
-    completedDate
-    refunded
-    refundedDate
-    refundedAmount
-    cancelled
-    cancelledDate
+    customerPhone
+    dateOfPurchase
+    cityDelivered
+    countryDelivered
     registration {
       id
       active
@@ -1719,24 +1631,16 @@ export const deleteOrderInfo = `mutation DeleteOrderInfo($input: DeleteOrderInfo
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1812,24 +1716,16 @@ export const createOcrInfo = `mutation CreateOcrInfo($input: CreateOCRInfoInput!
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1905,24 +1801,16 @@ export const updateOcrInfo = `mutation UpdateOcrInfo($input: UpdateOCRInfoInput!
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -1998,24 +1886,16 @@ export const deleteOcrInfo = `mutation DeleteOcrInfo($input: DeleteOCRInfoInput!
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address

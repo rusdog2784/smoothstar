@@ -586,24 +586,16 @@ export const getSmoothstarRegistration = `query GetSmoothstarRegistration($id: I
     registrationStatus
     orderNum
     orderInfo {
+      id
       active
-      siteWithOrderId
-      siteId
-      orderNumber
-      customerName
+      type
+      orderNum
+      customerId
       customerEmail
-      productName
-      shippingAddress
-      orderDate
-      totalAmount
-      paymentMethod
-      completed
-      completedDate
-      refunded
-      refundedDate
-      refundedAmount
-      cancelled
-      cancelledDate
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
       registration {
         id
         active
@@ -720,24 +712,16 @@ export const listSmoothstarRegistrations = `query ListSmoothstarRegistrations(
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -798,24 +782,16 @@ export const getRegistrationMedia = `query GetRegistrationMedia($id: ID!) {
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -904,26 +880,18 @@ export const listRegistrationMedias = `query ListRegistrationMedias(
   }
 }
 `;
-export const getOrderInfo = `query GetOrderInfo($siteId: String!, $orderNumber: String!) {
-  getOrderInfo(siteId: $siteId, orderNumber: $orderNumber) {
+export const getOrderInfo = `query GetOrderInfo($id: ID!) {
+  getOrderInfo(id: $id) {
+    id
     active
-    siteWithOrderId
-    siteId
-    orderNumber
-    customerName
+    type
+    orderNum
+    customerId
     customerEmail
-    productName
-    shippingAddress
-    orderDate
-    totalAmount
-    paymentMethod
-    completed
-    completedDate
-    refunded
-    refundedDate
-    refundedAmount
-    cancelled
-    cancelledDate
+    customerPhone
+    dateOfPurchase
+    cityDelivered
+    countryDelivered
     registration {
       id
       active
@@ -936,24 +904,16 @@ export const getOrderInfo = `query GetOrderInfo($siteId: String!, $orderNumber: 
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
@@ -995,38 +955,22 @@ export const getOrderInfo = `query GetOrderInfo($siteId: String!, $orderNumber: 
 }
 `;
 export const listOrderInfos = `query ListOrderInfos(
-  $siteId: String
-  $orderNumber: ModelStringKeyConditionInput
   $filter: ModelOrderInfoFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listOrderInfos(
-    siteId: $siteId
-    orderNumber: $orderNumber
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-  ) {
+  listOrderInfos(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
+      id
       active
-      siteWithOrderId
-      siteId
-      orderNumber
-      customerName
+      type
+      orderNum
+      customerId
       customerEmail
-      productName
-      shippingAddress
-      orderDate
-      totalAmount
-      paymentMethod
-      completed
-      completedDate
-      refunded
-      refundedDate
-      refundedAmount
-      cancelled
-      cancelledDate
+      customerPhone
+      dateOfPurchase
+      cityDelivered
+      countryDelivered
       registration {
         id
         active
@@ -1091,24 +1035,16 @@ export const getOcrInfo = `query GetOcrInfo($id: ID!) {
       registrationStatus
       orderNum
       orderInfo {
+        id
         active
-        siteWithOrderId
-        siteId
-        orderNumber
-        customerName
+        type
+        orderNum
+        customerId
         customerEmail
-        productName
-        shippingAddress
-        orderDate
-        totalAmount
-        paymentMethod
-        completed
-        completedDate
-        refunded
-        refundedDate
-        refundedAmount
-        cancelled
-        cancelledDate
+        customerPhone
+        dateOfPurchase
+        cityDelivered
+        countryDelivered
         version
       }
       address
