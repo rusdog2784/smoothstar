@@ -1,8 +1,9 @@
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-import { Colors } from "~styles";
-import { SignupScreen } from "~screens/AuthScreens";
-import { PrivacyPolicyScreen, TermsScreen } from "~screens/PolicyFAQsScreens";
+import { Colors } from '~styles';
+import { SignupScreen } from '~screens/AuthScreens';
+import { PrivacyPolicyScreen, TermsScreen } from '~screens/PolicyFAQsScreens';
 
 const SignupStack = createStackNavigator(
   {
@@ -17,7 +18,7 @@ const SignupStack = createStackNavigator(
     },
   },
   {
-    initialRouteName: "SignupScreen",
+    initialRouteName: 'SignupScreen',
   }
 );
 

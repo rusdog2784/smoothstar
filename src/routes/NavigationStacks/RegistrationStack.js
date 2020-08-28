@@ -1,12 +1,13 @@
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-import { Colors } from "~styles";
+import { Colors } from '~styles';
 import {
   RegisterSmoothStarScreen,
   RegistrationSuccessScreen,
   RegistrationUnsuccessfulScreen,
-} from "~screens/RegisterScreens";
-import { PrivacyPolicyScreen, TermsScreen } from "~screens/PolicyFAQsScreens";
+} from '~screens/RegisterScreens';
+import { PrivacyPolicyScreen, TermsScreen } from '~screens/PolicyFAQsScreens';
 
 const RegistrationStack = createStackNavigator(
   {
@@ -27,7 +28,7 @@ const RegistrationStack = createStackNavigator(
     },
   },
   {
-    initialRouteName: "RegisterSmoothStarScreen",
+    initialRouteName: 'RegisterSmoothStarScreen',
     defaultNavigationOptions: {
       headerTransparent: true,
       headerTintColor: Colors.headerTitleColorDark,

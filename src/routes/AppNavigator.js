@@ -1,4 +1,5 @@
-import { createDrawerNavigator, createAppContainer } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 
 import { Drawer } from '~components';
 import NewsStack from './NavigationStacks/NewsStack';

@@ -1,8 +1,9 @@
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-import { Colors } from "~styles";
-import { LoginScreen } from "~screens/AuthScreens";
-import { PrivacyPolicyScreen, TermsScreen } from "~screens/PolicyFAQsScreens";
+import { Colors } from '~styles';
+import { LoginScreen } from '~screens/AuthScreens';
+import { PrivacyPolicyScreen, TermsScreen } from '~screens/PolicyFAQsScreens';
 
 const LoginStack = createStackNavigator(
   {
@@ -17,7 +18,7 @@ const LoginStack = createStackNavigator(
     },
   },
   {
-    initialRouteName: "LoginScreen",
+    initialRouteName: 'LoginScreen',
   }
 );
 
