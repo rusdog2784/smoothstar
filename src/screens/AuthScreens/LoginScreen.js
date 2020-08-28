@@ -1,29 +1,29 @@
-import React, { Component } from "react";
-import { View, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { Container, Content } from "native-base";
-import { connect } from "react-redux";
-import { SplashScreen } from "expo";
+import React, { Component } from 'react';
+import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Container, Content } from 'native-base';
+import { connect } from 'react-redux';
+import { SplashScreen } from 'expo';
 
-import { authSignIn, authLoginFacebook, authLoginGoogle } from "~redux/actions";
-import { Text, Button, InputBox } from "~components/common";
-import { Assets, StyleTypes } from "~constants";
-import { GlobalStyles, Colors } from "~styles";
+import { authSignIn, authLoginFacebook, authLoginGoogle } from '~redux/actions';
+import { Text, Button, InputBox } from '~components/common';
+import { Assets, StyleTypes } from '~constants';
+import { GlobalStyles, Colors } from '~styles';
 
 class LoginScreen extends Component {
   state = {
     username: this.props.username,
-    password: "",
+    password: '',
   };
 
   componentDidMount = () => {
     SplashScreen.hide();
   };
 
-  onUsernameChange = (text) => {
+  onUsernameChange = text => {
     this.setState({ username: text });
   };
 
-  onPasswordChange = (text) => {
+  onPasswordChange = text => {
     this.setState({ password: text });
   };
 
@@ -45,17 +45,11 @@ class LoginScreen extends Component {
 
     return (
       <Container style={screenContainerStyle}>
-        <Content
-          contentContainerStyle={contentStyle}
-          showsVerticalScrollIndicator={false}
-        >
-          <Image
-            source={Assets.Images.logoDark}
-            style={[mdGapStyle, logoStyle]}
-          />
+        <Content contentContainerStyle={contentStyle} showsVerticalScrollIndicator={false}>
+          <Image source={Assets.Images.logoDark} style={[mdGapStyle, logoStyle]} />
 
           <Text dark type={StyleTypes.h1} style={[mdGapStyle, introTextStyle]}>
-            YOUR ACCOUNT{"\n"}FOR SMOOTHSTAR
+            YOUR ACCOUNT{'\n'}FOR SMOOTHSTAR
           </Text>
 
           <InputBox
@@ -80,40 +74,28 @@ class LoginScreen extends Component {
           <View
             style={[
               {
-                justifyContent: "center",
-                flexWrap: "wrap",
-                flexDirection: "row",
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                flexDirection: 'row',
               },
-            ]}
-          >
-            <Text type={StyleTypes.small}>
-              By logging in, you agree to SmoothStar's{" "}
-            </Text>
-            <TouchableOpacity
-              onPress={() =>
-                this.props.navigation.navigate("PrivacyPolicyScreen")
-              }
-            >
+            ]}>
+            <Text type={StyleTypes.small}>By logging in, you agree to SmoothStar's </Text>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('PrivacyPolicyScreen')}>
               <Text type={StyleTypes.small} style={underlineTextStyle}>
                 Privacy Policy
               </Text>
             </TouchableOpacity>
             <Text type={StyleTypes.small}> and </Text>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("TermsScreen")}
-            >
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('TermsScreen')}>
               <Text type={StyleTypes.small} style={underlineTextStyle}>
                 Terms of Use
               </Text>
             </TouchableOpacity>
           </View>
 
-          <Text
-            type={StyleTypes.small}
-            style={[smGapStyle, { textAlign: "center" }]}
-          >
-            *Smoothstar requires Multi-Factor Authentication. We will send you a
-            code via SMS. Carrier rates may apply.
+          <Text type={StyleTypes.small} style={[smGapStyle, { textAlign: 'center' }]}>
+            *Smoothstar requires Multi-Factor Authentication. We will send you a code via SMS.
+            Carrier rates may apply.
           </Text>
 
           <Button onPress={this.handleSignIn} style={xlgGapStyle}>
@@ -125,8 +107,7 @@ class LoginScreen extends Component {
             style={smGapStyle}
             color={Colors.buttonGoogleColor}
             icon="google-"
-            iconType="Entypo"
-          >
+            iconType="Entypo">
             LOGIN WITH GOOGLE
           </Button>
 
@@ -135,8 +116,7 @@ class LoginScreen extends Component {
             style={lgGapStyle}
             color={Colors.buttonFBColor}
             icon="facebook"
-            iconType="FontAwesome"
-          >
+            iconType="FontAwesome">
             LOGIN WITH FACEBOOK
           </Button>
 
@@ -144,16 +124,13 @@ class LoginScreen extends Component {
             style={[
               mdGapStyle,
               {
-                justifyContent: "center",
-                flexWrap: "wrap",
-                flexDirection: "row",
+                justifyContent: 'center',
+                flexWrap: 'wrap',
+                flexDirection: 'row',
               },
-            ]}
-          >
+            ]}>
             <Text type={StyleTypes.small}>Not a SmoothStar member? </Text>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("SignupScreen")}
-            >
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('SignupScreen')}>
               <Text type={StyleTypes.small} style={underlineTextStyle}>
                 Join Now
               </Text>
@@ -167,7 +144,7 @@ class LoginScreen extends Component {
 
 const styles = StyleSheet.create({
   contentStyle: {
-    alignItems: "center",
+    alignItems: 'center',
     paddingVertical: 35,
     ...GlobalStyles.screenType1ContentStyle,
   },
@@ -176,15 +153,15 @@ const styles = StyleSheet.create({
     height: 50,
   },
   forgotViewStyle: {
-    width: "100%",
-    alignItems: "flex-end",
+    width: '100%',
+    alignItems: 'flex-end',
   },
   introTextStyle: {
-    textAlign: "center",
+    textAlign: 'center',
   },
 });
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { username, loading } = state.auth;
 
   return {
