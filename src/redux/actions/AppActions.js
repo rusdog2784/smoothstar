@@ -117,7 +117,10 @@ export const loginChecks = ({ username, userId }) => {
       _apiCompleted(dispatch);
     } catch (error) {
       _apiCompleted(dispatch, { error });
-      dispatch(authSignOut());
+      console.log('error==', error);
+
+      NavigationService.navigate('AppNavigator');
+      // dispatch(authSignOut());
     }
   };
 };

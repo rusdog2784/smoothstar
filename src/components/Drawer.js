@@ -51,7 +51,10 @@ class Drawer extends Component {
             <SelectableItem iconType="MaterialIcons" iconName="info">
               Getting Started
             </SelectableItem>
-            <SelectableItem iconType="MaterialIcons" iconName="play-circle-outline">
+            <SelectableItem
+              iconType="MaterialIcons"
+              iconName="play-circle-outline"
+              onPress={() => NavigationService.navigate('VideosStack')}>
               Surf Training Series
             </SelectableItem>
             <SelectableItem

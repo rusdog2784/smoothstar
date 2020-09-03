@@ -1,0 +1,136 @@
+import React, { Component } from 'react';
+import { View, Image, Dimensions, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { Container, Content } from 'native-base';
+import Swiper from 'react-native-swiper';
+import { connect } from 'react-redux';
+import Moment from 'moment';
+
+import { fetchListNews, authSignOut } from '~redux/actions';
+import { Text, CustomIcon } from '~components/common';
+import { CardLI } from '~components';
+import { Assets, StyleTypes, StaticData } from '~constants';
+import { GlobalStyles, Colors } from '~styles';
+
+const { height, width } = Dimensions.get('window');
+
+class VideosCategoryScreen extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    headerTitle: (
+      <Text shadow type={StyleTypes.headerTitleDark}>
+        Training Videos
+      </Text>
+    ),
+    headerRight: <View>{null}</View>,
+    headerLeft: (
+      <CustomIcon
+        shadow
+        button
+        onPress={navigation.toggleDrawer}
+        style={GlobalStyles.headerLeftStyle}
+        name="menu"
+        type="MaterialIcons"
+        color={Colors.iconColorLight}
+      />
+    ),
+  });
+
+  componentDidMount() {
+    this.props.fetchListNews();
+  }
+
+  _renderItem = ({ item }) => {
+    const { title, publishedOn, rawContent, newsParagraphs: paragraphs, newsImages: images } = item;
+    return (
+      <CardLI
+        style={styles.listItemStyle}
+        onPress={() =>
+          this.props.navigation.navigate('NewsDetailScreen', {
+            heading: title,
+            description: rawContent,
+            paragraphs: paragraphs.items,
+            images: images.items,
+          })
+        }
+        heading={title}
+        date={Moment(publishedOn).format('DD/MM/YYYY')}
+        imageSource={{
+          uri:
+            'https://chile.travel/wp-content/uploads/bfi_thumb/Surf-pichilemu-ACT158-mpo3ti23d6dwe815ue248fxju4t66nm4vbb5pzf06o.jpg',
+        }}
+        description={rawContent}
+      />
+    );
+  };
+
+  render() {
+    return (
+      <Container>
+        <Content contentContainerStyle={{ flex: 1 }} showsVerticalScrollIndicator={false}>
+          <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.testImg} />
+        </Content>
+
+        <TouchableOpacity
+          style={{ alignItems: 'center', marginVertical: 20 }}
+          onPress={this.props.authSignOut}>
+          <Text>SignOut</Text>
+        </TouchableOpacity>
+      </Container>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  carouselViewStyle: {
+    height: height / 2,
+    width: '100%',
+  },
+  carouselTextViewStyle: {
+    height: height / 2,
+    width,
+    position: 'absolute',
+    justifyContent: 'center',
+    paddingHorizontal: 30,
+  },
+  carouselTextStyle: {
+    textAlign: 'center',
+  },
+  imageStyle: {
+    height: null,
+    width: '100%',
+    flex: 1,
+    backgroundColor: Colors.imageBackgroundColor,
+  },
+  listViewStyle: {
+    position: 'absolute',
+    marginTop: height / 2 - 40,
+    ...GlobalStyles.screenType2ContentStyle,
+  },
+  listItemStyle: {
+    marginBottom: 10,
+  },
+  carouselStyle: {
+    flex: 1,
+  },
+  slideStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ddd',
+  },
+  carouselPaginationStyle: {
+    top: height / 2 - 100,
+  },
+});
+
+const mapStateToProps = state => {
+  const { newsList } = state.app;
+
+  return {
+    newsList,
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchListNews, authSignOut }
+)(VideosCategoryScreen);

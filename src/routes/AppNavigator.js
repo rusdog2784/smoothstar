@@ -8,6 +8,7 @@ import EventsStack from './NavigationStacks/EventsStack';
 import SettingsStack from './NavigationStacks/SettingsStack';
 import HomeStack from './NavigationStacks/HomeStack';
 import FAQStack from './NavigationStacks/FAQStack';
+import VideosStack from './NavigationStacks/VideosStack';
 
 const AppNavigator = createDrawerNavigator(
   {
@@ -28,6 +29,9 @@ const AppNavigator = createDrawerNavigator(
     },
     FAQStack: {
       screen: FAQStack,
+    },
+    VideosStack: {
+      screen: VideosStack,
     },
   },
   {

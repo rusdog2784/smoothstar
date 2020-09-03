@@ -1,28 +1,27 @@
-import { Auth } from "aws-amplify";
-import { GoogleSignIn } from "expo";
-import * as Facebook from "expo-facebook";
+import { Auth } from 'aws-amplify';
+import { GoogleSignIn } from 'expo';
+import * as Facebook from 'expo-facebook';
 
-import { FacebookAppId } from "~config/AuthConfig";
+import { FacebookAppId } from '~config/AuthConfig';
 
 export const checkAuth = async () => {
   return Auth.currentAuthenticatedUser({
     bypassCache: true,
   })
-    .then((user) => {
-      if (
-        user.provider &&
-        (user.provider === "facebook" || user.provider === "google")
-      ) {
+    .then(user => {
+      console.log('user=>', user);
+      if (user.provider && (user.provider === 'facebook' || user.provider === 'google')) {
         return { username: user.email, attributes: { ...user } };
       }
       return user;
     })
-    .catch((error) => {
+    .catch(error => {
+      console.log('error=>', error);
       throw error;
     });
 };
 
-export const updateUserAttributes = async (attr) => {
+export const updateUserAttributes = async attr => {
   try {
     let user = await Auth.currentAuthenticatedUser();
 
@@ -32,7 +31,7 @@ export const updateUserAttributes = async (attr) => {
   }
 };
 
-export const signUp = async (user) => {
+export const signUp = async user => {
   const username = user.email;
   const password = user.password;
 
@@ -43,60 +42,60 @@ export const signUp = async (user) => {
     password,
     attributes: { ...user },
   })
-    .then((response) => response)
-    .catch((error) => {
+    .then(response => response)
+    .catch(error => {
       throw error;
     });
 };
 
 export const confirmSignUp = async ({ username, code }) => {
   return Auth.confirmSignUp(username, code, {})
-    .then((response) => response)
-    .catch((error) => {
+    .then(response => response)
+    .catch(error => {
       throw error;
     });
 };
 
 export const signIn = async ({ username, password }) => {
   return Auth.signIn(username, password)
-    .then((response) => response)
-    .catch((error) => {
+    .then(response => response)
+    .catch(error => {
       throw error;
     });
 };
 
 export const confirmSignIn = async ({ user, code, mfaType }) => {
   return Auth.confirmSignIn(user, code, mfaType)
-    .then((response) => response)
-    .catch((error) => {
+    .then(response => response)
+    .catch(error => {
       throw error;
     });
 };
 
 export const signOut = async ({ provider }) => {
-  if (provider && provider === "google") {
+  if (provider && provider === 'google') {
     await googleSignOut();
   }
 
   return Auth.signOut()
     .then(() => true)
-    .catch((error) => {
+    .catch(error => {
       throw error;
     });
 };
 
-export const verifyAttribute = async (attr) => {
+export const verifyAttribute = async attr => {
   return Auth.verifyCurrentUserAttribute(attr)
-    .then((response) => response)
-    .catch((error) => {
+    .then(response => response)
+    .catch(error => {
       throw error;
     });
 };
 
 export const verifyAttributeSubmit = async (attr, code) => {
   return Auth.verifyCurrentUserAttribute(attr, code)
-    .then((response) => response)
-    .catch((error) => {
+    .then(response => response)
+    .catch(error => {
       throw error;
     });
 };
@@ -104,17 +103,13 @@ export const verifyAttributeSubmit = async (attr, code) => {
 export const loginFacebook = async () => {
   try {
     const fbInit = await Facebook.initializeAsync(FacebookAppId);
-    const {
-      type,
-      token,
-      expires,
-    } = await Facebook.logInWithReadPermissionsAsync(FacebookAppId, {
-      permissions: ["public_profile", "email"],
+    const { type, token, expires } = await Facebook.logInWithReadPermissionsAsync(FacebookAppId, {
+      permissions: ['public_profile', 'email'],
     });
 
-    const fieldsRequired = "id,first_name,last_name,email";
+    const fieldsRequired = 'id,first_name,last_name,email';
 
-    if (type === "success") {
+    if (type === 'success') {
       const response = await fetch(
         `https://graph.facebook.com/me?fields=${fieldsRequired}&access_token=${token}`
       );
@@ -124,18 +119,16 @@ export const loginFacebook = async () => {
         given_name: res.first_name,
         family_name: res.last_name,
         email: res.email,
-        provider: "facebook",
+        provider: 'facebook',
       };
 
       const date = new Date();
 
       const expires_at = expires * 1000 + date.getTime();
 
-      return Auth.federatedSignIn("facebook", { token, expires_at }, user).then(
-        () => {
-          return checkAuth();
-        }
-      );
+      return Auth.federatedSignIn('facebook', { token, expires_at }, user).then(() => {
+        return checkAuth();
+      });
     } else {
       return false;
     }
@@ -174,8 +167,7 @@ export const loginFacebook = async () => {
 
 const loginGoogleStandAlone = async () => {
   await GoogleSignIn.initAsync({
-    clientId:
-      "811639205989-52giv25pt95h41usegn3g595q97omkcr.apps.googleusercontent.com",
+    clientId: '811639205989-52giv25pt95h41usegn3g595q97omkcr.apps.googleusercontent.com',
   });
 
   try {
@@ -183,21 +175,19 @@ const loginGoogleStandAlone = async () => {
 
     const result = await GoogleSignIn.signInAsync();
 
-    if (result.type === "success") {
+    if (result.type === 'success') {
       const { email, lastName, firstName, auth } = result.user;
       const { accessTokenExpirationDate: expires_at, idToken: token } = auth;
       const user = {
         given_name: firstName,
         family_name: lastName,
         email,
-        provider: "google",
+        provider: 'google',
       };
 
-      return Auth.federatedSignIn("google", { token, expires_at }, user).then(
-        () => {
-          return checkAuth();
-        }
-      );
+      return Auth.federatedSignIn('google', { token, expires_at }, user).then(() => {
+        return checkAuth();
+      });
     } else {
       return false;
     }

@@ -1,4 +1,4 @@
-import { ActionTypes } from "~constants";
+import { ActionTypes } from '~constants';
 
 const {
   CLEAR_AUTH,
@@ -8,11 +8,12 @@ const {
   CONFIRM_SIGNIN,
   SET_INIT_LAUNCH,
   UPDATE_ATTRIBUTES,
+  AUTH_FAILED,
 } = ActionTypes;
 
 const INITIAL_STATE = {
-  username: "",
-  authAction: "",
+  username: '',
+  authAction: '',
   authActionData: null,
   loading: false,
   user: null,
@@ -26,6 +27,11 @@ export default (state = INITIAL_STATE, action) => {
         alert(action.error.message);
       }
       return { ...INITIAL_STATE, isInitLaunch: state.isInitLaunch };
+    case AUTH_FAILED:
+      if (action.error && action.error !== undefined) {
+        alert(action.error.message);
+      }
+      return { ...INITIAL_STATE, isInitLaunch: state.isInitLaunch, user: 'failed' };
     case AUTH_INITIATE:
       return { ...state, loading: true };
     case AUTH_COMPLETED:
@@ -35,7 +41,7 @@ export default (state = INITIAL_STATE, action) => {
     case CONFIRM_SIGNUP:
       return { ...state, username: action.payload };
     case CONFIRM_SIGNIN:
-      return { ...state, user: action.payload, username: "" };
+      return { ...state, user: action.payload, username: '' };
     case UPDATE_ATTRIBUTES:
       return { ...state, user: action.payload };
     default:

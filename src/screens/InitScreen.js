@@ -1,27 +1,15 @@
-import React, { Component } from "react";
-import { StyleSheet, View, Image, Text } from "react-native";
-import { SplashScreen } from "expo";
-import { Asset } from "expo-asset";
-import { connect } from "react-redux";
-import Swiper from "react-native-swiper";
+import React, { Component } from 'react';
+import { StyleSheet, View, Image, Text } from 'react-native';
+import { SplashScreen } from 'expo';
+import { Asset } from 'expo-asset';
+import { connect } from 'react-redux';
+import Swiper from 'react-native-swiper';
 
-import { Assets } from "~constants";
-import { Colors } from "~styles";
-import {
-  setAuth,
-  loginChecks,
-  checkInitLaunch,
-  setInitLaunch,
-} from "~redux/actions";
+import { Assets } from '~constants';
+import { Colors } from '~styles';
+import { setAuth, loginChecks, checkInitLaunch, setInitLaunch } from '~redux/actions';
 
-const {
-  initial_1,
-  initial_2,
-  initial_3,
-  initial_4,
-  surfSkate,
-  testImg,
-} = Assets.Images;
+const { initial_1, initial_2, initial_3, initial_4, surfSkate, testImg } = Assets.Images;
 
 class InitScreen extends Component {
   state = {
@@ -37,12 +25,12 @@ class InitScreen extends Component {
   };
 
   componentDidUpdate = () => {
-    const { isInitLaunch } = this.props;
+    const { isInitLaunch, user } = this.props;
     const { readyResources } = this.state;
 
     if (readyResources && isInitLaunch) {
       SplashScreen.hide();
-    } else if (readyResources && !isInitLaunch) {
+    } else if (readyResources && !isInitLaunch && user) {
       this.readyToMove();
     }
   };
@@ -55,34 +43,25 @@ class InitScreen extends Component {
   //   }
   // };
 
-  readyToMove = (params) => {
+  readyToMove = params => {
     const { navigation, user, loading, loadingApp, loginChecks } = this.props;
 
     if (!loading && !loadingApp) {
-      if (user) {
+      if (user && user !== 'failed') {
         loginChecks({ username: user.username });
       } else {
-        navigation.navigate("AuthNavigator");
+        navigation.navigate('AuthNavigator');
       }
     }
   };
 
   cacheResourcesAsync = async () => {
-    const images = [
-      testImg,
-      surfSkate,
-      initial_1,
-      initial_2,
-      initial_3,
-      initial_4,
-    ];
-    const cacheImages = images.map((image) =>
-      Asset.fromModule(image).downloadAsync()
-    );
+    const images = [testImg, surfSkate, initial_1, initial_2, initial_3, initial_4];
+    const cacheImages = images.map(image => Asset.fromModule(image).downloadAsync());
     return Promise.all(cacheImages);
   };
 
-  _swiperIndexChanged = (index) => {
+  _swiperIndexChanged = index => {
     if (index === 3) {
       setTimeout(this.props.setInitLaunch, 2500);
     }
@@ -100,35 +79,18 @@ class InitScreen extends Component {
           activeDotColor="#fff"
           onIndexChanged={this._swiperIndexChanged}
           showsPagination={false}
-          style={styles.carouselStyle}
-        >
+          style={styles.carouselStyle}>
           <View style={styles.slideStyle}>
-            <Image
-              style={styles.imageStyle}
-              resizeMode="cover"
-              source={Assets.Images.initial_1}
-            />
+            <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.initial_1} />
           </View>
           <View style={styles.slideStyle}>
-            <Image
-              style={styles.imageStyle}
-              resizeMode="cover"
-              source={Assets.Images.initial_2}
-            />
+            <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.initial_2} />
           </View>
           <View style={styles.slideStyle}>
-            <Image
-              style={styles.imageStyle}
-              resizeMode="cover"
-              source={Assets.Images.initial_3}
-            />
+            <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.initial_3} />
           </View>
           <View style={styles.slideStyle}>
-            <Image
-              style={styles.imageStyle}
-              resizeMode="cover"
-              source={Assets.Images.initial_4}
-            />
+            <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.initial_4} />
           </View>
         </Swiper>
       </View>
@@ -139,14 +101,14 @@ class InitScreen extends Component {
 const styles = StyleSheet.create({
   carouselViewStyle: {
     flex: 1,
-    width: "100%",
+    width: '100%',
   },
   carouselTextStyle: {
-    textAlign: "center",
+    textAlign: 'center',
   },
   imageStyle: {
     height: null,
-    width: "100%",
+    width: '100%',
     flex: 1,
     backgroundColor: Colors.imageBackgroundColor,
   },
@@ -155,13 +117,13 @@ const styles = StyleSheet.create({
   },
   slideStyle: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#ddd",
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ddd',
   },
 });
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   const { loading, user, isInitLaunch } = state.auth;
   const { loadingApp } = state.app;
 
