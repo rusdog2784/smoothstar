@@ -7,7 +7,17 @@ import { Colors } from '~styles';
 import { StyleTypes } from '~constants';
 
 export const Button = props => {
-  const { children, icon, iconType = 'IonIcons', color, style, onPress, disable, small } = props;
+  const {
+    children,
+    icon,
+    iconType = 'IonIcons',
+    color,
+    style,
+    onPress,
+    disable,
+    small,
+    textStyle,
+  } = props;
 
   const bgColor = disable ? Colors.buttonDisableColor : color || Colors.buttonNormalColor;
 
@@ -32,7 +42,7 @@ export const Button = props => {
 
       <Text
         type={StyleTypes.p}
-        style={[styles.textStyle, disable && { color: Colors.buttonDisableTextColor }]}>
+        style={[styles.textStyle, textStyle, disable && { color: Colors.buttonDisableTextColor }]}>
         {children}
       </Text>
 
@@ -56,7 +66,6 @@ const styles = StyleSheet.create({
   },
   buttonNormalStyle: {
     maxWidth: 400,
-    width: '100%',
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',

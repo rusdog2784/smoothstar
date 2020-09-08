@@ -1,6 +1,7 @@
 export const Colors = {
   backgroundColor: '#fff',
   backgroundColorDark: '#000',
+  backgroundColorMid: '#3e3e3e',
   headerTitleColor: '#fff',
   headerTitleColorDark: '#000',
   primaryTextColor: '#5d5d5d',

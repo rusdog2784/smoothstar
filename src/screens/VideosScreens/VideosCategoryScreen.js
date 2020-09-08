@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
-import { View, Image, Dimensions, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import { View, Image, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import { Container, Content } from 'native-base';
-import Swiper from 'react-native-swiper';
 import { connect } from 'react-redux';
-import Moment from 'moment';
+import { SplashScreen } from 'expo';
 
-import { fetchListNews, authSignOut } from '~redux/actions';
-import { Text, CustomIcon } from '~components/common';
-import { CardLI } from '~components';
-import { Assets, StyleTypes, StaticData } from '~constants';
+import {} from '~redux/actions';
+import { Text, CustomIcon, Button } from '~components/common';
+import {} from '~components';
+import { Assets, StyleTypes } from '~constants';
 import { GlobalStyles, Colors } from '~styles';
+import VideoList from './VideoList';
 
 const { height, width } = Dimensions.get('window');
 
 class VideosCategoryScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
-    headerTitle: (
-      <Text shadow type={StyleTypes.headerTitleDark}>
-        Training Videos
-      </Text>
-    ),
+    headerTitle: <Text type={StyleTypes.headerTitleDark}>Surf Training Series</Text>,
     headerRight: <View>{null}</View>,
     headerLeft: (
       <CustomIcon
@@ -34,103 +30,93 @@ class VideosCategoryScreen extends Component {
     ),
   });
 
-  componentDidMount() {
-    this.props.fetchListNews();
-  }
-
-  _renderItem = ({ item }) => {
-    const { title, publishedOn, rawContent, newsParagraphs: paragraphs, newsImages: images } = item;
-    return (
-      <CardLI
-        style={styles.listItemStyle}
-        onPress={() =>
-          this.props.navigation.navigate('NewsDetailScreen', {
-            heading: title,
-            description: rawContent,
-            paragraphs: paragraphs.items,
-            images: images.items,
-          })
-        }
-        heading={title}
-        date={Moment(publishedOn).format('DD/MM/YYYY')}
-        imageSource={{
-          uri:
-            'https://chile.travel/wp-content/uploads/bfi_thumb/Surf-pichilemu-ACT158-mpo3ti23d6dwe815ue248fxju4t66nm4vbb5pzf06o.jpg',
-        }}
-        description={rawContent}
-      />
-    );
+  state = {
+    popup: true,
   };
 
-  render() {
-    return (
-      <Container>
-        <Content contentContainerStyle={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-          <Image style={styles.imageStyle} resizeMode="cover" source={Assets.Images.testImg} />
-        </Content>
+  componentDidMount() {
+    SplashScreen.hide();
+  }
 
-        <TouchableOpacity
-          style={{ alignItems: 'center', marginVertical: 20 }}
-          onPress={this.props.authSignOut}>
-          <Text>SignOut</Text>
-        </TouchableOpacity>
+  render() {
+    const {
+      textStyle,
+      imageStyle,
+      buttonStyle,
+      parentContainerStyle,
+      popupContainerStyle,
+    } = styles;
+
+    return (
+      <Container style={parentContainerStyle}>
+        {this.state.popup ? (
+          <View style={popupContainerStyle}>
+            <Image style={imageStyle} resizeMode="cover" source={Assets.Images.testImg2} />
+
+            <Text type={StyleTypes.h3} style={textStyle}>
+              The SmoothStar Mini Grom training video series are designed to assist parents teach
+              their children on the basics of surfing for 3 - 8 year olds. The videos are
+              contributed by one of the most respected and experienced surf coaches Gee Cormack.{' '}
+            </Text>
+
+            <Button
+              textStyle={{ textAlign: 'center', flex: 0 }}
+              onPress={() => this.setState({ popup: false })}
+              style={buttonStyle}
+              color={Colors.button1Color}
+              icon="cross"
+              iconType="Entypo">
+              DISMISS
+            </Button>
+          </View>
+        ) : null}
+
+        <Text light type={StyleTypes.title} style={{ marginVertical: 20, alignSelf: 'center' }}>
+          Training Videos
+        </Text>
+
+        <VideoList />
       </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  carouselViewStyle: {
-    height: height / 2,
-    width: '100%',
-  },
-  carouselTextViewStyle: {
-    height: height / 2,
-    width,
-    position: 'absolute',
-    justifyContent: 'center',
-    paddingHorizontal: 30,
-  },
-  carouselTextStyle: {
-    textAlign: 'center',
+  parentContainerStyle: {
+    backgroundColor: Colors.backgroundColorMid,
+    flex: 1,
   },
   imageStyle: {
-    height: null,
+    height: 350,
     width: '100%',
-    flex: 1,
     backgroundColor: Colors.imageBackgroundColor,
   },
-  listViewStyle: {
-    position: 'absolute',
-    marginTop: height / 2 - 40,
-    ...GlobalStyles.screenType2ContentStyle,
+  textStyle: {
+    textAlign: 'center',
+    marginVertical: 10,
   },
-  listItemStyle: {
-    marginBottom: 10,
-  },
-  carouselStyle: {
-    flex: 1,
-  },
-  slideStyle: {
-    flex: 1,
+  buttonStyle: {
+    alignSelf: 'center',
+    width: 90,
+    borderRadius: 50,
+    height: 'auto',
+    marginBottom: 20,
+    paddingVertical: 5,
+    paddingHorizontal: 0,
     justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ddd',
   },
-  carouselPaginationStyle: {
-    top: height / 2 - 100,
+  popupContainerStyle: {
+    backgroundColor: '#ffffff',
   },
 });
 
 const mapStateToProps = state => {
-  const { newsList } = state.app;
+  // const {} = state.app;
 
-  return {
-    newsList,
-  };
+  return {};
 };
 
 export default connect(
   mapStateToProps,
-  { fetchListNews, authSignOut }
+  {}
 )(VideosCategoryScreen);

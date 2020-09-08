@@ -35,7 +35,7 @@ const AppNavigator = createDrawerNavigator(
     },
   },
   {
-    initialRouteName: 'HomeStack',
+    initialRouteName: 'VideosStack',
     backBehavior: 'none',
     unmountInactiveRoutes: true,
     contentComponent: Drawer,
